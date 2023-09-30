@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'components/btnFilter.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,6 +15,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String dropdownPerusahaan = "NVIDIA";
   List<String> perusahaanList = ["NVIDIA", "AMD", "Apple"];
+
+  void setPerusahaan(String newValue) {
+    setState(() {
+      dropdownPerusahaan = newValue;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,28 +84,14 @@ class _HomeState extends State<Home> {
                             style: GoogleFonts.jura(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
+                          DropDownFilter(
+                              item: dropdownPerusahaan,
+                              itemList: perusahaanList,
+                              onChange: setPerusahaan),
                           SizedBox(
                             height: 10,
                           ),
-                          DropdownButton(
-                            dropdownColor: backgroundColor,
-                            style: GoogleFonts.inter(
-                                fontSize: 14, color: Colors.black),
-                            // padding: EdgeInsets.all(1),
-                            items: perusahaanList.map((String items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(items),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                dropdownPerusahaan = newValue!;
-                              });
-                            },
-                            value: dropdownPerusahaan,
-                            // icon: Icon(Icons.arrow_drop_down),
-                          ),
+
                           // BtnFilter(),
                           Text(
                             "Tipe",
@@ -120,31 +115,6 @@ class _HomeState extends State<Home> {
                 });
           },
           child: Text("Click me")),
-    );
-  }
-}
-
-class BtnFilter extends StatelessWidget {
-  final String text;
-  const BtnFilter({super.key, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: Text(
-        text,
-        style: GoogleFonts.inter(
-          fontSize: 10,
-        ),
-      ),
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(0),
-          backgroundColor: backgroundColor,
-          foregroundColor: Colors.black,
-          elevation: 1,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
     );
   }
 }
