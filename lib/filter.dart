@@ -69,63 +69,72 @@ class _FilterPageState extends State<FilterPage> {
                     shrinkWrap: true,
                     itemCount: itemList.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                spreadRadius: 2,
-                                blurRadius: 7,
-                                offset: Offset(0, 2),
-                              )
-                            ],
-                            color: whiteColor,
-                            border: Border.all(color: Colors.black, width: 2),
-                            borderRadius: BorderRadius.circular(13)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Gambar\nTidak\nTersedia',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.inter(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey),
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      return Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    spreadRadius: 2,
+                                    blurRadius: 7,
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                                color: whiteColor,
+                                border:
+                                    Border.all(color: Colors.black, width: 2),
+                                borderRadius: BorderRadius.circular(13)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 150,
-                                  child: Text(
-                                    itemList[index].name,
-                                    style: GoogleFonts.jura(
-                                      fontSize: 16,
+                                Text(
+                                  'Gambar\nTidak\nTersedia',
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.inter(
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                      color: Colors.grey),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  width: 50,
                                 ),
-                                Text(
-                                  "Rp" + itemList[index].price,
-                                  style: GoogleFonts.inter(
-                                    fontSize: 14,
-                                  ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 150,
+                                      child: Text(
+                                        itemList[index].name,
+                                        style: GoogleFonts.jura(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      "Rp" + itemList[index].price,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                      ),
+                                    )
+                                  ],
                                 )
                               ],
-                            )
-                          ],
-                        ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          )
+                        ],
                       );
                     }),
               ],
