@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/filter.dart';
 import 'package:sirefis_mobile/home.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {'/': (context) => Home(), 'filter': (context) => Home()},
+      routes: {'/': (context) => Home(), 'filter': (context) => FilterPage()},
       title: 'SIREFIS',
       theme: ThemeData(),
     );

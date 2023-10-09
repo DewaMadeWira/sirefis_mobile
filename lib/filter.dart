@@ -40,7 +40,8 @@ class _FilterPageState extends State<FilterPage> {
   }
 
   Future getGpu() async {
-    var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
+    // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
+    var res = await http.get(Uri.http("192.168.71.121:8080", "gpu"));
     var jsonData = jsonDecode(res.body);
     if (items.isNotEmpty) {
       items.clear();
@@ -72,7 +73,7 @@ class _FilterPageState extends State<FilterPage> {
               ),
               body: ListView(children: [
                 Container(
-                  padding: EdgeInsets.all(25),
+                  padding: EdgeInsets.all(30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -176,6 +177,7 @@ class _FilterPageState extends State<FilterPage> {
                                     )
                                   ],
                                 );
+
                               }),
                         ],
                       )

@@ -18,6 +18,11 @@ class _HomeState extends State<Home> {
   String dropdownPerusahaan = "NVIDIA";
   List<String> perusahaanList = ["NVIDIA", "AMD", "Apple"];
 
+  bool termurahState = false;
+  bool termahalState = false;
+  bool desktopState = false;
+  bool workstationState = false;
+
   void setPerusahaan(String newValue) {
     setState(() {
       dropdownPerusahaan = newValue;
@@ -39,7 +44,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: backgroundColor,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: primaryColor,
         elevation: 0,
@@ -70,14 +75,16 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
                       child: Padding(
-                        padding: const EdgeInsets.all(15.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 550,
+                            Container(
+                              // padding: EdgeInsets.only(bottom: 20),
+                              height: 400,
                               child: ListView(
+                                // physics: const NeverScrollableScrollPhysics(),
                                 children: [
                                   Text(
                                     "Pilih Kriteria Rekomendasi",
@@ -86,10 +93,10 @@ class _HomeState extends State<Home> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 10,
                                   ),
                                   Text(
-                                    "Tertinggi",
+                                    "Urutkan",
                                     style: GoogleFonts.jura(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
@@ -98,32 +105,50 @@ class _HomeState extends State<Home> {
                                     height: 10,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      BtnFilter(text: "Terendah"),
-                                      BtnFilter(text: "Tertinggi"),
-                                      BtnFilter(text: "Termahal"),
-                                      BtnFilter(text: 'Termurah')
+                                      FilterChip(
+                                        label: Text('Termurah'),
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            termurahState = termahalState;
+                                            termahalState = !termahalState;
+                                          });
+                                        },
+                                        selected: termurahState,
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      FilterChip(
+                                        label: Text('Termahal'),
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            termahalState = termurahState;
+                                            termurahState = !termurahState;
+                                          });
+                                        },
+                                        selected: termahalState,
+                                      ),
                                     ],
                                   ),
+                                  // SizedBox(
+                                  //   height: 20,
+                                  // ),
+                                  // Text(
+                                  //   "Perusahaan",
+                                  //   style: GoogleFonts.jura(
+                                  //       fontSize: 16,
+                                  //       fontWeight: FontWeight.bold),
+                                  // ),
+                                  // DropDownFilter(
+                                  //     item: dropdownPerusahaan,
+                                  //     itemList: perusahaanList,
+                                  //     onChange: setPerusahaan),
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  Text(
-                                    "Perusahaan",
-                                    style: GoogleFonts.jura(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  DropDownFilter(
-                                      item: dropdownPerusahaan,
-                                      itemList: perusahaanList,
-                                      onChange: setPerusahaan),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-    
+
                                   // BtnFilter(),
                                   Text(
                                     "Tipe",
@@ -134,10 +159,37 @@ class _HomeState extends State<Home> {
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  DropDownFilter(
-                                      item: dropdownTipe,
-                                      itemList: tipeList,
-                                      onChange: setTipe),
+
+                                  Row(
+                                    children: [
+                                      FilterChip(
+                                        label: Text('Desktop'),
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            desktopState = !desktopState;
+                                          });
+                                        },
+                                        selected: desktopState,
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      FilterChip(
+                                        label: Text('Workstation'),
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            workstationState =
+                                                !workstationState;
+                                          });
+                                        },
+                                        selected: workstationState,
+                                      ),
+                                    ],
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
                                   Text(
                                     "Rentang Harga",
                                     style: GoogleFonts.jura(
@@ -151,25 +203,25 @@ class _HomeState extends State<Home> {
                                         child: TextField(
                                             decoration: InputDecoration(
                                                 hintText: "Harga Terendah")),
-    
+
                                         // controller: _hargaAkhir,
                                       ),
                                       SizedBox(
-                                        width: 20,
+                                        width: 10,
                                       ),
                                       SizedBox(
                                         width: 130,
                                         child: TextField(
                                             decoration: InputDecoration(
                                                 hintText: "Harga Tertinggi")),
-    
+
                                         // controller: _hargaAkhir,
                                       ),
                                     ],
                                     // children: [InputFilter(controller: _hargaAwal)],
                                   ),
                                   SizedBox(
-                                    height: 30,
+                                    height: 10,
                                   ),
                                   Text(
                                     "Tahun",
@@ -187,7 +239,7 @@ class _HomeState extends State<Home> {
                                         child: TextField(
                                             decoration: InputDecoration(
                                                 hintText: "Tahun Terendah")),
-    
+
                                         // controller: _hargaAkhir,
                                       ),
                                       SizedBox(
@@ -198,7 +250,7 @@ class _HomeState extends State<Home> {
                                         child: TextField(
                                             decoration: InputDecoration(
                                                 hintText: "Tahun Tertinggi")),
-    
+
                                         // controller: _hargaAkhir,
                                       ),
                                     ],
@@ -235,7 +287,7 @@ class _HomeState extends State<Home> {
                                   ),
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
