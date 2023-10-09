@@ -78,7 +78,9 @@ class MyApp extends StatelessWidget {
                     height: 52,
                     width: 300,
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),

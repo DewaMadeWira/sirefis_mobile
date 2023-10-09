@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sirefis_mobile/model/admin_main_perusahaan.dart';
-import 'package:sirefis_mobile/model/admin_main_produk.dart';
+import 'package:sirefis_mobile/components/admin_main_perusahaan.dart';
+import 'package:sirefis_mobile/components/admin_main_produk.dart';
 
 void main() {
   runApp(MyApp());
