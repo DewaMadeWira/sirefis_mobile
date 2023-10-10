@@ -1,3 +1,4 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/components/inputFilter.dart';
@@ -215,6 +216,12 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                         width: 130,
                                         child: TextField(
+                                            inputFormatters: [
+                                              CurrencyTextInputFormatter(
+                                                  // locale: 'idr',
+                                                  decimalDigits: 0,
+                                                  symbol: 'Rp')
+                                            ],
                                             decoration: InputDecoration(
                                                 hintText: "Harga Terendah")),
 
@@ -226,6 +233,12 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                         width: 130,
                                         child: TextField(
+                                            inputFormatters: [
+                                              CurrencyTextInputFormatter(
+                                                  // locale: 'idr',
+                                                  decimalDigits: 0,
+                                                  symbol: 'Rp')
+                                            ],
                                             decoration: InputDecoration(
                                                 hintText: "Harga Tertinggi")),
 
