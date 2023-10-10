@@ -16,12 +16,19 @@ class MyApp extends StatelessWidget {
     'VGA 6',
   ];
 
-  final List _perusahaan = [
-    'NVIDIA',
-    'AMD',
-    'Perusahaan 3',
-    'Perusahaan 4',
-  ];
+  // final List _perusahaan = [
+  //   'NVIDIA',
+  //   'AMD',
+  //   'Perusahaan 3',
+  //   'Perusahaan 4',
+  // ];
+
+  // List a = [
+  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
+  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
+  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
+  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
+  // ];
 
   MyApp({super.key});
 
@@ -41,47 +48,246 @@ class MyApp extends StatelessWidget {
         body: Column(
           children: [
             //Pilih perusahaan
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: SizedBox(
-                height: 150,
-                child: ListView.builder(
-                  itemCount: _perusahaan.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Bulat(
-                      child: _perusahaan[index],
-                    );
-                  },
-                ),
+            Container(
+              height: 150,
+              child: ListView(
+                padding: EdgeInsets.only(top: 40),
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.indigo[300],
+                      ),
+                      // child: Image.network("https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png"),
+                      child: Center(
+                          child: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png'),
+                        radius: 46,
+                      )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.indigo[300],
+                      ),
+                      child: Center(
+                          child: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/AMD_Radeon_logo.svg/2425px-AMD_Radeon_logo.svg.png'),
+                        radius: 45,
+                      )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.indigo[300],
+                      ),
+                      child: Icon(Icons.add_business),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.indigo[300],
+                      ),
+                      child: Icon(Icons.add_business),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.indigo[300],
+                      ),
+                      child: Icon(Icons.add_business),
+                    ),
+                  ),
+                ],
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 20),
+            //   child: SizedBox(
+            //     height: 150,
+            //     child: ListView.builder(
+            // # Beda File / source yotube
+            // itemCount: _perusahaan.length,
+            // scrollDirection: Axis.horizontal,
+            // itemBuilder: (context, index) {
+            //   return Bulat(
+            //     child: _perusahaan[index],
+            //   );
+            // },
+
+            // # Satu File / source web
+            // scrollDirection: Axis.horizontal,
+            // itemBuilder: (BuildContext ctx, int index) {
+            //   return Padding(
+            //     padding: const EdgeInsets.all(8.0),
+            //     child: Row(
+            //       children: [
+            //         Image.network(a[index]),
+            //       ],
+            //     ),
+            //   );
+            // },
+            // itemCount: a.length,
+            //     ),
+            //   ),
+            // ),
+            //
+            //
 
             //Isi produk dari perusahaan
             Expanded(
-              // flex: 4,
-              child: ListView.builder(
-                itemCount: _vga.length,
-                itemBuilder: (context, index) {
-                  return Kotak(
-                    child: _vga[index],
-                  );
-                },
-                // physics: NeverScrollableScrollPhysics(), ga iso scroll
-                // children: <Widget>[
-                //   Column(
-                //     children: [
-                //       Kotak(),
-                //       Kotak(),
-                //       Kotak(),
-                //       Kotak(),
-                //       Kotak(),
-                //       Kotak(),
-                //     ],
-                //   )
-                // ],
+              child: ListView(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.blue[200],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(6, 9),
+                            spreadRadius: 0,
+                            blurRadius: 9.0,
+                          ),
+                        ],
+                      ),
+                      height: 200,
+                      child: Container(),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.blue[200],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(6, 9),
+                            spreadRadius: 0,
+                            blurRadius: 9.0,
+                          ),
+                        ],
+                      ),
+                      height: 200,
+                      child: Center(
+                          child: Text(
+                        "Ini VGA",
+                        style: TextStyle(
+                            fontSize: 35, fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.blue[200],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(6, 9),
+                            spreadRadius: 0,
+                            blurRadius: 9.0,
+                          ),
+                        ],
+                      ),
+                      height: 200,
+                      child: Center(
+                          child: Text(
+                        "Ini VGA",
+                        style: TextStyle(
+                            fontSize: 35, fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.blue[200],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(6, 9),
+                            spreadRadius: 0,
+                            blurRadius: 9.0,
+                          ),
+                        ],
+                      ),
+                      height: 200,
+                      child: Center(
+                          child: Text(
+                        "Ini VGA",
+                        style: TextStyle(
+                            fontSize: 35, fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  ),
+                ],
               ),
             ),
+            // Expanded(
+            //   child: ListView.builder(
+            //     itemCount: _vga.length,
+            //     itemBuilder: (context, index) {
+            //       return Kotak(
+            //         child: _vga[index],
+            //       );
+            //     },
+            //     //
+            //     // physics: NeverScrollableScrollPhysics(), ga iso scroll
+            //     // children: <Widget>[
+            //     //   Column(
+            //     //     children: [
+            //     //       Kotak(),
+            //     //       Kotak(),
+            //     //       Kotak(),
+            //     //       Kotak(),
+            //     //       Kotak(),
+            //     //       Kotak(),
+            //     //     ],
+            //     //   )
+            //     // ],
+            //     //
+            //   ),
+            // ),
 
             FloatingActionButton.extended(
               // backgroundColor: Colors.orangeAccent[200],
