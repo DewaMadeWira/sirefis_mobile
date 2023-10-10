@@ -3,6 +3,7 @@ import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/components/inputFilter.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'components/btnFilter.dart';
 import 'filter.dart';
@@ -18,10 +19,23 @@ class _HomeState extends State<Home> {
   String dropdownPerusahaan = "NVIDIA";
   List<String> perusahaanList = ["NVIDIA", "AMD", "Apple"];
 
+  List<String> years = [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+  ];
+
   bool termurahState = false;
   bool termahalState = false;
   bool desktopState = false;
   bool workstationState = false;
+
+  String tahunTerlama = "2020";
+  String tahunTerbaru = "2023";
 
   void setPerusahaan(String newValue) {
     setState(() {
@@ -234,25 +248,135 @@ class _HomeState extends State<Home> {
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
-                                        width: 130,
-                                        child: TextField(
-                                            decoration: InputDecoration(
-                                                hintText: "Tahun Terendah")),
-
-                                        // controller: _hargaAkhir,
-                                      ),
+                                      ElevatedButton(
+                                          style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                    RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    side: BorderSide(
+                                                        color:
+                                                            Colors.white70))),
+                                            // side: BorderSide(),
+                                            backgroundColor:
+                                                MaterialStatePropertyAll(
+                                                    Colors.white10),
+                                          ),
+                                          onPressed: () {
+                                            showCupertinoModalPopup(
+                                                context: context,
+                                                builder: (_) => SizedBox(
+                                                      width: double.infinity,
+                                                      height: 250,
+                                                      child: CupertinoPicker(
+                                                        backgroundColor:
+                                                            Colors.white,
+                                                        itemExtent: 30,
+                                                        onSelectedItemChanged:
+                                                            (int value) {
+                                                          setState(() {
+                                                            tahunTerbaru =
+                                                                years[value];
+                                                          });
+                                                        },
+                                                        children: const [
+                                                          Text("2017"),
+                                                          Text("2018"),
+                                                          Text("2019"),
+                                                          Text("2020"),
+                                                          Text("2021"),
+                                                          Text("2022"),
+                                                          Text("2023"),
+                                                        ],
+                                                        scrollController:
+                                                            FixedExtentScrollController(
+                                                                initialItem: 5),
+                                                      ),
+                                                    ));
+                                          },
+                                          child: Text(
+                                            tahunTerlama,
+                                            style: GoogleFonts.inter(
+                                                color: Colors.black),
+                                          )),
                                       SizedBox(
                                         width: 20,
                                       ),
-                                      SizedBox(
-                                        width: 130,
-                                        child: TextField(
-                                            decoration: InputDecoration(
-                                                hintText: "Tahun Tertinggi")),
+                                      ElevatedButton(
+                                          style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                    RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    side: BorderSide(
+                                                        color:
+                                                            Colors.white70))),
+                                            // side: BorderSide(),
+                                            backgroundColor:
+                                                MaterialStatePropertyAll(
+                                                    Colors.white10),
+                                          ),
+                                          onPressed: () {
+                                            showCupertinoModalPopup(
+                                                context: context,
+                                                builder: (_) => SizedBox(
+                                                      width: double.infinity,
+                                                      height: 250,
+                                                      child: CupertinoPicker(
+                                                        backgroundColor:
+                                                            Colors.white,
+                                                        itemExtent: 30,
+                                                        onSelectedItemChanged:
+                                                            (int value) {
+                                                          setState(() {
+                                                            tahunTerbaru =
+                                                                years[value];
+                                                          });
+                                                        },
+                                                        children: const [
+                                                          Text("2017"),
+                                                          Text("2018"),
+                                                          Text("2019"),
+                                                          Text("2020"),
+                                                          Text("2021"),
+                                                          Text("2022"),
+                                                          Text("2023"),
+                                                        ],
+                                                        scrollController:
+                                                            FixedExtentScrollController(
+                                                                initialItem: 6),
+                                                      ),
+                                                    ));
+                                          },
+                                          child: Text(
+                                            tahunTerbaru,
+                                            style: GoogleFonts.inter(
+                                                color: Colors.black),
+                                          )),
 
-                                        // controller: _hargaAkhir,
-                                      ),
+                                      // SizedBox(
+                                      //   width: 130,
+                                      //   child: TextField(
+                                      //       decoration: InputDecoration(
+                                      //           hintText: "Tahun Terendah")),
+
+                                      //   // controller: _hargaAkhir,
+                                      // ),
+                                      // SizedBox(
+                                      //   width: 20,
+                                      // ),
+                                      // SizedBox(
+                                      //   width: 130,
+                                      //   child: TextField(
+                                      //       decoration: InputDecoration(s
+                                      //           hintText: "Tahun Tertinggi")),
+
+                                      //   // controller: _hargaAkhir,
+                                      // ),
                                     ],
                                     // children: [InputFilter(controller: _hargaAwal)],
                                   ),
