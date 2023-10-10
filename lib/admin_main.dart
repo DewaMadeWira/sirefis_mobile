@@ -98,7 +98,12 @@ class MyApp extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: Colors.indigo[300],
                       ),
-                      child: Icon(Icons.add_business),
+                      child: Center(
+                          child: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://www.dutchcowboys.nl/uploads/posts/list/apple-logo-1.jpg'),
+                        radius: 45,
+                      )),
                     ),
                   ),
                   Padding(
