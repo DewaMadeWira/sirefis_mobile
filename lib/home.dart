@@ -248,6 +248,11 @@ class _HomeState extends State<Home> {
                                   Row(
                                     children: [
                                       ElevatedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStatePropertyAll(
+                                                    Colors.white10),
+                                          ),
                                           onPressed: () {
                                             showCupertinoModalPopup(
                                                 context: context,
@@ -280,7 +285,11 @@ class _HomeState extends State<Home> {
                                                       ),
                                                     ));
                                           },
-                                          child: Text(tahunTerlama)),
+                                          child: Text(
+                                            tahunTerlama,
+                                            style: GoogleFonts.inter(
+                                                color: Colors.black),
+                                          )),
 
                                       // SizedBox(
                                       //   width: 130,
