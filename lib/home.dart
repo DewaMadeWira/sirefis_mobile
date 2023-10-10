@@ -216,6 +216,7 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                         width: 130,
                                         child: TextField(
+                                            keyboardType: TextInputType.number,
                                             inputFormatters: [
                                               CurrencyTextInputFormatter(
                                                   // locale: 'idr',
@@ -233,6 +234,7 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                         width: 130,
                                         child: TextField(
+                                            keyboardType: TextInputType.number,
                                             inputFormatters: [
                                               CurrencyTextInputFormatter(
                                                   // locale: 'idr',
@@ -290,7 +292,7 @@ class _HomeState extends State<Home> {
                                                         onSelectedItemChanged:
                                                             (int value) {
                                                           setState(() {
-                                                            tahunTerbaru =
+                                                            tahunTerlama =
                                                                 years[value];
                                                           });
                                                         },
