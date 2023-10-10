@@ -3,6 +3,7 @@ import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/components/inputFilter.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'components/btnFilter.dart';
 import 'filter.dart';
@@ -18,12 +19,22 @@ class _HomeState extends State<Home> {
   String dropdownPerusahaan = "NVIDIA";
   List<String> perusahaanList = ["NVIDIA", "AMD", "Apple"];
 
+  List<String> years = [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+  ];
+
   bool termurahState = false;
   bool termahalState = false;
   bool desktopState = false;
   bool workstationState = false;
 
-  DateTime tahunTerlama = DateTime.parse("2022-10-01 00:00:00.000");
+  String tahunTerlama = "2020";
 
   void setPerusahaan(String newValue) {
     setState(() {
@@ -238,59 +249,38 @@ class _HomeState extends State<Home> {
                                     children: [
                                       ElevatedButton(
                                           onPressed: () {
-                                            showDialog(
+                                            showCupertinoModalPopup(
                                                 context: context,
-                                                builder: (context) =>
-                                                    AlertDialog(
-                                                        title:
-                                                            Text("Select Year"),
-                                                        content:
-                                                            StatefulBuilder(
-                                                          builder: (context,
-                                                                  setState) =>
-                                                              Container(
-                                                            // Need to use container to add size constraint.
-                                                            width: 300,
-                                                            height: 300,
-                                                            child: YearPicker(
-                                                              firstDate: DateTime(
-                                                                  DateTime.now()
-                                                                          .year -
-                                                                      7,
-                                                                  1),
-                                                              lastDate: DateTime(
-                                                                  DateTime.now()
-                                                                      .year,
-                                                                  1),
-                                                              initialDate:
-                                                                  tahunTerlama,
-                                                              // save the selected date to _selectedDate DateTime variable.
-                                                              // It's used to set the previous selected date when
-                                                              // re-showing the dialog.
-                                                              onChanged:
-                                                                  (DateTime
-                                                                      dateTime) {
-                                                                // close the dialog when year is selected.
-                                                                print(dateTime);
-                                                                setState(() =>
-                                                                    tahunTerlama =
-                                                                        dateTime);
-                                                                print(
-                                                                    tahunTerlama);
-
-                                                                Navigator.pop(
-                                                                    context);
-
-                                                                // Do something with the dateTime selected.
-                                                                // Remember that you need to use dateTime.year to get the year
-                                                              },
-                                                              selectedDate:
-                                                                  tahunTerlama,
-                                                            ),
-                                                          ),
-                                                        )));
+                                                builder: (_) => SizedBox(
+                                                      width: double.infinity,
+                                                      height: 250,
+                                                      child: CupertinoPicker(
+                                                        backgroundColor:
+                                                            Colors.white,
+                                                        itemExtent: 30,
+                                                        onSelectedItemChanged:
+                                                            (int value) {
+                                                          setState(() {
+                                                            tahunTerlama =
+                                                                years[value];
+                                                          });
+                                                        },
+                                                        children: const [
+                                                          Text("2017"),
+                                                          Text("2018"),
+                                                          Text("2019"),
+                                                          Text("2020"),
+                                                          Text("2021"),
+                                                          Text("2022"),
+                                                          Text("2023"),
+                                                        ],
+                                                        scrollController:
+                                                            FixedExtentScrollController(
+                                                                initialItem: 1),
+                                                      ),
+                                                    ));
                                           },
-                                          child: Text("Tahun Terlama")),
+                                          child: Text(tahunTerlama)),
 
                                       // SizedBox(
                                       //   width: 130,
