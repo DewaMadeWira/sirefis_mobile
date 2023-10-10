@@ -23,6 +23,8 @@ class _HomeState extends State<Home> {
   bool desktopState = false;
   bool workstationState = false;
 
+  DateTime tahunTerlama = DateTime.parse("2022-10-01 00:00:00.000");
+
   void setPerusahaan(String newValue) {
     setState(() {
       dropdownPerusahaan = newValue;
@@ -234,14 +236,70 @@ class _HomeState extends State<Home> {
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
-                                        width: 130,
-                                        child: TextField(
-                                            decoration: InputDecoration(
-                                                hintText: "Tahun Terendah")),
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                        title:
+                                                            Text("Select Year"),
+                                                        content:
+                                                            StatefulBuilder(
+                                                          builder: (context,
+                                                                  setState) =>
+                                                              Container(
+                                                            // Need to use container to add size constraint.
+                                                            width: 300,
+                                                            height: 300,
+                                                            child: YearPicker(
+                                                              firstDate: DateTime(
+                                                                  DateTime.now()
+                                                                          .year -
+                                                                      7,
+                                                                  1),
+                                                              lastDate: DateTime(
+                                                                  DateTime.now()
+                                                                      .year,
+                                                                  1),
+                                                              initialDate:
+                                                                  tahunTerlama,
+                                                              // save the selected date to _selectedDate DateTime variable.
+                                                              // It's used to set the previous selected date when
+                                                              // re-showing the dialog.
+                                                              onChanged:
+                                                                  (DateTime
+                                                                      dateTime) {
+                                                                // close the dialog when year is selected.
+                                                                print(dateTime);
+                                                                setState(() =>
+                                                                    tahunTerlama =
+                                                                        dateTime);
+                                                                print(
+                                                                    tahunTerlama);
 
-                                        // controller: _hargaAkhir,
-                                      ),
+                                                                Navigator.pop(
+                                                                    context);
+
+                                                                // Do something with the dateTime selected.
+                                                                // Remember that you need to use dateTime.year to get the year
+                                                              },
+                                                              selectedDate:
+                                                                  tahunTerlama,
+                                                            ),
+                                                          ),
+                                                        )));
+                                          },
+                                          child: Text("Tahun Terlama")),
+
+                                      // SizedBox(
+                                      //   width: 130,
+                                      //   child: TextField(
+                                      //       decoration: InputDecoration(
+                                      //           hintText: "Tahun Terendah")),
+
+                                      //   // controller: _hargaAkhir,
+                                      // ),
                                       SizedBox(
                                         width: 20,
                                       ),
