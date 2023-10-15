@@ -173,21 +173,41 @@ class MyApp extends StatelessWidget {
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 25, right: 25, bottom: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.blue[200],
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(6, 9),
-                            spreadRadius: 0,
-                            blurRadius: 9.0,
-                          ),
-                        ],
+                    child: InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.blue[200],
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(6, 9),
+                              spreadRadius: 0,
+                              blurRadius: 9.0,
+                            ),
+                          ],
+                        ),
+                        height: 200,
+                        child: Container(),
                       ),
-                      height: 200,
-                      child: Container(),
+                      onTap: () {
+                        // print("Kontainer ditekan");
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text("Ini judul"),
+                            content: Text("Ini isi konten"),
+                            actions: [
+                              TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text("Ok")),
+                              TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text("Cancel"))
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Padding(
