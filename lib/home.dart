@@ -1,5 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/admin_reccomendation.dart';
 import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/components/inputFilter.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
@@ -131,36 +132,38 @@ class _HomeState extends State<Home> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(width: 2),
-                  borderRadius: BorderRadius.circular(14.0),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey, // Warna bayangan
-                        blurRadius: 4.0, // Radius blur bayangan
-                        spreadRadius: 0.0, // Radius penyebaran bayangan
-                        offset: Offset(0,
-                            4) // Offset bayangan (0, 4) untuk bayangan ke bawah
-                        ),
-                  ],
-                ),
-                width: 145, // Lebar kontainer
-                height: 180, // Tinggi kontainer
-                alignment: Alignment.topCenter,
-                child: Column(
-                  children: [
-                    Image(
-                      image: NetworkImage(
-                          "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg"),
-                      width: 105, // Lebar image
-                      height: 95, // Tinggi image
-                    ),
-                    Padding(padding: EdgeInsets.all(8.0)),
-                    Text('rekomendasi kami')
-                  ],
+              GestureDetector(
+                onTap: () => {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => AdminRec()),
+                  )
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 2),
+                    borderRadius: BorderRadius.circular(14.0),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey, // Warna bayangan
+                          blurRadius: 4.0, // Radius blur bayangan
+                          spreadRadius: 0.0, // Radius penyebaran bayangan
+                          offset: Offset(0,
+                              4) // Offset bayangan (0, 4) untuk bayangan ke bawah
+                          ),
+                    ],
+                  ),
+                  width: 145, // Lebar kontainer
+                  height: 180, // Tinggi kontainer
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      Image.asset('assets/images/nvidiaquadro.png'),
+                      Padding(padding: EdgeInsets.all(8.0)),
+                      Text('rekomendasi kami')
+                    ],
+                  ),
                 ),
               ),
               Container(
