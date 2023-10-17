@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/theme/colors.dart';
 // import 'package:flutter/rendering.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
                 Text(
                   "Welcome back Admin",
                   // Theme.of(context).textTheme.headlineLarge,
-                  style: TextStyle(fontSize: 38, color: Colors.grey[600]),
+                  style: TextStyle(fontSize: 38, color: Colors.black),
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -45,14 +46,23 @@ class MyApp extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextFormField(
+                    cursorColor: primaryColor,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                         labelText: "Username",
-                        prefixIcon: const Icon(Icons.person_2_outlined),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        labelStyle: TextStyle(color: primaryColor),
+                        prefixIcon: const Icon(
+                          Icons.person_2_outlined,
+                          size: 26,
+                        ),
+                        prefixIconColor: primaryColor,
                         enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: primaryColor, width: 2))),
                   ),
                 ),
                 SizedBox(
@@ -65,11 +75,18 @@ class MyApp extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                         labelText: "Password",
-                        prefixIcon: const Icon(Icons.lock_outline),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        labelStyle: TextStyle(color: primaryColor),
+                        prefixIcon: const Icon(
+                          Icons.lock_outline,
+                          size: 26,
+                        ),
+                        prefixIconColor: primaryColor,
                         enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: primaryColor, width: 2))),
                   ),
                 ),
                 Padding(
@@ -85,7 +102,8 @@ class MyApp extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          primary: Colors.blue[800],
+                          // primary: Colors.blue[800],
+                          primary: primaryColor,
                         ),
                         child: Text(
                           "Login",

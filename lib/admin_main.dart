@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sirefis_mobile/components/admin_main_perusahaan.dart';
-import 'package:sirefis_mobile/components/admin_main_produk.dart';
+// import 'package:sirefis_mobile/components/admin_main_perusahaan.dart';
+// import 'package:sirefis_mobile/components/admin_main_produk.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final List _vga = [
-    'VGA 1',
-    'VGA 2',
-    'VGA 3',
-    'VGA 4',
-    'VGA 5',
-    'VGA 6',
-  ];
+  // final List _vga = [
+  //   'VGA 1',
+  //   'VGA 2',
+  //   'VGA 3',
+  //   'VGA 4',
+  //   'VGA 5',
+  //   'VGA 6',
+  // ];
 
   // final List _perusahaan = [
   //   'NVIDIA',
@@ -47,124 +47,142 @@ class MyApp extends StatelessWidget {
         // ),
         body: Column(
           children: [
-            //Pilih perusahaan
-            Container(
-              height: 150,
-              child: ListView(
-                padding: EdgeInsets.only(top: 40),
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.indigo[300],
-                      ),
-                      // child: Image.network("https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png"),
-                      child: Center(
-                          child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png'),
-                        radius: 46,
-                      )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.indigo[300],
-                      ),
-                      child: Center(
-                          child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/AMD_Radeon_logo.svg/2425px-AMD_Radeon_logo.svg.png'),
-                        radius: 45,
-                      )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.indigo[300],
-                      ),
-                      child: Center(
-                          child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://www.dutchcowboys.nl/uploads/posts/list/apple-logo-1.jpg'),
-                        radius: 45,
-                      )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.indigo[300],
-                      ),
-                      child: Icon(Icons.add_business),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.indigo[300],
-                      ),
-                      child: Icon(Icons.add_business),
-                    ),
-                  ),
-                ],
-              ),
+            //Search
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 45, left: 25, right: 25, bottom: 10),
+              child: SearchAnchor(
+                  builder: (BuildContext context, SearchController controller) {
+                return SearchBar(
+                  controller: controller,
+                  padding: const MaterialStatePropertyAll<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 16.0)),
+                  onTap: () {
+                    controller.openView();
+                  },
+                  onChanged: (_) {
+                    controller.openView();
+                  },
+                  leading: const Icon(Icons.search),
+                  // trailing: <Widget>[
+                  //   Tooltip(
+                  //     message: 'Change brightness mode',
+                  //     child: IconButton(
+                  //       isSelected: isDark,
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           isDark = !isDark;
+                  //         });
+                  //       },
+                  //       icon: const Icon(Icons.wb_sunny_outlined),
+                  //       selectedIcon:
+                  //           const Icon(Icons.brightness_2_outlined),
+                  //     ),
+                  //   )
+                  // ],
+                );
+              }, suggestionsBuilder:
+                      (BuildContext context, SearchController controller) {
+                return List<ListTile>.generate(5, (int index) {
+                  final String item = 'item $index';
+                  return ListTile(
+                    title: Text(item),
+                    onTap: () {
+                      (() {
+                        controller.closeView(item);
+                      });
+                    },
+                  );
+                });
+              }),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 20),
-            //   child: SizedBox(
-            //     height: 150,
-            //     child: ListView.builder(
-            // # Beda File / source yotube
-            // itemCount: _perusahaan.length,
-            // scrollDirection: Axis.horizontal,
-            // itemBuilder: (context, index) {
-            //   return Bulat(
-            //     child: _perusahaan[index],
-            //   );
-            // },
 
-            // # Satu File / source web
-            // scrollDirection: Axis.horizontal,
-            // itemBuilder: (BuildContext ctx, int index) {
-            //   return Padding(
-            //     padding: const EdgeInsets.all(8.0),
-            //     child: Row(
-            //       children: [
-            //         Image.network(a[index]),
-            //       ],
-            //     ),
-            //   );
-            // },
-            // itemCount: a.length,
-            //     ),
+            //Pilih perusahaan
+            // Container(
+            //   height: 150,
+            //   child: ListView(
+            //     padding: EdgeInsets.only(top: 40),
+            //     scrollDirection: Axis.horizontal,
+            //     children: [
+            //       Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: Container(
+            //           height: 100,
+            //           width: 100,
+            //           decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             color: Colors.indigo[300],
+            //           ),
+            //           // child: Image.network("https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png"),
+            //           child: Center(
+            //               child: CircleAvatar(
+            //             backgroundImage: NetworkImage(
+            //                 'https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png'),
+            //             radius: 46,
+            //           )),
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: Container(
+            //           height: 100,
+            //           width: 100,
+            //           decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             color: Colors.indigo[300],
+            //           ),
+            //           child: Center(
+            //               child: CircleAvatar(
+            //             backgroundImage: NetworkImage(
+            //                 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/AMD_Radeon_logo.svg/2425px-AMD_Radeon_logo.svg.png'),
+            //             radius: 45,
+            //           )),
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: Container(
+            //           height: 100,
+            //           width: 100,
+            //           decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             color: Colors.indigo[300],
+            //           ),
+            //           child: Center(
+            //               child: CircleAvatar(
+            //             backgroundImage: NetworkImage(
+            //                 'https://www.dutchcowboys.nl/uploads/posts/list/apple-logo-1.jpg'),
+            //             radius: 45,
+            //           )),
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: Container(
+            //           height: 100,
+            //           width: 100,
+            //           decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             color: Colors.indigo[300],
+            //           ),
+            //           child: Icon(Icons.add_business),
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: Container(
+            //           height: 100,
+            //           width: 100,
+            //           decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             color: Colors.indigo[300],
+            //           ),
+            //           child: Icon(Icons.add_business),
+            //         ),
+            //       ),
+            //     ],
             //   ),
             // ),
-            //
-            //
 
             //Isi produk dari perusahaan
             Expanded(
@@ -288,43 +306,18 @@ class MyApp extends StatelessWidget {
                 ],
               ),
             ),
-            // Expanded(
-            //   child: ListView.builder(
-            //     itemCount: _vga.length,
-            //     itemBuilder: (context, index) {
-            //       return Kotak(
-            //         child: _vga[index],
-            //       );
-            //     },
-            //     //
-            //     // physics: NeverScrollableScrollPhysics(), ga iso scroll
-            //     // children: <Widget>[
-            //     //   Column(
-            //     //     children: [
-            //     //       Kotak(),
-            //     //       Kotak(),
-            //     //       Kotak(),
-            //     //       Kotak(),
-            //     //       Kotak(),
-            //     //       Kotak(),
-            //     //     ],
-            //     //   )
-            //     // ],
-            //     //
+
+            // FloatingActionButton.extended(
+            //   // backgroundColor: Colors.orangeAccent[200],
+            //   onPressed: () {
+            //     // Respond to button press
+            //   },
+            //   icon: Icon(Icons.upload),
+            //   label: Text(
+            //     'Update Rekomendasi',
+            //     style: TextStyle(fontSize: 18),
             //   ),
             // ),
-
-            FloatingActionButton.extended(
-              // backgroundColor: Colors.orangeAccent[200],
-              onPressed: () {
-                // Respond to button press
-              },
-              icon: Icon(Icons.upload),
-              label: Text(
-                'Update Rekomendasi',
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
 
             // --FOOTER SHOPEE--
             // Column(
