@@ -10,14 +10,14 @@ import 'package:flutter/cupertino.dart';
 import 'components/btnFilter.dart';
 import 'filter.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomePerusahaan extends StatefulWidget {
+  const HomePerusahaan({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePerusahaan> createState() => _HomeStatePerusahaan();
 }
 
-class _HomeState extends State<Home> {
+class _HomeStatePerusahaan extends State<HomePerusahaan> {
   String dropdownPerusahaan = "NVIDIA";
   List<String> perusahaanList = ["NVIDIA", "AMD", "Apple"];
 
@@ -70,24 +70,6 @@ class _HomeState extends State<Home> {
           Padding(
             padding: const EdgeInsets.all(10.0),
           ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Keluaran',
-                  style: GoogleFonts.jura(
-                      fontWeight: FontWeight.bold, fontSize: 40),
-                ),
-                Text(
-                  'Terbaru',
-                  style: GoogleFonts.jura(
-                      fontWeight: FontWeight.bold, fontSize: 40),
-                ),
-              ],
-            ),
-          ),
           Column(
             children: [
               Container(
@@ -108,7 +90,31 @@ class _HomeState extends State<Home> {
                 ),
                 width: 300, //lebar
                 height: 320, //tinggi
-                child: Image.asset('assets/images/nvidiaquadro.png'),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/nvidiaquadro.png'),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "100",
+                      style: GoogleFonts.inter(
+                          color: primaryColor,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Tipe GPU yang ada",
+                      style: GoogleFonts.inter(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -118,7 +124,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Text(
-                  'Lainnya :',
+                  'Fitur :',
                   style: GoogleFonts.jura(
                     fontWeight: FontWeight.bold,
                     fontSize: 27,
@@ -126,6 +132,52 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 350,
+                child: GestureDetector(
+                  onTap: () => {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => AdminRec()),
+                    )
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(width: 2),
+                      borderRadius: BorderRadius.circular(14.0),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey, // Warna bayangan
+                            blurRadius: 4.0, // Radius blur bayangan
+                            spreadRadius: 0.0, // Radius penyebaran bayangan
+                            offset: Offset(0,
+                                4) // Offset bayangan (0, 4) untuk bayangan ke bawah
+                            ),
+                      ],
+                    ),
+                    width: 45, // Lebar kontainer
+                    // height: 180, // Tinggi kontainer
+                    alignment: Alignment.topCenter,
+                    child: Row(
+                      children: [
+                        Image.asset('assets/images/nvidiaquadro.png',
+                            height: 40),
+                        Padding(padding: EdgeInsets.all(8.0)),
+                        Text('rekomendasi kami')
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -613,8 +665,6 @@ class _HomeState extends State<Home> {
                     },
                     child: Column(
                       children: [
-                          
-                        
                         Image.asset(
                           'assets/images/nvidiaquadro.png',
                           width: 105, // Lebar image
