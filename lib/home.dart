@@ -7,8 +7,10 @@ import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'admin_login.dart';
 import 'components/btnFilter.dart';
 import 'filter.dart';
+import 'login_perusahaan.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -60,6 +62,40 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            ListTile(
+              title: Text(
+                "Login sebagai Admin",
+                style:
+                    GoogleFonts.jura(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              trailing: Icon(Icons.login, color: Colors.black),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => LoginAdmin()),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ListTile(
+              title: Text("Login sebagai Perusahaan",
+                  style: GoogleFonts.jura(
+                      fontSize: 20, fontWeight: FontWeight.bold)),
+              trailing: Icon(Icons.login, color: Colors.black),
+              onTap: () => {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => LoginPerusahaan()),
+                )
+              },
+            )
+          ],
+        ),
+      ),
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -91,25 +127,46 @@ class _HomeState extends State<Home> {
           Column(
             children: [
               Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(width: 2),
-                  borderRadius: BorderRadius.circular(14.0),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey, // Warna bayangan
-                        blurRadius: 4.0, // Radius blur bayangan
-                        spreadRadius: 0.0, // Radius penyebaran bayangan
-                        offset: Offset(0,
-                            4) // Offset bayangan (0, 4) untuk bayangan ke bawah
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 2),
+                    borderRadius: BorderRadius.circular(14.0),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey, // Warna bayangan
+                          blurRadius: 4.0, // Radius blur bayangan
+                          spreadRadius: 0.0, // Radius penyebaran bayangan
+                          offset: Offset(0,
+                              4) // Offset bayangan (0, 4) untuk bayangan ke bawah
+                          ),
+                    ],
+                  ),
+                  width: 300, //lebar
+                  height: 320, //tinggi
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/nvidiaquadro.png'),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        "NVIDIA Quadro P5000",
+                        style: GoogleFonts.jura(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "Harga : Rp20.000.000",
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
                         ),
-                  ],
-                ),
-                width: 300, //lebar
-                height: 320, //tinggi
-                child: Image.asset('assets/images/nvidiaquadro.png'),
-              ),
+                      )
+                    ],
+                  )),
             ],
           ),
           Row(
@@ -613,8 +670,6 @@ class _HomeState extends State<Home> {
                     },
                     child: Column(
                       children: [
-                          
-                        
                         Image.asset(
                           'assets/images/nvidiaquadro.png',
                           width: 105, // Lebar image

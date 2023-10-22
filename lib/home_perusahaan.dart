@@ -4,6 +4,7 @@ import 'package:sirefis_mobile/admin_reccomendation.dart';
 import 'package:sirefis_mobile/all_gpu.dart';
 import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/components/inputFilter.dart';
+import 'package:sirefis_mobile/request_gpu.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
@@ -142,7 +143,7 @@ class _HomeStatePerusahaan extends State<HomePerusahaan> {
                 child: GestureDetector(
                   onTap: () => {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AdminRec()),
+                      MaterialPageRoute(builder: (context) => RequestGpu()),
                     )
                   },
                   child: Container(

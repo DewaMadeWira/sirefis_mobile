@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/home.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 // import 'package:flutter/rendering.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const LoginAdmin());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class LoginAdmin extends StatelessWidget {
+  const LoginAdmin({super.key});
 
   // This widget is the root of your application.
   @override
@@ -119,7 +120,11 @@ class MyApp extends StatelessWidget {
                       style: TextStyle(fontSize: 18),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
+                      },
                       child: Text(
                         "Kembali",
                         style: TextStyle(fontSize: 18),

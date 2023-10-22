@@ -7,12 +7,12 @@ import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MyApp(),
+    home: LoginPerusahaan(),
   ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class LoginPerusahaan extends StatelessWidget {
+  const LoginPerusahaan({super.key});
 
   // This widget is the root of your application.
   @override

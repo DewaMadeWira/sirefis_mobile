@@ -8,14 +8,14 @@ import 'package:http/http.dart' as http;
 
 import 'model/item.dart';
 
-class AllGpu extends StatefulWidget {
-  const AllGpu({super.key});
+class RequestGpu extends StatefulWidget {
+  const RequestGpu({super.key});
 
   @override
-  State<AllGpu> createState() => _AllGpuState();
+  State<RequestGpu> createState() => _RequestGpuState();
 }
 
-class _AllGpuState extends State<AllGpu> {
+class _RequestGpuState extends State<RequestGpu> {
   String dropdownTipe = "Tertinggi";
   List<String> tipeList = [
     "Tertinggi",
@@ -66,6 +66,16 @@ class _AllGpuState extends State<AllGpu> {
         builder: (ctx, snapshot) {
       // if (snapshot.connectionState == ConnectionState.done) {
       return Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          label: const Text('Request Barang Baru'),
+          foregroundColor: Colors.black,
+          backgroundColor: primaryColor,
+          elevation: 0,
+          icon: const Icon(Icons.add),
+        ),
         backgroundColor: backgroundColor,
         appBar: AppBar(
           backgroundColor: primaryColor,
@@ -78,7 +88,7 @@ class _AllGpuState extends State<AllGpu> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Semua \nGPU",
+                  "Request",
                   style: GoogleFonts.jura(
                       fontSize: 36, fontWeight: FontWeight.bold),
                 ),
@@ -86,8 +96,9 @@ class _AllGpuState extends State<AllGpu> {
                   height: 20,
                 ),
                 Text(
-                  "Urutkan :",
-                  style: GoogleFonts.jura(fontSize: 20),
+                  "Pending Request :",
+                  style: GoogleFonts.jura(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 20,
