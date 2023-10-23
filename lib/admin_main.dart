@@ -4,7 +4,7 @@ void main() {
   runApp(AdminMain());
 }
 
-class MyApp extends StatelessWidget {
+class AdminMain extends StatelessWidget {
   // final List _vga = [
   //   'VGA 1',
   //   'VGA 2',
@@ -28,7 +28,46 @@ class MyApp extends StatelessWidget {
   //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
   // ];
 
-  MyApp({super.key});
+  var listJudul = [
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU"
+  ];
+
+  var listDeskripsi = [
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu"
+  ];
+
+  var listGambar = [
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg"
+  ];
+
+  AdminMain({super.key});
 
   // This widget is the root of your application.
   @override
@@ -44,6 +83,7 @@ class MyApp extends StatelessWidget {
         //     textAlign: TextAlign.center,
         //   ),
         // ),
+
         body: Column(
           children: [
             //
