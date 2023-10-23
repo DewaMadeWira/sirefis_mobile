@@ -30,10 +30,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: ' '),
     );
   }
 }
@@ -80,12 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        backgroundColor: Colors.green,
         title: Text(widget.title),
       ),
       body: ListView(
@@ -101,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(14.0),
                 ),
                 width: 370,   //lebar 
-                height: 1000,  //tinggi
+                height: 1050,  //tinggi
                 child: Column(
                   children: [
                     Padding(padding: EdgeInsets.all(15)
@@ -168,6 +163,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -204,6 +205,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -240,6 +247,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -276,6 +289,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -312,6 +331,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -348,6 +373,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -384,6 +415,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -420,6 +457,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -456,12 +499,18 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+                                  
+                                ),
+                              ),
                             ),
                           ],
                         ),
 
                         Padding(
-                          padding: EdgeInsets.all(15)
+                          padding: EdgeInsets.all(20)
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
