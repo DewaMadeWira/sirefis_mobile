@@ -30,10 +30,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: ' '),
     );
   }
 }
@@ -80,12 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        backgroundColor: Colors.green,
         title: Text(widget.title),
       ),
       body: ListView(
@@ -116,8 +111,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(padding: EdgeInsets.all(33)
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 18),
+                            ),
                         Container(
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -145,10 +143,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(                                                 //kalo di jadikan column hasil e di tengah ga bisa di rubah
+                        Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('Nama GPU',
                               style: GoogleFonts.inter(
@@ -164,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -174,6 +172,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -184,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('Harga',
                               style: GoogleFonts.inter(
@@ -200,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -210,6 +214,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -220,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('Tahun Produksi',
                               style: GoogleFonts.inter(
@@ -236,7 +246,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -246,6 +256,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -256,7 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('G3mark',
                               style: GoogleFonts.inter(
@@ -272,7 +288,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -282,6 +298,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -292,7 +314,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('G2mark',
                               style: GoogleFonts.inter(
@@ -308,7 +330,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -318,6 +340,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -328,7 +356,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('GPU value',
                               style: GoogleFonts.inter(
@@ -344,7 +372,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -354,6 +382,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -364,7 +398,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('TDP',
                               style: GoogleFonts.inter(
@@ -380,7 +414,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -390,6 +424,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -400,7 +440,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('Power Performance',
                               style: GoogleFonts.inter(
@@ -416,7 +456,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -426,6 +466,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -436,7 +482,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(                                                 
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text('Category',
                               style: GoogleFonts.inter(
@@ -452,7 +498,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 37),
+                              padding: EdgeInsets.symmetric(horizontal: 17),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -462,6 +508,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               width: 160,   //lebar
                               height: 36,   //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                                child: TextField(
+
+                                ),
+                              ),
                             ),
                           ],
                         ),

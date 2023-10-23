@@ -33,7 +33,7 @@ class RequestGpuBaru extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: ' '),
     );
   }
 }
@@ -155,7 +155,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
                       border: Border.all(width: 2),
@@ -163,9 +162,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Nama Gpu',
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
                       ),
                     ),
                   ),
@@ -199,6 +199,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -230,6 +236,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -261,6 +273,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -292,6 +310,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -323,6 +347,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -354,6 +384,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -365,7 +401,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 19),
                   ),
-                  Text("Powe Performance",
+                  Text("Power Performance",
                     style: GoogleFonts.inter(
                       fontSize: 16
                     ),
@@ -385,6 +421,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -416,6 +458,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                      child: TextField(
+                        
+                      ),
+                    ),
                   ),
                 ],
               ),
