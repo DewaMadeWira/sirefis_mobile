@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Text("Tambah Gambar"),
             ],
           ),
-          Padding(padding: EdgeInsets.all(15)
+          Padding(padding: EdgeInsets.all(10)
           ),
           Row(
             children: [
@@ -155,6 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
                       border: Border.all(width: 2),
@@ -162,6 +163,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     width: 355,   //lebar
                     height: 40,   //tinggi
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Nama Gpu',
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -227,6 +233,193 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
+
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 19),
+                  ),
+                  Text("G3mark",
+                    style: GoogleFonts.inter(
+                      fontSize: 16
+                    ),
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      border: Border.all(width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    width: 355,   //lebar
+                    height: 40,   //tinggi
+                  ),
+                ],
+              ),
+
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 19),
+                  ),
+                  Text("G2mark",
+                    style: GoogleFonts.inter(
+                      fontSize: 16
+                    ),
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      border: Border.all(width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    width: 355,   //lebar
+                    height: 40,   //tinggi
+                  ),
+                ],
+              ),
+
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 19),
+                  ),
+                  Text("GPU value",
+                    style: GoogleFonts.inter(
+                      fontSize: 16
+                    ),
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      border: Border.all(width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    width: 355,   //lebar
+                    height: 40,   //tinggi
+                  ),
+                ],
+              ),
+
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 19),
+                  ),
+                  Text("TDP",
+                    style: GoogleFonts.inter(
+                      fontSize: 16
+                    ),
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      border: Border.all(width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    width: 355,   //lebar
+                    height: 40,   //tinggi
+                  ),
+                ],
+              ),
+
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 19),
+                  ),
+                  Text("Powe Performance",
+                    style: GoogleFonts.inter(
+                      fontSize: 16
+                    ),
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      border: Border.all(width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    width: 355,   //lebar
+                    height: 40,   //tinggi
+                  ),
+                ],
+              ),
+
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 19),
+                  ),
+                  Text("Category",
+                    style: GoogleFonts.inter(
+                      fontSize: 16
+                    ),
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.all(4)
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      border: Border.all(width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    width: 355,   //lebar
+                    height: 40,   //tinggi
+                  ),
+                ],
+              ),
+
               Padding(padding: EdgeInsets.all(30)
               ),
               Row(
