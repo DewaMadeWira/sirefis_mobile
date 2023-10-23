@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const RequestGpuBaru());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RequestGpuBaru extends StatelessWidget {
+  const RequestGpuBaru({super.key});
 
   // This widget is the root of your application.
   @override

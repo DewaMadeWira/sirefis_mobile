@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 // import 'package:sirefis_mobile/components/admin_main_produk.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AdminMain());
 }
 
-class MyApp extends StatelessWidget {
+class AdminMain extends StatelessWidget {
   // final List _vga = [
   //   'VGA 1',
   //   'VGA 2',
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
   // ];
 
-  MyApp({super.key});
+  AdminMain({super.key});
 
   // This widget is the root of your application.
   @override

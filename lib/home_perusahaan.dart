@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'components/btnFilter.dart';
+import 'edit_profil_perusahaan.dart';
 import 'filter.dart';
 
 class HomePerusahaan extends StatefulWidget {
@@ -186,7 +187,8 @@ class _HomeStatePerusahaan extends State<HomePerusahaan> {
               GestureDetector(
                 onTap: () => {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => AdminRec()),
+                    MaterialPageRoute(
+                        builder: (context) => EditProfilPerusahaan()),
                   )
                 },
                 child: Container(
