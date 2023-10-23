@@ -188,6 +188,6 @@ class _AllGpuState extends State<AllGpu> {
       //     color: primaryColor,
       //   ));
       // }
-    });
+    }, future: null,);
   }
 }

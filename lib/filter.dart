@@ -187,6 +187,6 @@ class _FilterPageState extends State<FilterPage> {
       //     color: primaryColor,
       //   ));
       // }
-    });
+    }, future: null,);
   }
 }
