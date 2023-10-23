@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/components/dropDownFilter.dart';
+import 'package:sirefis_mobile/request_gpubaru.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -62,143 +63,151 @@ class _RequestGpuState extends State<RequestGpu> {
     // getGpu();
     // return FutureBuilder(builder: builder)
     return FutureBuilder(
-        // future: getGpu(),
-        builder: (ctx, snapshot) {
-      // if (snapshot.connectionState == ConnectionState.done) {
-      return Scaffold(
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            // Add your onPressed code here!
-          },
-          label: const Text('Request Barang Baru'),
-          foregroundColor: Colors.black,
-          backgroundColor: primaryColor,
-          elevation: 0,
-          icon: const Icon(Icons.add),
-        ),
-        backgroundColor: backgroundColor,
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          elevation: 0,
-        ),
-        body: ListView(children: [
-          Container(
-            padding: EdgeInsets.all(30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Request",
-                  style: GoogleFonts.jura(
-                      fontSize: 36, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Pending Request :",
-                  style: GoogleFonts.jura(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                DropDownFilter(
-                    item: dropdownTipe, itemList: tipeList, onChange: setTipe),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: itemList.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey,
-                                        spreadRadius: 2,
-                                        blurRadius: 7,
-                                        offset: Offset(0, 2),
-                                      )
-                                    ],
-                                    color: whiteColor,
-                                    border: Border.all(
-                                        color: Colors.black, width: 2),
-                                    borderRadius: BorderRadius.circular(13)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Gambar\nTidak\nTersedia',
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.inter(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey),
-                                    ),
-                                    SizedBox(
-                                      width: 50,
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 150,
-                                          child: Text(
-                                            itemList[index].name,
-                                            style: GoogleFonts.jura(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Text(
-                                          "Rp" + itemList[index].price,
-                                          style: GoogleFonts.inter(
-                                            fontSize: 14,
-                                          ),
+      // future: getGpu(),
+      builder: (ctx, snapshot) {
+        // if (snapshot.connectionState == ConnectionState.done) {
+        return Scaffold(
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              // Add your onPressed code here!
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => RequestGpuBaru()),
+              );
+            },
+            label: const Text('Request Barang Baru'),
+            foregroundColor: Colors.black,
+            backgroundColor: primaryColor,
+            elevation: 0,
+            icon: const Icon(Icons.add),
+          ),
+          backgroundColor: backgroundColor,
+          appBar: AppBar(
+            backgroundColor: primaryColor,
+            elevation: 0,
+          ),
+          body: ListView(children: [
+            Container(
+              padding: EdgeInsets.all(30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Request",
+                    style: GoogleFonts.jura(
+                        fontSize: 36, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Pending Request :",
+                    style: GoogleFonts.jura(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  DropDownFilter(
+                      item: dropdownTipe,
+                      itemList: tipeList,
+                      onChange: setTipe),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: itemList.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          spreadRadius: 2,
+                                          blurRadius: 7,
+                                          offset: Offset(0, 2),
                                         )
                                       ],
-                                    )
-                                  ],
+                                      color: whiteColor,
+                                      border: Border.all(
+                                          color: Colors.black, width: 2),
+                                      borderRadius: BorderRadius.circular(13)),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Gambar\nTidak\nTersedia',
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.inter(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey),
+                                      ),
+                                      SizedBox(
+                                        width: 50,
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 150,
+                                            child: Text(
+                                              itemList[index].name,
+                                              style: GoogleFonts.jura(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Text(
+                                            "Rp" + itemList[index].price,
+                                            style: GoogleFonts.inter(
+                                              fontSize: 14,
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              )
-                            ],
-                          );
-                        }),
-                  ],
-                )
-              ],
+                                SizedBox(
+                                  height: 20,
+                                )
+                              ],
+                            );
+                          }),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ]),
-      );
-      // } else {
-      //   return Center(
-      //       child: CircularProgressIndicator(
-      //     backgroundColor: backgroundColor,
-      //     color: primaryColor,
-      //   ));
-      // }
-    }, future: null,);
+          ]),
+        );
+        // } else {
+        //   return Center(
+        //       child: CircularProgressIndicator(
+        //     backgroundColor: backgroundColor,
+        //     color: primaryColor,
+        //   ));
+        // }
+      },
+      future: null,
+    );
   }
 }

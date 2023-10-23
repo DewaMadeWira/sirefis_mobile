@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/home.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
+
+import 'admin_main.dart';
 // import 'package:flutter/rendering.dart';
 
 void main() {
@@ -98,6 +100,10 @@ class LoginAdmin extends StatelessWidget {
                     child: ElevatedButton(
                         onPressed: () {
                           // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => AdminMain()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
