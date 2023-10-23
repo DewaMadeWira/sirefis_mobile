@@ -1,34 +1,50 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(AdminMain());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // final List _vga = [
-  //   'VGA 1',
-  //   'VGA 2',
-  //   'VGA 3',
-  //   'VGA 4',
-  //   'VGA 5',
-  //   'VGA 6',
-  // ];
-
-  // final List _perusahaan = [
-  //   'NVIDIA',
-  //   'AMD',
-  //   'Perusahaan 3',
-  //   'Perusahaan 4',
-  // ];
-
-  // List a = [
-  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
-  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
-  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
-  //   "https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg",
-  // ];
-
   MyApp({super.key});
+
+  var listJudul = [
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU",
+    "Ini GPU"
+  ];
+
+  var listDeskripsi = [
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
+    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu"
+  ];
+
+  var listGambar = [
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg",
+    "https://pclab.pk/wp-content/uploads/2022/12/Gigabyte-Radeon-RX-6600-EAGLE-8G.jpg"
+  ];
 
   // This widget is the root of your application.
   @override
