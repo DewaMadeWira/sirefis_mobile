@@ -44,27 +44,54 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tambah Admin dan Daftar Admin'),
+        backgroundColor:
+            Colors.green, // Ubah warna latar belakang AppBar menjadi hijau
       ),
+      backgroundColor: Colors.white, // Ganti warna latar belakang
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
-              controller: namaController,
-              decoration: InputDecoration(labelText: 'Nama Admin'),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: TextField(
+                controller: namaController,
+                decoration: InputDecoration(
+                  labelText: 'Nama Admin',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: TextField(
+                controller: usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -76,6 +103,10 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
                 );
               },
               child: Text('Tambah Admin'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors
+                    .green, // Ubah warna tombol "Tambah Admin" menjadi hijau
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -88,6 +119,10 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
                 );
               },
               child: Text('Daftar Admin'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors
+                    .green, // Ubah warna tombol "Daftar Admin" menjadi hijau
+              ),
             ),
           ],
         ),
@@ -129,7 +164,10 @@ class DaftarAdminScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Daftar Admin'),
+        backgroundColor:
+            Colors.green, // Ubah warna latar belakang AppBar menjadi hijau
       ),
+      backgroundColor: Colors.white, // Ganti warna latar belakang
       body: ListView.builder(
         itemCount: daftarAdmin.length,
         itemBuilder: (context, index) {
