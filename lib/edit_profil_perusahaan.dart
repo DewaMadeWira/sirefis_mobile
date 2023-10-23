@@ -82,8 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text(widget.title),
+        backgroundColor: primaryColor,
+        title: Text(]"Edit Profil Perusahaan"),
       ),
       body: ListView(
         children: [
