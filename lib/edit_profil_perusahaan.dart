@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sirefis_mobile/home_perusahaan.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const EditProfilPerusahaan());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class EditProfilPerusahaan extends StatelessWidget {
+  const EditProfilPerusahaan({super.key});
 
   // This widget is the root of your application.
   @override
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -87,39 +89,33 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Column(
             children: [
-              Padding(padding: EdgeInsets.all(30)
-              ),
+              Padding(padding: EdgeInsets.all(30)),
               Container(
-                width: 190.0,  // Lebar lingkaran
-                height: 190.0, // Tinggi lingkaran
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey[300],
-                )
-              ),
+                  width: 190.0, // Lebar lingkaran
+                  height: 190.0, // Tinggi lingkaran
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey[300],
+                  )),
             ],
-            
           ),
-
-          Padding(
-            padding: EdgeInsets.all(30)
-          ),
+          Padding(padding: EdgeInsets.all(30)),
           Column(
             children: [
               Row(
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25),
-                ),
-                  Text("Nama Perusahaan",
+                  ),
+                  Text(
+                    "Nama Perusahaan",
                     style: GoogleFonts.jura(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,                                
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -129,29 +125,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    width: 320,   //lebar
-                    height: 36,   //tinggi
-                  
+                    width: 320, //lebar
+                    height: 36, //tinggi
                   )
                 ],
               ),
-
-              Padding(padding: EdgeInsets.all(15)
-              ),
+              Padding(padding: EdgeInsets.all(15)),
               Row(
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25),
-                ),
-                  Text("CEO",
+                  ),
+                  Text(
+                    "CEO",
                     style: GoogleFonts.jura(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,                                
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -161,29 +154,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    width: 320,   //lebar
-                    height: 36,   //tinggi
-                  
+                    width: 320, //lebar
+                    height: 36, //tinggi
                   )
                 ],
               ),
-
-              Padding(padding: EdgeInsets.all(15)
-              ),
+              Padding(padding: EdgeInsets.all(15)),
               Row(
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25),
-                ),
-                  Text("Lokasi",
+                  ),
+                  Text(
+                    "Lokasi",
                     style: GoogleFonts.jura(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,                                
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -193,52 +183,52 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    width: 320,   //lebar
-                    height: 36,   //tinggi
-                  
+                    width: 320, //lebar
+                    height: 36, //tinggi
                   )
                 ],
               ),
-
-              Padding(padding: EdgeInsets.all(60)
-              ),
+              Padding(padding: EdgeInsets.all(60)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(width: 2),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    width: 110,   //lebar
-                    height: 36,   //tinggi
-                    alignment: Alignment.center,
-                    child: 
-                      Text("Cancel",
-                        style: GoogleFonts.inter(
-                          fontSize: 12,
-                          color: Colors.black
-                        ),
+                  GestureDetector(
+                    onTap: () => {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => HomePerusahaan()),
+                      )
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(width: 2),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
+                      width: 110, //lebar
+                      height: 36, //tinggi
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Cancel",
+                        style: GoogleFonts.inter(
+                            fontSize: 12, color: Colors.black),
+                      ),
+                    ),
                   ),
-
                   Container(
                     decoration: BoxDecoration(
                       color: primaryColor,
                       border: Border.all(width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    width: 110,   //lebar
-                    height: 36,   //tinggi
+                    width: 110, //lebar
+                    height: 36, //tinggi
                     alignment: Alignment.center,
-                    child: 
-                      Text("Save",
-                        style: GoogleFonts.inter(
-                          fontSize: 12,
-                          color: Colors.black
-                        ),
-                      ),
+                    child: Text(
+                      "Save",
+                      style:
+                          GoogleFonts.inter(fontSize: 12, color: Colors.black),
+                    ),
                   ),
                 ],
               )
@@ -246,7 +236,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-     
     );
   }
 }
