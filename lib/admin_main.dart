@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -6,6 +7,14 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
+  int _currentIndex = 0;
+  List<Widget> body = const [
+    Icon(Icons.sort),
+    Icon(Icons.person),
+    Icon(Icons.upload),
+    Icon(Icons.add)
+  ];
 
   var listJudul = [
     "Ini GPU",
@@ -95,6 +104,30 @@ class MyApp extends StatelessWidget {
               }),
             ),
 
+            //Button urutkan & list admin
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     ElevatedButton(
+            //         onPressed: () {},
+            //         style: ElevatedButton.styleFrom(primary: primaryColor),
+            //         child: Text(
+            //           "Urutkan",
+            //           style: TextStyle(fontSize: 20),
+            //         )),
+            //     SizedBox(
+            //       width: 10,
+            //     ),
+            //     ElevatedButton(
+            //         onPressed: () {},
+            //         style: ElevatedButton.styleFrom(primary: primaryColor),
+            //         child: Text(
+            //           "List Admin",
+            //           style: TextStyle(fontSize: 20),
+            //         ))
+            //   ],
+            // ),
+
             //
             //List Item
             Expanded(
@@ -148,6 +181,32 @@ class MyApp extends StatelessWidget {
                       ),
                     );
                   }),
+            ),
+
+            //Footer
+            // Center(
+            //   child: body[_currentIndex],
+            // ),
+            BottomNavigationBar(
+              backgroundColor: primaryColor,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.white,
+              currentIndex: _currentIndex,
+              onTap: (int newIndex) {
+                (() {
+                  _currentIndex = newIndex;
+                });
+              },
+              items: const [
+                // BottomNavigationBarItem(
+                //     label: "Urutkan", icon: Icon(Icons.sort)),
+                BottomNavigationBarItem(
+                    label: "List Admin", icon: Icon(Icons.person)),
+                BottomNavigationBarItem(
+                    label: "Tambah GPU", icon: Icon(Icons.add)),
+                BottomNavigationBarItem(
+                    label: "Update Rekomendasi", icon: Icon(Icons.upload)),
+              ],
             ),
 
             //List VGA (----)
@@ -299,7 +358,7 @@ showDialogFunc(context, img, title, desc) {
             type: MaterialType.transparency,
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.grey),
+                  borderRadius: BorderRadius.circular(10), color: Colors.white),
               padding: EdgeInsets.all(15),
               width: MediaQuery.of(context).size.width * 0.7,
               height: 320,
