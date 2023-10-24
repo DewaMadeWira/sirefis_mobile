@@ -361,7 +361,7 @@ showDialogFunc(context, img, title, desc) {
                   borderRadius: BorderRadius.circular(10), color: Colors.white),
               padding: EdgeInsets.all(15),
               width: MediaQuery.of(context).size.width * 0.7,
-              height: 320,
+              height: 370,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -387,7 +387,34 @@ showDialogFunc(context, img, title, desc) {
                     desc,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.center,
-                  )
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {},
+                          style:
+                              ElevatedButton.styleFrom(primary: primaryColor),
+                          child: Text(
+                            "Update",
+                            style: TextStyle(fontSize: 20),
+                          )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red),
+                          child: Text(
+                            "Delete",
+                            style: TextStyle(fontSize: 20),
+                          ))
+                    ],
+                  ),
                 ],
               ),
             ),
