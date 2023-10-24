@@ -93,36 +93,47 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
                 obscureText: true,
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                tambahAdmin(
-                  namaController.text,
-                  emailController.text,
-                  usernameController.text,
-                  passwordController.text,
-                );
-              },
-              child: Text('Tambah Admin'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors
-                    .green, // Ubah warna tombol "Tambah Admin" menjadi hijau
-              ),
+            SizedBox(
+              height: 30,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DaftarAdminScreen(
-                        daftarAdmin: daftarAdmin, hapusAdmin: hapusAdmin),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    tambahAdmin(
+                      namaController.text,
+                      emailController.text,
+                      usernameController.text,
+                      passwordController.text,
+                    );
+                  },
+                  child: Text('Tambah Admin'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors
+                        .green, // Ubah warna tombol "Tambah Admin" menjadi hijau
                   ),
-                );
-              },
-              child: Text('Daftar Admin'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors
-                    .green, // Ubah warna tombol "Daftar Admin" menjadi hijau
-              ),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DaftarAdminScreen(
+                            daftarAdmin: daftarAdmin, hapusAdmin: hapusAdmin),
+                      ),
+                    );
+                  },
+                  child: Text('Daftar Admin'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors
+                        .green, // Ubah warna tombol "Daftar Admin" menjadi hijau
+                  ),
+                ),
+              ],
             ),
           ],
         ),
