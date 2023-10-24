@@ -4,17 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const UpdateRekomendasi());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class UpdateRekomendasi extends StatelessWidget {
+  const UpdateRekomendasi({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: ' ',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,10 +31,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: ' '),
     );
   }
 }
@@ -55,12 +55,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String valueChoose = "RTX 3090";
   List listitem=[
-    "RTX 3090","RTX 2070","RTX 3050","RTX 2050","GTX 1080","GTX 950"
+    "RTX 3090","RTX 3080","RTX 3070","RTX 2070","RTX 3050","RTX 2050","RTX 3060","GTX 1650","GTX 1080","GTX 950"
   ];
 
-  String valueChoose1 = "RTX 3090";
+  String valueChoose1 = "RTX 3050";
   List listitem1=[
-    "RTX 3090","RTX 2070","RTX 3050","RTX 2050","GTX 1080","GTX 950"
+    "RTX 3090","RTX 3080","RTX 3070","RTX 2070","RTX 3050","RTX 2050","RTX 3060","GTX 1650","GTX 1080","GTX 950"
+  ];
+
+  String valueChoose2 = "RTX 3060";
+  List listitem2=[
+    "RTX 3090","RTX 3080","RTX 3070","RTX 2070","RTX 3050","RTX 2050","RTX 3060","GTX 1650","GTX 1080","GTX 950"
   ];
 
 
@@ -79,12 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        backgroundColor: Colors.green,
         title: Text(widget.title),
       ),
       body: ListView(
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(14.0),
                 ),
                 width: 380,   //lebar 
-                height: 480,  //tinggi
+                height: 600,  //tinggi
                 padding: EdgeInsets.all(50),
                 child: Column(
                   children: [
@@ -197,6 +197,73 @@ class _MyHomePageState extends State<MyHomePage> {
                     
                       ),
                     ),
+
+                    Padding(padding: EdgeInsets.all(20)
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                        ),
+                        Text('Rekomendasi serupa',
+                          style: GoogleFonts.inter(
+                            fontSize: 16,
+                            
+                          ),
+                        ),
+                      ],
+                    ), 
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 19),
+                      alignment: Alignment.bottomLeft,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        border: Border.all(width: 2),
+                        borderRadius: BorderRadius.circular(14.0),
+                      ),
+                      child: DropdownButton<String>(
+                        value: valueChoose2,
+                        onChanged: (String? newValue){
+                          setState(() {
+                            valueChoose2 = newValue!;
+                          });
+                        },
+                        items: listitem2.map((valueItem) {
+                          return DropdownMenuItem<String>(
+                            value : valueItem,
+                            child :Text(valueItem),
+                          );
+                        }).toList(),
+                    
+                    
+                      ),
+                    ),
+
+                    Padding(padding: EdgeInsets.all(25)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                border: Border.all(width: 2),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              width: 154, //lebar
+                              height: 36, //tinggi
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Update",
+                                style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            )
+                          ],
+                        )
+
+                    
                   ],
                   
                 ),
