@@ -362,10 +362,10 @@ showDialogFunc(context, img, title, desc) {
             type: MaterialType.transparency,
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.grey),
+                  borderRadius: BorderRadius.circular(10), color: Colors.white),
               padding: EdgeInsets.all(15),
               width: MediaQuery.of(context).size.width * 0.7,
-              height: 320,
+              height: 360,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -391,7 +391,36 @@ showDialogFunc(context, img, title, desc) {
                     desc,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.center,
-                  )
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            primary: primaryColor, // Background color
+                          ),
+                          child: Text(
+                            "Update",
+                            style: TextStyle(fontSize: 20),
+                          )),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red, // Background color
+                          ),
+                          child: Text(
+                            "Delete",
+                            style: TextStyle(fontSize: 20),
+                          ))
+                    ],
+                  ),
                 ],
               ),
             ),
