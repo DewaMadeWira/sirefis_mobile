@@ -6,7 +6,7 @@ import 'form_tambah_gpu.dart';
 import 'form_update_rekomendasi.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AdminMain());
 }
 
 class AdminMain extends StatefulWidget {
