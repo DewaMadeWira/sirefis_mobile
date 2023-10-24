@@ -366,7 +366,7 @@ showDialogFunc(context, img, title, desc) {
                   borderRadius: BorderRadius.circular(10), color: Colors.white),
               padding: EdgeInsets.all(15),
               width: MediaQuery.of(context).size.width * 0.7,
-              height: 360,
+              height: 390,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
