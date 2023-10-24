@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AdminMain());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class AdminMain extends StatelessWidget {
+  AdminMain({super.key});
 
   var listJudul = [
     "Ini GPU",
