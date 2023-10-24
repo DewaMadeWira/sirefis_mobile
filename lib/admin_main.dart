@@ -3,6 +3,7 @@ import 'package:sirefis_mobile/tambah_admin.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
 import 'form_tambah_gpu.dart';
+import 'form_update_gpu.dart';
 import 'form_update_rekomendasi.dart';
 
 void main() {
@@ -399,7 +400,12 @@ showDialogFunc(context, img, title, desc) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => UpdateGpu()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: primaryColor, // Background color
                           ),
