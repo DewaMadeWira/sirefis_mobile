@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AdminMain());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class AdminMain extends StatelessWidget {
+  AdminMain({super.key});
 
   int _currentIndex = 0;
   List<Widget> body = const [
