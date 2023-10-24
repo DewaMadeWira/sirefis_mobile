@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
   runApp(TambahAdminApp());
@@ -43,6 +44,7 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primaryColor,
         title: Text('Tambah Admin dan Daftar Admin'),
       ),
       body: Padding(
@@ -66,29 +68,44 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            ElevatedButton(
-              onPressed: () {
-                tambahAdmin(
-                  namaController.text,
-                  emailController.text,
-                  usernameController.text,
-                  passwordController.text,
-                );
-              },
-              child: Text('Tambah Admin'),
+            SizedBox(
+              height: 20,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DaftarAdminScreen(
-                        daftarAdmin: daftarAdmin, hapusAdmin: hapusAdmin),
-                  ),
-                );
-              },
-              child: Text('Daftar Admin'),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(primaryColor)),
+                  onPressed: () {
+                    tambahAdmin(
+                      namaController.text,
+                      emailController.text,
+                      usernameController.text,
+                      passwordController.text,
+                    );
+                  },
+                  child: Text('Tambah Admin'),
+                ),
+                SizedBox(
+                  width: 40,
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(primaryColor)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DaftarAdminScreen(
+                            daftarAdmin: daftarAdmin, hapusAdmin: hapusAdmin),
+                      ),
+                    );
+                  },
+                  child: Text('Daftar Admin'),
+                ),
+              ],
+            )
           ],
         ),
       ),
@@ -128,6 +145,7 @@ class DaftarAdminScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primaryColor,
         title: Text('Daftar Admin'),
       ),
       body: ListView.builder(

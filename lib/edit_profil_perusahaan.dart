@@ -125,13 +125,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    width: 320,   //lebar
-                    height: 36,   //tinggi
+                    width: 320, //lebar
+                    height: 36, //tinggi
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                      child: TextField(
-                        
-                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 0),
+                      child: TextField(),
                     ),
                   )
                 ],
@@ -160,13 +159,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    width: 320,   //lebar
-                    height: 36,   //tinggi
+                    width: 320, //lebar
+                    height: 36, //tinggi
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                      child: TextField(
-                        
-                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 0),
+                      child: TextField(),
                     ),
                   )
                 ],
@@ -195,16 +193,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    width: 320,   //lebar
-                    height: 36,   //tinggi
+                    width: 320, //lebar
+                    height: 36, //tinggi
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                      child: TextField(
-                        
-                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 0),
+                      child: TextField(),
                     ),
-                  
-
                   )
                 ],
               ),
