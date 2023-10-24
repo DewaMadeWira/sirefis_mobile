@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TambahGpu());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TambahGpu extends StatelessWidget {
+  const TambahGpu({super.key});
 
   // This widget is the root of your application.
   @override
@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: ' '),
@@ -87,35 +88,32 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Column(
             children: [
-              Padding(padding: EdgeInsets.all(30)
-              ),
+              Padding(padding: EdgeInsets.all(30)),
               Container(
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
                   color: primaryColor,
                   borderRadius: BorderRadius.circular(14.0),
                 ),
-                width: 370,   //lebar 
-                height: 1000,  //tinggi
+                width: 370, //lebar
+                height: 1000, //tinggi
                 child: Column(
                   children: [
-                    Padding(padding: EdgeInsets.all(15)
-                    ),
-                    Text('Form Tambah GPU',
+                    Padding(padding: EdgeInsets.all(15)),
+                    Text(
+                      'Form Tambah GPU',
                       style: GoogleFonts.jura(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                     ),
-
-                    Padding(padding: EdgeInsets.all(33)
-                    ),
+                    Padding(padding: EdgeInsets.all(33)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 18),
-                            ),
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                        ),
                         Container(
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -123,42 +121,36 @@ class _MyHomePageState extends State<MyHomePage> {
                             border: Border.all(width: 1),
                             borderRadius: BorderRadius.circular(14.0),
                           ),
-                          width: 180,   //lebar 
-                          height: 137,  //tinggi
+                          width: 180, //lebar
+                          height: 137, //tinggi
                           child: Column(
                             children: [
-                               Image.asset('assets/images/pluslogo.png', height: 75),
+                              Image.asset('assets/images/pluslogo.png',
+                                  height: 75),
                               Text("Tambah Gambar")
                             ],
                           ),
-                          
-                          
                         )
                       ],
                     ),
-
-                    Padding(
-                      padding: EdgeInsets.all(32)
-                    ),
+                    Padding(padding: EdgeInsets.all(32)),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(                                                 
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('Nama GPU',
+                            Text(
+                              'Nama GPU',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -170,37 +162,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('Harga',
+                            Text(
+                              'Harga',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -212,37 +198,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('Tahun Produksi',
+                            Text(
+                              'Tahun Produksi',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -254,37 +234,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('G3mark',
+                            Text(
+                              'G3mark',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -296,37 +270,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('G2mark',
+                            Text(
+                              'G2mark',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -338,37 +306,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('GPU value',
+                            Text(
+                              'GPU value',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -380,37 +342,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('TDP',
+                            Text(
+                              'TDP',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -422,37 +378,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('Power Performance',
+                            Text(
+                              'Power Performance',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -464,37 +414,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
-                        Row(                                                 
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
-                            Text('Category',
+                            Text(
+                              'Category',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
-                                
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(2)
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Row(
                           children: [
                             Padding(
@@ -506,21 +450,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 160,   //lebar
-                              height: 36,   //tinggi
+                              width: 160, //lebar
+                              height: 36, //tinggi
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                                child: TextField(
-
-                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(),
                               ),
                             ),
                           ],
                         ),
-
-                        Padding(
-                          padding: EdgeInsets.all(15)
-                        ),
+                        Padding(padding: EdgeInsets.all(15)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -530,32 +470,27 @@ class _MyHomePageState extends State<MyHomePage> {
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              width: 154,   //lebar
-                              height: 36,   //tinggi
+                              width: 154, //lebar
+                              height: 36, //tinggi
                               alignment: Alignment.center,
-                              child: 
-                                Text("Tambah",
-                                  style: GoogleFonts.inter(
+                              child: Text(
+                                "Tambah",
+                                style: GoogleFonts.inter(
                                     fontSize: 12,
-                                    color: const Color.fromARGB(255, 0, 0, 0)
-                                  ),
-                                ),
+                                    color: const Color.fromARGB(255, 0, 0, 0)),
+                              ),
                             )
                           ],
                         )
                       ],
                     ),
                   ],
-                  
                 ),
-                
               ),
-
             ],
           )
         ],
       ),
-       
     );
   }
 }

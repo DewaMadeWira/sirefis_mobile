@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const UpdateRekomendasi());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class UpdateRekomendasi extends StatelessWidget {
+  const UpdateRekomendasi({super.key});
 
   // This widget is the root of your application.
   @override
