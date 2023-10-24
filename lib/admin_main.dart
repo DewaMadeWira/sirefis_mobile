@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/tambah_admin.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
+
+import 'form_tambah_gpu.dart';
+import 'form_update_rekomendasi.dart';
 
 void main() {
   runApp(AdminMain());
 }
 
-class AdminMain extends StatelessWidget {
+class AdminMain extends StatefulWidget {
   AdminMain({super.key});
 
+  @override
+  State<AdminMain> createState() => _AdminMainState();
+}
+
+class _AdminMainState extends State<AdminMain> {
   int _currentIndex = 0;
+
   List<Widget> body = const [
     Icon(Icons.sort),
     Icon(Icons.person),
@@ -193,9 +203,27 @@ class AdminMain extends StatelessWidget {
               unselectedItemColor: Colors.white,
               currentIndex: _currentIndex,
               onTap: (int newIndex) {
-                (() {
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(builder: (context) => TambahAdminApp()),
+                // );
+                if (newIndex == 0) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => TambahAdminApp()),
+                  );
+                } else if (newIndex == 1) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => TambahGpu()),
+                  );
+                } else if (newIndex == 2) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => UpdateRekomendasi()),
+                  );
+                }
+                setState(() {
                   _currentIndex = newIndex;
                 });
+                ;
               },
               items: const [
                 // BottomNavigationBarItem(
