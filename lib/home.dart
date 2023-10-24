@@ -37,6 +37,8 @@ class _HomeState extends State<Home> {
   bool termahalState = false;
   bool desktopState = false;
   bool workstationState = false;
+  bool amd = false;
+  bool nvidia = false;
 
   String tahunTerlama = "2020";
   String tahunTerbaru = "2023";
@@ -335,6 +337,48 @@ class _HomeState extends State<Home> {
                                                       });
                                                     },
                                                     selected: termahalState,
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 30,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  FilterChip(
+                                                    label: Text('nvidia'),
+                                                    onSelected: (bool value) {
+                                                      setState(() {
+                                                        if (nvidia == false &&
+                                                            amd == false) {
+                                                          nvidia = !nvidia;
+                                                        } else {
+                                                          nvidia = amd;
+                                                          amd = !amd;
+                                                        }
+                                                      });
+                                                    },
+                                                    selected: nvidia,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                  FilterChip(
+                                                    label: Text('AMD'),
+                                                    onSelected: (bool value) {
+                                                      setState(() {
+                                                        if (nvidia == false &&
+                                                            amd == false) {
+                                                          amd = !amd;
+                                                        } else {
+                                                          amd = nvidia;
+                                                          nvidia = !nvidia;
+                                                        }
+                                                      });
+                                                    },
+                                                    selected: amd,
                                                   ),
                                                 ],
                                               ),
