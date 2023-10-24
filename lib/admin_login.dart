@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/home.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'admin_main.dart';
 // import 'package:flutter/rendering.dart';
 
@@ -35,12 +35,18 @@ class LoginAdmin extends StatelessWidget {
                 Text(
                   "Welcome back Admin",
                   // Theme.of(context).textTheme.headlineLarge,
-                  style: TextStyle(fontSize: 38, color: Colors.black),
+                  style: GoogleFonts.jura(
+                      fontSize: 38,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),
                 Text(
                   "Login ke akun anda",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+                  style: GoogleFonts.jura(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
                   // style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
@@ -123,7 +129,8 @@ class LoginAdmin extends StatelessWidget {
                   children: [
                     Text(
                       "Anda bukan admin?",
-                      style: TextStyle(fontSize: 18),
+                      style: GoogleFonts.jura(
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     TextButton(
                       onPressed: () {
@@ -133,7 +140,8 @@ class LoginAdmin extends StatelessWidget {
                       },
                       child: Text(
                         "Kembali",
-                        style: TextStyle(fontSize: 18),
+                        style: GoogleFonts.jura(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
