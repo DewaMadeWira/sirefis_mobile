@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: Text("Edit Profil Perusahaan"),
+        title: Text(]"Edit Profil Perusahaan"),
       ),
       body: ListView(
         children: [

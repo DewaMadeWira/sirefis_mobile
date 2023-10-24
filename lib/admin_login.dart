@@ -102,8 +102,7 @@ class LoginAdmin extends StatelessWidget {
                           // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => AdminMain()
-                            ),
+                                builder: (context) => AdminMain()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
