@@ -41,16 +41,16 @@ class _AdminMainState extends State<AdminMain> {
   ];
 
   var listDeskripsi = [
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu",
-    "Deskripsi merupakan suatu kumpulan penjelasan tentang sesuatu"
+    "Rp22.000.000",
+    "Rp12.000.000",
+    "Rp10.900.000",
+    "Rp7.600.000",
+    "Rp6.500.000",
+    "Rp2.700.000",
+    "Rp2.900.000",
+    "Rp2.500.000",
+    "Rp2.000.000",
+    "Rp2.400.000"
   ];
 
   var listGambar = [
