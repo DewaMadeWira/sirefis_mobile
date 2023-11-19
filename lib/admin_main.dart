@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/tambah_admin.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
@@ -5,6 +7,8 @@ import 'package:sirefis_mobile/theme/colors.dart';
 import 'form_tambah_gpu.dart';
 import 'form_update_gpu.dart';
 import 'form_update_rekomendasi.dart';
+
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(AdminMain());
@@ -66,9 +70,21 @@ class _AdminMainState extends State<AdminMain> {
     "https://static.gigabyte.com/StaticFile/Image/Global/1d408c5715aef2ba51f799ea16d196c2/Product/23131/png/500"
   ];
 
+  //get data gpu
+  Future getGpu() async {
+    // var response = await http.get(Uri.https('127.0.0.1:8000', 'api/gpu'));
+    var response = await http.get(Uri.https('balldontlie.io', 'api/v1/teams'));
+    var jsonData = jsonDecode(response.body);
+
+    for (var perData in jsonData['data']) {}
+
+    // print(response.body);
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    getGpu();
     double width = MediaQuery.of(context).size.width * 0.6;
     return MaterialApp(
       home: Scaffold(
