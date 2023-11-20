@@ -78,7 +78,7 @@ class _AdminMainState extends State<AdminMain> {
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
     // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.78.102:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.78.69:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
@@ -149,8 +149,18 @@ class _AdminMainState extends State<AdminMain> {
                       return ListView.builder(
                         itemCount: items.length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(items[index].name),
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[100],
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: ListTile(
+                                title: Text(items[index].name),
+                                subtitle: Text(items[index].price),
+                              ),
+                            ),
                           );
                         },
                       );
@@ -164,58 +174,58 @@ class _AdminMainState extends State<AdminMain> {
 
             //
             //List Item
-            Expanded(
-              child: ListView.builder(
-                  itemCount: listGambar.length,
-                  itemBuilder: (context, index) {
-                    //bisa pakai InkWell
-                    return GestureDetector(
-                      onTap: () {
-                        showDialogFunc(context, listGambar[index],
-                            listJudul[index], listDeskripsi[index]);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 20, bottom: 10.0),
-                        child: Card(
-                            // color: Colors.black,
-                            child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 100,
-                              height: 100,
-                              child: Image.network(listGambar[index]),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    listJudul[index],
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    width: width,
-                                    child: Text(
-                                      listDeskripsi[index],
-                                      style: TextStyle(fontSize: 15),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        )),
-                      ),
-                    );
-                  }),
-            ),
+            // Expanded(
+            //   child: ListView.builder(
+            //       itemCount: listGambar.length,
+            //       itemBuilder: (context, index) {
+            //         //bisa pakai InkWell
+            //         return GestureDetector(
+            //           onTap: () {
+            //             showDialogFunc(context, listGambar[index],
+            //                 listJudul[index], listDeskripsi[index]);
+            //           },
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(
+            //                 left: 20, right: 20, bottom: 10.0),
+            //             child: Card(
+            //                 // color: Colors.black,
+            //                 child: Row(
+            //               children: <Widget>[
+            //                 Container(
+            //                   width: 100,
+            //                   height: 100,
+            //                   child: Image.network(listGambar[index]),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.all(8),
+            //                   child: Column(
+            //                     crossAxisAlignment: CrossAxisAlignment.start,
+            //                     children: [
+            //                       Text(
+            //                         listJudul[index],
+            //                         style: TextStyle(
+            //                             fontSize: 25,
+            //                             fontWeight: FontWeight.bold),
+            //                       ),
+            //                       SizedBox(
+            //                         height: 10,
+            //                       ),
+            //                       Container(
+            //                         width: width,
+            //                         child: Text(
+            //                           listDeskripsi[index],
+            //                           style: TextStyle(fontSize: 15),
+            //                         ),
+            //                       )
+            //                     ],
+            //                   ),
+            //                 )
+            //               ],
+            //             )),
+            //           ),
+            //         );
+            //       }),
+            // ),
 
             //Footer
             // Center(
@@ -260,140 +270,6 @@ class _AdminMainState extends State<AdminMain> {
                     label: "Update Rekomendasi", icon: Icon(Icons.upload)),
               ],
             ),
-
-            //List VGA (----)
-            // Expanded(
-            //   child: ListView(
-            //     children: [
-            //       Padding(
-            //         padding:
-            //             const EdgeInsets.only(left: 25, right: 25, bottom: 20),
-            //         child: InkWell(
-            //           child: Container(
-            //             decoration: BoxDecoration(
-            //               borderRadius: BorderRadius.circular(30),
-            //               color: Colors.blue[200],
-            //               boxShadow: [
-            //                 BoxShadow(
-            //                   color: Colors.grey,
-            //                   offset: Offset(6, 9),
-            //                   spreadRadius: 0,
-            //                   blurRadius: 9.0,
-            //                 ),
-            //               ],
-            //             ),
-            //             height: 200,
-            //             child: Container(),
-            //           ),
-            //           onTap: () {
-            //             // print("Kontainer ditekan");
-            //             showDialog(
-            //               context: context,
-            //               builder: (context) => AlertDialog(
-            //                 title: Text("Ini judul"),
-            //                 content: Text("Ini isi konten"),
-            //                 actions: [
-            //                   TextButton(
-            //                       onPressed: () => Navigator.pop(context),
-            //                       child: Text("Ok")),
-            //                   TextButton(
-            //                       onPressed: () => Navigator.pop(context),
-            //                       child: Text("Cancel"))
-            //                 ],
-            //               ),
-            //             );
-            //           },
-            //         ),
-            //       ),
-            //       Padding(
-            //         padding:
-            //             const EdgeInsets.only(left: 25, right: 25, bottom: 20),
-            //         child: Container(
-            //           decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(30),
-            //             color: Colors.blue[200],
-            //             boxShadow: [
-            //               BoxShadow(
-            //                 color: Colors.grey,
-            //                 offset: Offset(6, 9),
-            //                 spreadRadius: 0,
-            //                 blurRadius: 9.0,
-            //               ),
-            //             ],
-            //           ),
-            //           height: 200,
-            //           child: Center(
-            //               child: Text(
-            //             "Ini VGA",
-            //             style: TextStyle(
-            //                 fontSize: 35, fontWeight: FontWeight.bold),
-            //           )),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-
-            // FloatingActionButton.extended(
-            //   // backgroundColor: Colors.orangeAccent[200],
-            //   onPressed: () {
-            //     // Respond to button press
-            //   },
-            //   icon: Icon(Icons.upload),
-            //   label: Text(
-            //     'Update Rekomendasi',
-            //     style: TextStyle(fontSize: 18),
-            //   ),
-            // ),
-
-            // --FOOTER SHOPEE--
-            // Column(
-            //   children: [
-            // Column(
-            //   crossAxisAlignment: CrossAxisAlignment.stretch,
-            //   // children: [
-            //   //   Text(
-            //   //     "Testimoni",
-            //   //     style: TextStyle(fontSize: 80),
-            //   //   ),
-            //   // ],
-            // ),
-            // Positioned(
-            //   // bottom: 100,
-            //   // left: 100,
-            //   // right: 100,
-            //   child:
-            //       // ElevatedButton(
-            //       //     onPressed: () {},
-            //       //     style: ElevatedButton.styleFrom(
-            //       //       shape: RoundedRectangleBorder(
-            //       //         borderRadius: BorderRadius.circular(20),
-            //       //       ),
-            //       //       primary: Colors.blue[800],
-            //       //     ),
-            //       //     child: Text(
-            //       //       "Update Rekomendasi",
-            //       //       style: TextStyle(fontSize: 20),
-            //       //     )),
-            //       Container(
-            //     decoration: BoxDecoration(color: Colors.yellow, boxShadow: [
-            //       BoxShadow(
-            //           blurRadius: 20,
-            //           color: Colors.black.withOpacity(0.4),
-            //           offset: Offset.zero),
-            //     ]),
-            //     height: 80,
-            //     child: Row(
-            //       children: [
-            //         Icon(Icons.edit),
-            //         Icon(Icons.upload_file),
-            //         Icon(Icons.graphic_eq)
-            //       ],
-            //     ),
-            //   ),
-            // )
-            //   ],
-            // ),
           ],
         ),
       ),
