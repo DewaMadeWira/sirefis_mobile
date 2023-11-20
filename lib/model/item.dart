@@ -1,6 +1,6 @@
 class Item{
-  final String name;
-  final String price;
+  final String name;//gpu_name
+  final String price;//pirce gpu
   
   Item({
     required this.name, 

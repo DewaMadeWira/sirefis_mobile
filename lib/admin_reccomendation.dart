@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,12 +12,22 @@ void main() {
 }
 
 class AdminRec extends StatelessWidget {
-  const AdminRec({super.key});
+  AdminRec({super.key});
 
+  List<Item> items = [];
   //get gpu
   Future getGpu() async{
-    var response = await http.get(Uri.http('192.168.78.106:8000','api/gpu'));
-    print(response.body);
+    var response = await http.get(Uri.http('192.168.78.70:8000','api/gpu'));
+    var jsonData = jsonDecode(response.body);
+
+    for (var gpu_data in jsonData){
+      final item = Item(
+        name: gpu_data['gpu_name'], 
+        price: gpu_data['price'],
+      );
+      items.add(item);
+    }
+    print(items.length);
   }
 
   @override
@@ -31,7 +43,9 @@ class AdminRec extends StatelessWidget {
       body: ListView(children: [
         Padding(
           padding: const EdgeInsets.all(25.0),
+          
           child: Column(
+
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -49,6 +63,7 @@ class AdminRec extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -214,13 +229,37 @@ class AdminRec extends StatelessWidget {
                           ),
                         )
                       ],
-                    )
+                    ),
+                    
+                    
                   ],
                 ),
+                
               ),
+              Expanded(
+                      child: FutureBuilder(
+                      future: getGpu(), 
+                      builder: (context, snapshot){
+                        if(snapshot.connectionState == ConnectionState.done){
+                          return ListView.builder(
+                            itemCount: items.length,
+                            itemBuilder: (context, index){
+                              return ListTile(
+                                title: Text(items[index].name),
+                              );
+                            },
+                          );
+                        }else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      }),
+                    ),
             ],
+            
           ),
-        )
+        ),
       ]),
     );
   }
