@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:sirefis_mobile/model/item.dart';
 
 void main() {
   runApp(MaterialApp(home: AdminRec()));
@@ -14,10 +13,8 @@ class AdminRec extends StatelessWidget {
 
   //get gpu
   Future getGpu() async{
-    var response =  await http.get(Uri.https('127.0.0.1:8000', 'api/gpu'));
-    var jsonData = jsonDecode(response.body);
-
-    
+    var response = await http.get(Uri.https('192.168.78.106:8000','api/gpu'));
+    print(response.body);
   }
 
   @override
