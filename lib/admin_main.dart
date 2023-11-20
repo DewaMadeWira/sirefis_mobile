@@ -61,7 +61,8 @@ class _AdminMainState extends State<AdminMain> {
   var listGambar = [
     "https://asset.msi.com/resize/image/global/product/product_1648779789e2ad4204facc0ea0469f45c5fa07c051.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
     "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
-    "https://negroup.co.id/cni-content/uploads/modules/product/20230614104236.png",
+    // "https://negroup.co.id/cni-content/uploads/modules/product/20230614104236.png",
+    "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
     "https://m.media-amazon.com/images/I/81c3PiQLBUL.jpg",
     "https://static.gigabyte.com/StaticFile/Image/Global/cfd28eb85d95190bb6657af85db6e03f/Product/18113/png/500",
     "https://static.gigabyte.com/StaticFile/Image/Global/1c6a447f0fbb1f4c3973ac27adbe3934/Product/22235/Png",
@@ -76,7 +77,8 @@ class _AdminMainState extends State<AdminMain> {
   //get data gpu
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
+    // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.78.102:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
@@ -91,7 +93,7 @@ class _AdminMainState extends State<AdminMain> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    getGpu();
+    // getGpu();
     double width = MediaQuery.of(context).size.width * 0.6;
     return MaterialApp(
       home: Scaffold(
@@ -136,6 +138,28 @@ class _AdminMainState extends State<AdminMain> {
                   );
                 });
               }),
+            ),
+
+            //testi
+            Expanded(
+              child: FutureBuilder(
+                  future: getGpu(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return ListView.builder(
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(items[index].name),
+                          );
+                        },
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }),
             ),
 
             //
