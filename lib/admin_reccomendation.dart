@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MaterialApp(home: AdminRec()));
@@ -9,8 +12,17 @@ void main() {
 class AdminRec extends StatelessWidget {
   const AdminRec({super.key});
 
+  //get gpu
+  Future getGpu() async{
+    var response =  await http.get(Uri.https('127.0.0.1:8000', 'api/gpu'));
+    var jsonData = jsonDecode(response.body);
+
+    
+  }
+
   @override
   Widget build(BuildContext context) {
+    getGpu();
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
