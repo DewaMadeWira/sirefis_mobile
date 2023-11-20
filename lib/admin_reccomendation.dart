@@ -47,7 +47,8 @@ class AdminRec extends StatelessWidget {
           
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: [  
+            
               Text(
                 "Rekomendasi kami",
                 style:
@@ -111,6 +112,7 @@ class AdminRec extends StatelessWidget {
                 "Rekomendasi Serupa",
                 style: GoogleFonts.jura(fontSize: 22),
               ),
+                  
               SizedBox(
                 height: 40,
               ),
@@ -175,6 +177,7 @@ class AdminRec extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              
               Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
@@ -238,13 +241,12 @@ class AdminRec extends StatelessWidget {
                 ),
                 
               ),
-               
             ],
             
           ),
           
         ),
-        Expanded(
+             Expanded(
                       child: FutureBuilder(
                       future: getGpu(), 
                       builder: (context, snapshot){
@@ -263,7 +265,9 @@ class AdminRec extends StatelessWidget {
                           );
                         }
                       }),
-                    ),  
+                    ),
+            
+       
       ]),
       
     );
