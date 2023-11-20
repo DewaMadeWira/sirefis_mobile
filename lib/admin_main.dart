@@ -80,7 +80,7 @@ class _AdminMainState extends State<AdminMain> {
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
-      final item = Item(name: perData['name'], price: perData['price']);
+      final item = Item(name: perData['gpu_name'], price: perData['price']);
       items.add(item);
     }
     print(items.length);
