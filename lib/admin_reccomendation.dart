@@ -17,7 +17,7 @@ class AdminRec extends StatelessWidget {
   List<Item> items = [];
   //get gpu
   Future getGpu() async{
-    var response = await http.get(Uri.http('192.168.78.70:8000','api/gpu'));
+    var response = await http.get(Uri.http('10.211.103.193:8000','api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var gpu_data in jsonData){
@@ -40,12 +40,12 @@ class AdminRec extends StatelessWidget {
         backgroundColor: primaryColor,
         elevation: 0,
       ),
-      body: ListView(children: [
+      body: Column(
+        children: [
         Padding(
           padding: const EdgeInsets.all(25.0),
           
           child: Column(
-
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -188,7 +188,8 @@ class AdminRec extends StatelessWidget {
                     ],
                     color: whiteColor,
                     border: Border.all(color: Colors.black, width: 2),
-                    borderRadius: BorderRadius.circular(13)),
+                    borderRadius: BorderRadius.circular(13)
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -231,12 +232,19 @@ class AdminRec extends StatelessWidget {
                       ],
                     ),
                     
-                    
+                 
                   ],
+                  
                 ),
                 
               ),
-              Expanded(
+               
+            ],
+            
+          ),
+          
+        ),
+        Expanded(
                       child: FutureBuilder(
                       future: getGpu(), 
                       builder: (context, snapshot){
@@ -255,12 +263,10 @@ class AdminRec extends StatelessWidget {
                           );
                         }
                       }),
-                    ),
-            ],
-            
-          ),
-        ),
+                    ),  
       ]),
+      
     );
+    
   }
 }
