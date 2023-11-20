@@ -9,6 +9,7 @@ import 'form_update_gpu.dart';
 import 'form_update_rekomendasi.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:sirefis_mobile/model/item.dart';
 
 void main() {
   runApp(AdminMain());
@@ -70,13 +71,19 @@ class _AdminMainState extends State<AdminMain> {
     "https://static.gigabyte.com/StaticFile/Image/Global/1d408c5715aef2ba51f799ea16d196c2/Product/23131/png/500"
   ];
 
+  List<Item> items = [];
+
   //get data gpu
   Future getGpu() async {
-    // var response = await http.get(Uri.https('127.0.0.1:8000', 'api/gpu'));
-    var response = await http.get(Uri.https('balldontlie.io', 'api/v1/teams'));
+    // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
-    for (var perData in jsonData['data']) {}
+    for (var perData in jsonData) {
+      final item = Item(name: perData['name'], price: perData['price']);
+      items.add(item);
+    }
+    print(items.length);
 
     // print(response.body);
   }
