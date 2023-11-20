@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:sirefis_mobile/model/item.dart';
 
@@ -13,12 +14,13 @@ class AdminRec extends StatelessWidget {
 
   //get gpu
   Future getGpu() async{
-    var response = await http.get(Uri.https('192.168.78.106:8000','api/gpu'));
+    var response = await http.get(Uri.http('192.168.78.106:8000','api/gpu'));
     print(response.body);
   }
 
   @override
   Widget build(BuildContext context) {
+    // testing();
     getGpu();
     return Scaffold(
       backgroundColor: backgroundColor,
