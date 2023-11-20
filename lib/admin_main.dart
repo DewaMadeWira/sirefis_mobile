@@ -78,7 +78,7 @@ class _AdminMainState extends State<AdminMain> {
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
     // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.78.69:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.0.105:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
@@ -118,8 +118,8 @@ class _AdminMainState extends State<AdminMain> {
                   builder: (BuildContext context, SearchController controller) {
                 return SearchBar(
                   controller: controller,
-                  padding: const MaterialStatePropertyAll<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 16.0)),
+                  // padding: const MaterialStatePropertyAll<EdgeInsets>(
+                  //     EdgeInsets.symmetric(horizontal: 16.0)),
                   onTap: () {
                     // controller.openView();
                   },
@@ -149,16 +149,31 @@ class _AdminMainState extends State<AdminMain> {
                       return ListView.builder(
                         itemCount: items.length,
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey[100],
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: ListTile(
-                                title: Text(items[index].name),
-                                subtitle: Text(items[index].price),
+                          return GestureDetector(
+                            onTap: () {
+                              showDialogFunc(context, listGambar[index],
+                                  items[index].name, items[index].price);
+                            },
+                            child: Padding(
+                              // padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(
+                                  left: 12, right: 12, top: 8, bottom: 8),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: ListTile(
+                                  title: Text(
+                                    items[index].name,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Text(
+                                    'Harga : Rp.' + items[index].price,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
                               ),
                             ),
                           );
