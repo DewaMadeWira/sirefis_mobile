@@ -15,14 +15,21 @@ void main() {
   runApp(AdminMain());
 }
 
-class AdminMain extends StatefulWidget {
-  AdminMain({super.key});
-
+class AdminMain extends StatelessWidget {
   @override
-  State<AdminMain> createState() => _AdminMainState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: _AdminMainState(),
+    );
+  }
 }
 
-class _AdminMainState extends State<AdminMain> {
+class _AdminMainState extends StatefulWidget {
+  @override
+  State<_AdminMainState> createState() => _AdminMainStateBody();
+}
+
+class _AdminMainStateBody extends State<_AdminMainState> {
   int _currentIndex = 0;
 
   List<Widget> body = const [
@@ -32,53 +39,13 @@ class _AdminMainState extends State<AdminMain> {
     Icon(Icons.add)
   ];
 
-  var listJudul = [
-    "GeForce RTX 3090 Ti",
-    "GeForce RTX 3080 Ti",
-    "Radeon RX 6900 XT",
-    "Radeon RX 6800 XT",
-    "GeForce GTX 1080 Ti",
-    "Radeon RX 5700 XT",
-    "Radeon RX 6600 XT",
-    "GeForce GTX 1070 Ti",
-    "Radeon Pro WX 8200",
-    "GeForce RTX 2060"
-  ];
-
-  var listDeskripsi = [
-    "Rp22.000.000",
-    "Rp12.000.000",
-    "Rp10.900.000",
-    "Rp7.600.000",
-    "Rp6.500.000",
-    "Rp2.700.000",
-    "Rp2.900.000",
-    "Rp2.500.000",
-    "Rp2.000.000",
-    "Rp2.400.000"
-  ];
-
-  var listGambar = [
-    "https://asset.msi.com/resize/image/global/product/product_1648779789e2ad4204facc0ea0469f45c5fa07c051.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
-    "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
-    // "https://negroup.co.id/cni-content/uploads/modules/product/20230614104236.png",
-    "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
-    "https://m.media-amazon.com/images/I/81c3PiQLBUL.jpg",
-    "https://static.gigabyte.com/StaticFile/Image/Global/cfd28eb85d95190bb6657af85db6e03f/Product/18113/png/500",
-    "https://static.gigabyte.com/StaticFile/Image/Global/1c6a447f0fbb1f4c3973ac27adbe3934/Product/22235/Png",
-    "https://static.gigabyte.com/StaticFile/Image/Global/7b143496a1f2a11b0e82e72b73bf448b/Product/29612/Png",
-    "https://static.gigabyte.com/StaticFile/Image/Global/6c7339b0fc58e935e4ecf245b6d0f9e2/Product/18791/png/500",
-    "https://c1.neweggimages.com/ProductImage/14-105-110-V05.jpg",
-    "https://static.gigabyte.com/StaticFile/Image/Global/1d408c5715aef2ba51f799ea16d196c2/Product/23131/png/500"
-  ];
-
   List<Item> items = [];
 
   //get data gpu
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
     // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.0.105:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.71.16:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
@@ -97,49 +64,24 @@ class _AdminMainState extends State<AdminMain> {
     double width = MediaQuery.of(context).size.width * 0.6;
     return MaterialApp(
       home: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.deepPurple[300],
-        //   centerTitle: true,
-        //   title: const Text(
-        //     "List GPU",
-        //     textAlign: TextAlign.center,
-        //   ),
-        // ),
-
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          centerTitle: false,
+          title: const Text(
+            "Admin",
+            // textAlign: TextAlign.center,
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context, delegate: CustomSearchDelegate());
+                },
+                icon: const Icon(Icons.search))
+          ],
+        ),
         body: Column(
           children: [
-            //
-
-            //Search
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 45, left: 25, right: 25, bottom: 10),
-              child: SearchAnchor(
-                  builder: (BuildContext context, SearchController controller) {
-                return SearchBar(
-                  controller: controller,
-                  // padding: const MaterialStatePropertyAll<EdgeInsets>(
-                  //     EdgeInsets.symmetric(horizontal: 16.0)),
-                  onTap: () {
-                    // controller.openView();
-                  },
-                  onChanged: (_) {
-                    // controller.openView();
-                  },
-                  leading: const Icon(Icons.search),
-                );
-              }, suggestionsBuilder:
-                      (BuildContext context, SearchController controller) {
-                return List<ListTile>.generate(3, (int index) {
-                  final String item = 'item $index';
-                  return ListTile(
-                    title: Text(item),
-                    onTap: () {},
-                  );
-                });
-              }),
-            ),
-
             //testi
             Expanded(
               child: FutureBuilder(
@@ -151,8 +93,10 @@ class _AdminMainState extends State<AdminMain> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              showDialogFunc(context, listGambar[index],
-                                  items[index].name, items[index].price);
+                              // showDialogFunc(context, listGambar[index],
+                              //     items[index].name, items[index].price);
+                              showDialogFunc(context, items[index].name,
+                                  items[index].price);
                             },
                             child: Padding(
                               // padding: const EdgeInsets.all(8.0),
@@ -186,61 +130,6 @@ class _AdminMainState extends State<AdminMain> {
                     }
                   }),
             ),
-
-            //
-            //List Item
-            // Expanded(
-            //   child: ListView.builder(
-            //       itemCount: listGambar.length,
-            //       itemBuilder: (context, index) {
-            //         //bisa pakai InkWell
-            //         return GestureDetector(
-            //           onTap: () {
-            //             showDialogFunc(context, listGambar[index],
-            //                 listJudul[index], listDeskripsi[index]);
-            //           },
-            //           child: Padding(
-            //             padding: const EdgeInsets.only(
-            //                 left: 20, right: 20, bottom: 10.0),
-            //             child: Card(
-            //                 // color: Colors.black,
-            //                 child: Row(
-            //               children: <Widget>[
-            //                 Container(
-            //                   width: 100,
-            //                   height: 100,
-            //                   child: Image.network(listGambar[index]),
-            //                 ),
-            //                 Padding(
-            //                   padding: const EdgeInsets.all(8),
-            //                   child: Column(
-            //                     crossAxisAlignment: CrossAxisAlignment.start,
-            //                     children: [
-            //                       Text(
-            //                         listJudul[index],
-            //                         style: TextStyle(
-            //                             fontSize: 25,
-            //                             fontWeight: FontWeight.bold),
-            //                       ),
-            //                       SizedBox(
-            //                         height: 10,
-            //                       ),
-            //                       Container(
-            //                         width: width,
-            //                         child: Text(
-            //                           listDeskripsi[index],
-            //                           style: TextStyle(fontSize: 15),
-            //                         ),
-            //                       )
-            //                     ],
-            //                   ),
-            //                 )
-            //               ],
-            //             )),
-            //           ),
-            //         );
-            //       }),
-            // ),
 
             //Footer
             // Center(
@@ -292,7 +181,8 @@ class _AdminMainState extends State<AdminMain> {
   }
 }
 
-showDialogFunc(context, img, title, desc) {
+// showDialogFunc(context, img, title, desc) {
+showDialogFunc(context, title, desc) {
   return showDialog(
       context: context,
       builder: (context) {
@@ -311,7 +201,7 @@ showDialogFunc(context, img, title, desc) {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: Image.network(
-                      img,
+                      "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
                       width: 200,
                       height: 200,
                     ),
@@ -371,4 +261,78 @@ showDialogFunc(context, img, title, desc) {
           ),
         );
       });
+}
+
+//search bar
+class CustomSearchDelegate extends SearchDelegate {
+  List<String> searchTerms = [
+    'halo',
+    'halo',
+    'halo',
+    'halo',
+    'halo',
+    'halo',
+    'halo',
+    'halo'
+  ];
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      )
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var halo in searchTerms) {
+      if (halo.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(halo);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var halo in searchTerms) {
+      if (halo.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(halo);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
 }
