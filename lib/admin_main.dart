@@ -42,19 +42,39 @@ class _AdminMainStateBody extends State<_AdminMainState> {
   List<Item> items = [];
 
   //get data gpu
-  Future getGpu() async {
-    // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-    // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.71.16:8000', 'api/gpu'));
+  // Future getGpu() async {
+  //   // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
+  //   // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
+  //   var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
+  //   var jsonData = jsonDecode(response.body);
+
+  //   for (var perData in jsonData) {
+  //     final item = Item(name: perData['gpu_name'], price: perData['price']);
+  //     items.add(item);
+  //   }
+  //   print(items.length);
+
+  //   // print(response.body);
+  // }
+
+  //get data gpt
+  Future<void> getGpu() async {
+    var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
-    for (var perData in jsonData) {
-      final item = Item(name: perData['gpu_name'], price: perData['price']);
-      items.add(item);
-    }
-    print(items.length);
+    setState(() {
+      items.clear(); // Clear the existing items
+      for (var perData in jsonData) {
+        final item = Item(name: perData['gpu_name'], price: perData['price']);
+        items.add(item);
+      }
 
-    // print(response.body);
+      // Set search terms with the names of GPUs
+      CustomSearchDelegate().searchTerms =
+          items.map((item) => item.name).toList();
+    });
+
+    print(items.length);
   }
 
   // This widget is the root of your application.
@@ -265,16 +285,7 @@ showDialogFunc(context, title, desc) {
 
 //search bar
 class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [
-    'halo',
-    'halo',
-    'halo',
-    'halo',
-    'halo',
-    'halo',
-    'halo',
-    'halo'
-  ];
+  List<String> searchTerms = [];
 
   @override
   List<Widget> buildActions(BuildContext context) {
