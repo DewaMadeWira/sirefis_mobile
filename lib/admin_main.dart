@@ -45,7 +45,7 @@ class _AdminMainStateBody extends State<_AdminMainState> {
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
     // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.0.105:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
@@ -87,7 +87,6 @@ class _AdminMainStateBody extends State<_AdminMainState> {
           centerTitle: false,
           title: const Text(
             "Admin",
-            // textAlign: TextAlign.center,
           ),
           actions: [
             // IconButton(
@@ -186,8 +185,6 @@ class _AdminMainStateBody extends State<_AdminMainState> {
                 ;
               },
               items: const [
-                // BottomNavigationBarItem(
-                //     label: "Urutkan", icon: Icon(Icons.sort)),
                 BottomNavigationBarItem(
                     label: "List Admin", icon: Icon(Icons.person)),
                 BottomNavigationBarItem(
@@ -310,6 +307,9 @@ class SearchPage extends StatelessWidget {
                 ),
                 hintText: 'Cari Produk...',
                 border: InputBorder.none),
+            onSubmitted: (value) {
+              print('infokan logika pencarian');
+            },
           )),
         ),
       ),
