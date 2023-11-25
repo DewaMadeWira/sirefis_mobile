@@ -44,7 +44,6 @@ class _AdminMainStateBody extends State<_AdminMainState> {
   // get data gpu
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-    // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
     var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
@@ -53,27 +52,8 @@ class _AdminMainStateBody extends State<_AdminMainState> {
       items.add(item);
     }
     // print(items.length);
-
-    // print(response.body);
+    print('helo');
   }
-
-  //get data gpt
-  // Future<void> getGpu() async {
-  //   var response = await http.get(Uri.http('192.168.0.105:8000', 'api/gpu'));
-  //   var jsonData = jsonDecode(response.body);
-  //   setState(() {
-  //     items.clear(); // Clear the existing items
-  //     for (var perData in jsonData) {
-  //       final item = Item(name: perData['gpu_name'], price: perData['price']);
-  //       items.add(item);
-  //     }
-  //     // Set search terms with the names of GPUs
-  //     CustomSearchDelegate().searchTerms =
-  //         items.map((item) => item.name).toList();
-  //   });
-
-  //   print(items.length);
-  // }
 
   // This widget is the root of your application.
   @override
@@ -297,7 +277,8 @@ class _SearchPageState extends State<SearchPage> {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
       var response = await http
-          .get(Uri.http('192.168.0.16:8000', 'api/search_gpu/$params'));
+          // .get(Uri.http('127.0.0.1:8000', 'api/search_gpu/$params'));
+          .get(Uri.http('192.168.0.106:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
       for (var perData in jsonData) {
@@ -313,8 +294,10 @@ class _SearchPageState extends State<SearchPage> {
       print(response.body);
     }
 
+    var inputan = TextEditingController();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primaryColor,
         title: Container(
           width: double.infinity,
           height: 40,
@@ -324,13 +307,12 @@ class _SearchPageState extends State<SearchPage> {
           ),
           child: Center(
             child: TextField(
+              // controller: inputan, //clear masih bug, waktu input clear sendiri
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: IconButton(
+                  onPressed: inputan.clear,
                   icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    //
-                  },
                 ),
                 hintText: 'Cari Produk...',
                 border: InputBorder.none,
@@ -348,11 +330,11 @@ class _SearchPageState extends State<SearchPage> {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            // onTap: () {
-            //   // showDialogFunc(context, listGambar[index],
-            //   //     items[index].name, items[index].price);
-            //   showDialogFunc(context, items[index].name, items[index].price);
-            // },
+            onTap: () {
+              //   // showDialogFunc(context, listGambar[index],
+              //   //     items[index].name, items[index].price);
+              showDialogFunc(context, items[index].name, items[index].price);
+            },
             child: Padding(
               // padding: const EdgeInsets.all(8.0),
               padding: const EdgeInsets.only(
