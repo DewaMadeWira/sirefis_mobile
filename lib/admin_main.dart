@@ -41,41 +41,39 @@ class _AdminMainStateBody extends State<_AdminMainState> {
 
   List<Item> items = [];
 
-  //get data gpu
-  // Future getGpu() async {
-  //   // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-  //   // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
-  //   var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
-  //   var jsonData = jsonDecode(response.body);
-
-  //   for (var perData in jsonData) {
-  //     final item = Item(name: perData['gpu_name'], price: perData['price']);
-  //     items.add(item);
-  //   }
-  //   print(items.length);
-
-  //   // print(response.body);
-  // }
-
-  //get data gpt
-  Future<void> getGpu() async {
-    var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
+  // get data gpu
+  Future getGpu() async {
+    // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
+    // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.0.105:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
-    setState(() {
-      items.clear(); // Clear the existing items
-      for (var perData in jsonData) {
-        final item = Item(name: perData['gpu_name'], price: perData['price']);
-        items.add(item);
-      }
-
-      // Set search terms with the names of GPUs
-      CustomSearchDelegate().searchTerms =
-          items.map((item) => item.name).toList();
-    });
-
+    for (var perData in jsonData) {
+      final item = Item(name: perData['gpu_name'], price: perData['price']);
+      items.add(item);
+    }
     print(items.length);
+
+    // print(response.body);
   }
+
+  //get data gpt
+  // Future<void> getGpu() async {
+  //   var response = await http.get(Uri.http('192.168.0.105:8000', 'api/gpu'));
+  //   var jsonData = jsonDecode(response.body);
+  //   setState(() {
+  //     items.clear(); // Clear the existing items
+  //     for (var perData in jsonData) {
+  //       final item = Item(name: perData['gpu_name'], price: perData['price']);
+  //       items.add(item);
+  //     }
+  //     // Set search terms with the names of GPUs
+  //     CustomSearchDelegate().searchTerms =
+  //         items.map((item) => item.name).toList();
+  //   });
+
+  //   print(items.length);
+  // }
 
   // This widget is the root of your application.
   @override
@@ -92,11 +90,15 @@ class _AdminMainStateBody extends State<_AdminMainState> {
             // textAlign: TextAlign.center,
           ),
           actions: [
+            // IconButton(
+            //     onPressed: () {
+            //       showSearch(
+            //           context: context, delegate: CustomSearchDelegate());
+            //     },
+            //     icon: const Icon(Icons.search))
             IconButton(
-                onPressed: () {
-                  showSearch(
-                      context: context, delegate: CustomSearchDelegate());
-                },
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => SearchPage())),
                 icon: const Icon(Icons.search))
           ],
         ),
@@ -283,67 +285,106 @@ showDialogFunc(context, title, desc) {
       });
 }
 
-//search bar
-class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [];
+//search
+class SearchPage extends StatelessWidget {
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(Icons.clear),
-        onPressed: () {
-          query = '';
-        },
-      )
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
-      },
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var halo in searchTerms) {
-      if (halo.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(halo);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var halo in searchTerms) {
-      if (halo.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(halo);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Container(
+          width: double.infinity,
+          height: 40,
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(5)),
+          child: Center(
+              child: TextField(
+            decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    //
+                  },
+                ),
+                hintText: 'Cari Produk...',
+                border: InputBorder.none),
+          )),
+        ),
+      ),
     );
   }
 }
+
+//search bar
+// class CustomSearchDelegate extends SearchDelegate {
+//   List<String> searchTerms = [];
+
+//   @override
+//   List<Widget> buildActions(BuildContext context) {
+//     return [
+//       IconButton(
+//         icon: const Icon(Icons.clear),
+//         onPressed: () {
+//           query = '';
+//         },
+//       )
+//     ];
+//   }
+
+//   @override
+//   Widget buildLeading(BuildContext context) {
+//     return IconButton(
+//       icon: const Icon(Icons.arrow_back),
+//       onPressed: () {
+//         close(context, null);
+//       },
+//     );
+//   }
+
+//   @override
+//   Widget buildResults(BuildContext context) {
+//     List<String> matchQuery = [];
+//     for (var halo in searchTerms) {
+//       if (halo.toLowerCase().contains(query.toLowerCase())) {
+//         matchQuery.add(halo);
+//       }
+//     }
+//     return ListView.builder(
+//       itemCount: matchQuery.length,
+//       itemBuilder: (context, index) {
+//         var result = matchQuery[index];
+//         return ListTile(
+//           title: Text(result),
+//         );
+//       },
+//     );
+//   }
+
+//   @override
+//   Widget buildSuggestions(BuildContext context) {
+//     List<String> matchQuery = [];
+//     for (var halo in searchTerms) {
+//       if (halo.toLowerCase().contains(query.toLowerCase())) {
+//         matchQuery.add(halo);
+//       }
+//     }
+//     return ListView.builder(
+//       itemCount: matchQuery.length,
+//       itemBuilder: (context, index) {
+//         var result = matchQuery[index];
+//         return ListTile(
+//           title: Text(result),
+//         );
+//       },
+//     );
+//   }
+
+//   //kosongan
+//   // @override
+//   // Widget buildSuggestions(BuildContext context) {
+//   //   // Tidak ada suggestion, hanya search bar
+//   //   return Container();
+//   // }
+// }
