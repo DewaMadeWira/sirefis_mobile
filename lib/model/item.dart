@@ -7,4 +7,9 @@ class Item{
     required this.price
   
   });
+
+  factory Item.fromJson(Map<String, dynamic>json)=> Item(
+    name: json['name'], 
+    price: json['price']
+  );
 }
