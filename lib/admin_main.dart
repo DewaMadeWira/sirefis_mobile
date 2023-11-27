@@ -31,6 +31,7 @@ class _AdminMainState extends StatefulWidget {
 
 class _AdminMainStateBody extends State<_AdminMainState> {
   int _currentIndex = 0;
+  Future<Item?>? item;
 
   List<Widget> body = const [
     Icon(Icons.sort),
@@ -41,45 +42,43 @@ class _AdminMainStateBody extends State<_AdminMainState> {
 
   List<Item> items = [];
 
+  void clickDeleteButton(){
+    setState(() {
+      item = deleteitem();
+    });
+  }
+
   // get data gpu
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-    // var response = await http.get(Uri.http('192.168.0.104:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('10.210.218.21:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
       final item = Item(name: perData['gpu_name'], price: perData['price']);
       items.add(item);
     }
-    print(items.length);
-
-    // print(response.body);
+    // print(items.length);
+    print('helo');
   }
 
-  //get data gpt
-  // Future<void> getGpu() async {
-  //   var response = await http.get(Uri.http('192.168.0.105:8000', 'api/gpu'));
-  //   var jsonData = jsonDecode(response.body);
-  //   setState(() {
-  //     items.clear(); // Clear the existing items
-  //     for (var perData in jsonData) {
-  //       final item = Item(name: perData['gpu_name'], price: perData['price']);
-  //       items.add(item);
-  //     }
-  //     // Set search terms with the names of GPUs
-  //     CustomSearchDelegate().searchTerms =
-  //         items.map((item) => item.name).toList();
-  //   });
+  //delete api request
+  Future<Item?>? deleteitem() async{
+    final uri = Uri.parse('10.210.218.21:8000,api/gpu');
+    final response = await http.delete(uri);
 
-  //   print(items.length);
-  // }
+    if(response.statusCode ==200){
+      return null;
+    }else{
+      throw Exception('failed to load item');
+    }
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     // getGpu();
-    double width = MediaQuery.of(context).size.width * 0.6;
+    // double width = MediaQuery.of(context).size.width * 0.6;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -205,6 +204,7 @@ showDialogFunc(context, title, desc) {
   return showDialog(
       context: context,
       builder: (context) {
+        var clickDeleteButton;
         return Center(
           child: Material(
             type: MaterialType.transparency,
@@ -263,8 +263,9 @@ showDialogFunc(context, title, desc) {
                       SizedBox(
                         width: 30,
                       ),
+                     
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () =>clickDeleteButton(clickDeleteButton),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red, // Background color
                           ),
@@ -283,39 +284,144 @@ showDialogFunc(context, title, desc) {
 }
 
 //search
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  List<Item> items = [];
+  @override
   Widget build(BuildContext context) {
+    Future<void> searchItem(params) async {
+      List<Item> searchedItems = [];
+      var response = await http
+          // .get(Uri.http('127.0.0.1:8000', 'api/search_gpu/$params'));
+          .get(Uri.http('192.168.0.106:8000', 'api/search_gpu/$params'));
+      var jsonData = jsonDecode(response.body);
+
+      for (var perData in jsonData) {
+        final item = Item(name: perData['gpu_name'], price: perData['price']);
+        searchedItems.add(item);
+      }
+
+      setState(() {
+        items.clear(); // Clear the existing items
+        items = searchedItems;
+      });
+
+      print(response.body);
+    }
+
+    var inputan = TextEditingController();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primaryColor,
         title: Container(
           width: double.infinity,
           height: 40,
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+          ),
           child: Center(
-              child: TextField(
-            decoration: InputDecoration(
+            child: TextField(
+              // controller: inputan, //clear masih bug, waktu input clear sendiri
+              decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: IconButton(
+                  onPressed: inputan.clear,
                   icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    //
-                  },
                 ),
                 hintText: 'Cari Produk...',
-                border: InputBorder.none),
-            onSubmitted: (value) {
-              print('infokan logika pencarian');
-            },
-          )),
+                border: InputBorder.none,
+              ),
+              // harusnya ada event bubble
+              onChanged: (value) => searchItem(value),
+              onSubmitted: (value) {
+                searchItem(value);
+              },
+            ),
+          ),
         ),
+      ),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              //   // showDialogFunc(context, listGambar[index],
+              //   //     items[index].name, items[index].price);
+              showDialogFunc(context, items[index].name, items[index].price);
+            },
+            child: Padding(
+              // padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(
+                left: 12,
+                right: 12,
+                top: 8,
+                bottom: 8,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ListTile(
+                  title: Text(
+                    items[index].name,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    'Harga : Rp.${items[index].price}',
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 }
+
+
+//search youtube
+// class SearchPage extends StatelessWidget {
+//   const SearchPage({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Container(
+//           width: double.infinity,
+//           height: 40,
+//           decoration: BoxDecoration(
+//               color: Colors.white, borderRadius: BorderRadius.circular(5)),
+//           child: Center(
+//               child: TextField(
+//             decoration: InputDecoration(
+//                 prefixIcon: const Icon(Icons.search),
+//                 suffixIcon: IconButton(
+//                   icon: const Icon(Icons.clear),
+//                   onPressed: () {
+//                     //
+//                   },
+//                 ),
+//                 hintText: 'Cari Produk...',
+//                 border: InputBorder.none),
+//             onSubmitted: (value) {
+//               print('infokan logika pencarian');
+//             },
+//           )),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 //search bar
 // class CustomSearchDelegate extends SearchDelegate {
