@@ -86,34 +86,50 @@ class _FilterPageState extends State<FilterPage> {
   // for rank gpu
   Future getGpu() async {
     // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
-    print(widget.hargaAkhir.substring(1).toString());
+    print(widget.amd.toString());
+    print(widget.nvidia.toString());
+    print(widget.desktopState.toString());
+    print(widget.workstationState.toString());
+    print(widget.hargaAwal.toString());
+    print(widget.hargaAkhir.toString());
     var res =
         await http.post(Uri.http("127.0.0.1:8000", "api/gpu-rank"), body: {
       "amd": widget.amd.toString(),
       "nvidia": widget.nvidia.toString(),
       "desktop": widget.desktopState.toString(),
       "workstation": widget.workstationState.toString(),
-      "priceMin": widget.hargaAwal.substring(1).toString(),
-      "priceMax": widget.hargaAkhir.substring(1).toString()
+      "priceMin": widget.hargaAwal.toString(),
+      "priceMax": widget.hargaAkhir.toString()
     });
+
+    // print(res.body);
     var jsonData = jsonDecode(res.body);
-    print(jsonData);
+    print("hello");
+    // print(jsonData);
     if (items.isNotEmpty) {
       items.clear();
       print("it is empty");
     }
+    // final item = Item(
+    //     name: jsonData[0]["gpu_name"],
+    //     price: jsonData[0]["price"].toString(),
+    //     id: jsonData[0]["gpu_id"].toString());
+    // items.add(item);
+
+    print(jsonData[0]["gpu_name"]);
     for (var itemData in jsonData) {
-      final item =
-          Item(name: itemData["gpu_name"], price: itemData["price"].toString(), id:itemData["gpu_id"]);
+      final item = Item(
+          name: itemData["gpu_name"],
+          price: itemData["price"].toString(),
+          id: itemData["gpu_id"].toString());
       items.add(item);
     }
 
-    // print(items.length);
+    print(items[0]);
   }
 
   @override
   Widget build(BuildContext context) {
-    // textme();
     getGpu();
     // return FutureBuilder(builder: builder)
     return FutureBuilder(
@@ -217,7 +233,7 @@ class _FilterPageState extends State<FilterPage> {
                                                 height: 15,
                                               ),
                                               Text(
-                                                "Rp" + items[index].price,
+                                                "Rp${items[index].price}",
                                                 style: GoogleFonts.inter(
                                                   fontSize: 14,
                                                 ),

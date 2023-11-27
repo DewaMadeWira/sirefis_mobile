@@ -155,16 +155,14 @@ class LoginAdmin extends StatelessWidget {
                     height: 52,
                     width: 300,
                     child: ElevatedButton(
-                        onPressed: login,
-                        // onPressed: () {
-                        //   // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
-                        //   Navigator.of(context).push(
-                        //     MaterialPageRoute(
-                        //         builder: (context) => AdminMain()
-                        //         ),
-
-                        //   );
-                        // },
+                        // onPressed: login,
+                        onPressed: () {
+                          // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => AdminMain()),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
