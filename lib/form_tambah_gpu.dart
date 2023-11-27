@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const TambahGpu());
@@ -31,7 +32,7 @@ class TambahGpu extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme:
-        ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 123, 167, 126)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: ' '),
@@ -71,6 +72,24 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  postData() async {
+    var response = await http
+        .post(Uri.parse("http://192.168.0.106:8000/api/create_data"), body: {
+      // "gpu_id": 1.toString(), //387
+      "gpu_name": "GeForce RTX 3090 Ti",
+      "G3Dmark": "29094",
+      "G2Dmark": "1117",
+      "price": "209999",
+      "gpu_value": "1385",
+      "TDP": "4500",
+      "power_performance": "6465",
+      "test_date": "2022",
+      "category": "Unknown",
+      "company": 2.toString()
+    });
+    print(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -86,6 +105,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
+          FloatingActionButton(
+            onPressed: () {
+              // print('hello');
+              postData();
+            },
+            tooltip: 'Increment',
+          ),
           Column(
             children: [
               Padding(padding: EdgeInsets.all(30)),
