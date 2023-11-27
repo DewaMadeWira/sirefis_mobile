@@ -15,6 +15,37 @@ void main() {
   runApp(AdminMain());
 }
 
+Future deleteItem(String id) async {
+  var res = await http.post(Uri.http("127.0.0.1:8000", "api/delete_data"),
+      body: {"gpu_id": id.toString()});
+  // print(res.body);
+  print(id);
+  // Navigator.pop(BuildContext);
+}
+
+List<Item> items = [];
+
+Future getGpu() async {
+  var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
+  // var response = await http.get(Uri.http('192.168.78.36:8000', 'api/gpu'));
+
+  var jsonData = jsonDecode(response.body);
+  if (items.isNotEmpty) {
+    items.clear();
+    print("it is empty");
+  }
+  
+  for (var perData in jsonData) {
+    final item = Item(
+        name: perData['gpu_name'],
+        price: perData['price'].toString(),
+        id: perData['gpu_id'].toString());
+    items.add(item);
+  }
+  // print(items.length);
+  print('helo');
+}
+
 class AdminMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,44 +71,32 @@ class _AdminMainStateBody extends State<_AdminMainState> {
     Icon(Icons.add)
   ];
 
-  List<Item> items = [];
-
-  void clickDeleteButton(){
-    setState(() {
-      item = deleteitem();
-    });
-  }
+  // void clickDeleteButton() {
+  //   setState(() {
+  //     // item = deleteitem();
+  //   });
+  // }
 
   // get data gpu
-  Future getGpu() async {
-    // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.78.36:8000', 'api/gpu'));
-    var jsonData = jsonDecode(response.body);
-
-    for (var perData in jsonData) {
-      final item = Item(name: perData['gpu_name'], price: perData['price'],id: perData['gpu_id']);
-      items.add(item);
-    }
-    // print(items.length);
-    print('helo');
-  }
 
   //delete api request
-  Future<Item?>? deleteitem() async{
-    final uri = Uri.parse('192.168.78.36:8000/api/gpu');
-    final response = await http.delete(uri);
-
-    if(response.statusCode ==200){
-      return null;
-    }else{
-      throw Exception('failed to load item');
-    }
-  }
+  // Future<Item> deleteItem(String id) async {
+  //   final uri = Uri.parse('127.0.0.1:8000/api/delete_data');
+  //   // final uri = Uri.parse('192.168.78.36:8000/api/gpu');
+  //   final response = await http.post(uri, body: {"gpu_id": id.toString()});
+  //   return "deleted"
+  //   // if (response.statusCode == 200) {
+  //   //   return null;
+  //   // } else {
+  //   //   throw Exception('failed to load item');
+  //   // }
+  // }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // getGpu();
+    getGpu();
+    // deleteItem(id)
     // double width = MediaQuery.of(context).size.width * 0.6;
     return MaterialApp(
       home: Scaffold(
@@ -200,11 +219,11 @@ class _AdminMainStateBody extends State<_AdminMainState> {
 }
 
 // showDialogFunc(context, img, title, desc) {
-showDialogFunc(context, title, desc,id) {
+showDialogFunc(context, title, desc, id) {
   return showDialog(
       context: context,
       builder: (context) {
-        var clickDeleteButton;
+        // var clickDeleteButton;
         return Center(
           child: Material(
             type: MaterialType.transparency,
@@ -263,9 +282,17 @@ showDialogFunc(context, title, desc,id) {
                       SizedBox(
                         width: 30,
                       ),
-                     
                       ElevatedButton(
-                          onPressed: () =>clickDeleteButton(clickDeleteButton),
+                          onPressed: () async {
+                            var res = await http.post(
+                                Uri.http("127.0.0.1:8000", "api/delete_data"),
+                                body: {"gpu_id": id});
+                            print(jsonDecode(res.body));
+                            print(id);
+                            await getGpu();
+                            
+                            Navigator.pop(context);
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red, // Background color
                           ),
@@ -297,13 +324,16 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
-      var response = await http
-          // .get(Uri.http('127.0.0.1:8000', 'api/search_gpu/$params'));
-          .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
+      var response =
+          await http.get(Uri.http('127.0.0.1:8000', 'api/search_gpu/$params'));
+      // .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
       for (var perData in jsonData) {
-        final item = Item(name: perData['gpu_name'], price: perData['price'],id: perData['gpu_id']);
+        final item = Item(
+            name: perData['gpu_name'],
+            price: perData['price'],
+            id: perData['gpu_id']);
         searchedItems.add(item);
       }
 
@@ -354,7 +384,8 @@ class _SearchPageState extends State<SearchPage> {
             onTap: () {
               //   // showDialogFunc(context, listGambar[index],
               //   //     items[index].name, items[index].price);
-              showDialogFunc(context, items[index].name, items[index].price,items[index].id);
+              showDialogFunc(context, items[index].name, items[index].price,
+                  items[index].id);
             },
             child: Padding(
               // padding: const EdgeInsets.all(8.0),

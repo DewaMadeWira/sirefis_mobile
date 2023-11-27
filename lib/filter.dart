@@ -40,8 +40,8 @@ class _FilterPageState extends State<FilterPage> {
   ];
 
   List<Item> itemList = [
-    Item(name: "NVIDIA GTX 950", price: "25.000.000"),
-    Item(name: "NVIDIA GTX 1050", price: "10.000.000"),
+    // Item(name: "NVIDIA GTX 950", price: "25.000.000"),
+    // Item(name: "NVIDIA GTX 1050", price: "10.000.000"),
   ];
 
   // bool get getamd => amd;
@@ -104,7 +104,7 @@ class _FilterPageState extends State<FilterPage> {
     }
     for (var itemData in jsonData) {
       final item =
-          Item(name: itemData["gpu_name"], price: itemData["price"].toString());
+          Item(name: itemData["gpu_name"], price: itemData["price"].toString(), id:itemData["gpu_id"]);
       items.add(item);
     }
 
