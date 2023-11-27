@@ -51,11 +51,11 @@ class _AdminMainStateBody extends State<_AdminMainState> {
   // get data gpu
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('10.210.218.21:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('192.168.78.36:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
-      final item = Item(name: perData['gpu_name'], price: perData['price']);
+      final item = Item(name: perData['gpu_name'], price: perData['price'],id: perData['gpu_id']);
       items.add(item);
     }
     // print(items.length);
@@ -64,7 +64,7 @@ class _AdminMainStateBody extends State<_AdminMainState> {
 
   //delete api request
   Future<Item?>? deleteitem() async{
-    final uri = Uri.parse('10.210.218.21:8000,api/gpu');
+    final uri = Uri.parse('192.168.78.36:8000/api/gpu');
     final response = await http.delete(uri);
 
     if(response.statusCode ==200){
@@ -116,7 +116,7 @@ class _AdminMainStateBody extends State<_AdminMainState> {
                               // showDialogFunc(context, listGambar[index],
                               //     items[index].name, items[index].price);
                               showDialogFunc(context, items[index].name,
-                                  items[index].price);
+                                  items[index].price, items[index].id);
                             },
                             child: Padding(
                               // padding: const EdgeInsets.all(8.0),
@@ -200,7 +200,7 @@ class _AdminMainStateBody extends State<_AdminMainState> {
 }
 
 // showDialogFunc(context, img, title, desc) {
-showDialogFunc(context, title, desc) {
+showDialogFunc(context, title, desc,id) {
   return showDialog(
       context: context,
       builder: (context) {
@@ -299,11 +299,11 @@ class _SearchPageState extends State<SearchPage> {
       List<Item> searchedItems = [];
       var response = await http
           // .get(Uri.http('127.0.0.1:8000', 'api/search_gpu/$params'));
-          .get(Uri.http('192.168.0.106:8000', 'api/search_gpu/$params'));
+          .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
       for (var perData in jsonData) {
-        final item = Item(name: perData['gpu_name'], price: perData['price']);
+        final item = Item(name: perData['gpu_name'], price: perData['price'],id: perData['gpu_id']);
         searchedItems.add(item);
       }
 
@@ -354,7 +354,7 @@ class _SearchPageState extends State<SearchPage> {
             onTap: () {
               //   // showDialogFunc(context, listGambar[index],
               //   //     items[index].name, items[index].price);
-              showDialogFunc(context, items[index].name, items[index].price);
+              showDialogFunc(context, items[index].name, items[index].price,items[index].id);
             },
             child: Padding(
               // padding: const EdgeInsets.all(8.0),

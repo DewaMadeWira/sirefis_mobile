@@ -24,6 +24,7 @@ class AdminRec extends StatelessWidget {
       final item = Item(
         name: gpu_data['gpu_name'], 
         price: gpu_data['price'],
+        id: gpu_data['gpu_id'],
       );
       items.add(item);
     }

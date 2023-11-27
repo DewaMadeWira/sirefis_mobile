@@ -23,8 +23,8 @@ class _AllGpuState extends State<AllGpu> {
   ];
 
   List<Item> itemList = [
-    Item(name: "NVIDIA GTX 950", price: "25.000.000"),
-    Item(name: "NVIDIA GTX 1050", price: "10.000.000"),
+    // Item(name: "NVIDIA GTX 950", price: "25.000.000"),
+    // Item(name: "NVIDIA GTX 1050", price: "10.000.000"),
   ];
 
   void setTipe(String newValue) {
@@ -49,7 +49,7 @@ class _AllGpuState extends State<AllGpu> {
     }
     for (var itemData in jsonData) {
       final item = Item(
-          name: itemData["gpu_name"], price: itemData["gpu_price"].toString());
+          name: itemData["gpu_name"], price: itemData["gpu_price"],id:itemData["gpu_id"].toString());
       items.add(item);
     }
 
