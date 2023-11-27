@@ -281,8 +281,67 @@ class _HomeState extends State<Home> {
                                               SizedBox(
                                                 height: 10,
                                               ),
+                                              // Text(
+                                              //   "Urutkan",
+                                              //   style: GoogleFonts.jura(
+                                              //       fontSize: 16,
+                                              //       fontWeight:
+                                              //           FontWeight.bold),
+                                              // ),
+                                              // SizedBox(
+                                              //   height: 10,
+                                              // ),
+                                              // Row(
+                                              //   mainAxisAlignment:
+                                              //       MainAxisAlignment.start,
+                                              //   children: [
+                                              //     FilterChip(
+                                              //       label: Text('Termurah'),
+                                              //       onSelected: (bool value) {
+                                              //         setState(() {
+                                              //           if (termurahState ==
+                                              //                   false &&
+                                              //               termahalState ==
+                                              //                   false) {
+                                              //             termurahState =
+                                              //                 !termurahState;
+                                              //           } else {
+                                              //             termurahState =
+                                              //                 termahalState;
+                                              //             termahalState =
+                                              //                 !termahalState;
+                                              //           }
+                                              //         });
+                                              //       },
+                                              //       selected: termurahState,
+                                              //     ),
+                                              //     SizedBox(
+                                              //       width: 20,
+                                              //     ),
+                                              //     FilterChip(
+                                              //       label: Text('Termahal'),
+                                              //       onSelected: (bool value) {
+                                              //         setState(() {
+                                              //           if (termurahState ==
+                                              //                   false &&
+                                              //               termahalState ==
+                                              //                   false) {
+                                              //             termahalState =
+                                              //                 !termahalState;
+                                              //           } else {
+                                              //             termahalState =
+                                              //                 termurahState;
+                                              //             termurahState =
+                                              //                 !termurahState;
+                                              //           }
+                                              //         });
+                                              //       },
+                                              //       selected: termahalState,
+                                              //     ),
+                                              //   ],
+                                              // ),
                                               Text(
-                                                "Urutkan",
+                                                "Merk",
                                                 style: GoogleFonts.jura(
                                                     fontSize: 16,
                                                     fontWeight:
@@ -290,58 +349,6 @@ class _HomeState extends State<Home> {
                                               ),
                                               SizedBox(
                                                 height: 10,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  FilterChip(
-                                                    label: Text('Termurah'),
-                                                    onSelected: (bool value) {
-                                                      setState(() {
-                                                        if (termurahState ==
-                                                                false &&
-                                                            termahalState ==
-                                                                false) {
-                                                          termurahState =
-                                                              !termurahState;
-                                                        } else {
-                                                          termurahState =
-                                                              termahalState;
-                                                          termahalState =
-                                                              !termahalState;
-                                                        }
-                                                      });
-                                                    },
-                                                    selected: termurahState,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 20,
-                                                  ),
-                                                  FilterChip(
-                                                    label: Text('Termahal'),
-                                                    onSelected: (bool value) {
-                                                      setState(() {
-                                                        if (termurahState ==
-                                                                false &&
-                                                            termahalState ==
-                                                                false) {
-                                                          termahalState =
-                                                              !termahalState;
-                                                        } else {
-                                                          termahalState =
-                                                              termurahState;
-                                                          termurahState =
-                                                              !termurahState;
-                                                        }
-                                                      });
-                                                    },
-                                                    selected: termahalState,
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 30,
                                               ),
                                               Row(
                                                 mainAxisAlignment:
@@ -455,15 +462,16 @@ class _HomeState extends State<Home> {
                                                   SizedBox(
                                                     width: 130,
                                                     child: TextField(
+                                                        controller: _hargaAwal,
                                                         keyboardType:
                                                             TextInputType
                                                                 .number,
-                                                        inputFormatters: [
-                                                          CurrencyTextInputFormatter(
-                                                              // locale: 'idr',
-                                                              decimalDigits: 0,
-                                                              symbol: 'Rp')
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   CurrencyTextInputFormatter(
+                                                        //       // locale: 'idr',
+                                                        //       decimalDigits: 0,
+                                                        //       symbol: '\$')
+                                                        // ],
                                                         decoration: InputDecoration(
                                                             hintText:
                                                                 "Harga Terendah")),
@@ -476,15 +484,16 @@ class _HomeState extends State<Home> {
                                                   SizedBox(
                                                     width: 130,
                                                     child: TextField(
+                                                        controller: _hargaAkhir,
                                                         keyboardType:
                                                             TextInputType
                                                                 .number,
-                                                        inputFormatters: [
-                                                          CurrencyTextInputFormatter(
-                                                              // locale: 'idr',
-                                                              decimalDigits: 0,
-                                                              symbol: 'Rp')
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   CurrencyTextInputFormatter(
+                                                        //       // locale: 'idr',
+                                                        //       decimalDigits: 0,
+                                                        //       symbol: '\$')
+                                                        // ],
                                                         decoration: InputDecoration(
                                                             hintText:
                                                                 "Harga Tertinggi")),
@@ -497,182 +506,182 @@ class _HomeState extends State<Home> {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                "Tahun",
-                                                style: GoogleFonts.jura(
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              SizedBox(
-                                                height: 20,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  ElevatedButton(
-                                                      style: ButtonStyle(
-                                                        shape: MaterialStateProperty.all<
-                                                                RoundedRectangleBorder>(
-                                                            RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10.0),
-                                                                side: BorderSide(
-                                                                    color: Colors
-                                                                        .white70))),
-                                                        // side: BorderSide(),
-                                                        backgroundColor:
-                                                            MaterialStatePropertyAll(
-                                                                Colors.white10),
-                                                      ),
-                                                      onPressed: () {
-                                                        showCupertinoModalPopup(
-                                                            context: context,
-                                                            builder:
-                                                                (_) => SizedBox(
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height:
-                                                                          250,
-                                                                      child:
-                                                                          CupertinoPicker(
-                                                                        backgroundColor:
-                                                                            Colors.white,
-                                                                        itemExtent:
-                                                                            30,
-                                                                        onSelectedItemChanged:
-                                                                            (int
-                                                                                value) {
-                                                                          setState(
-                                                                              () {
-                                                                            tahunTerlama =
-                                                                                years[value];
-                                                                          });
-                                                                        },
-                                                                        children: const [
-                                                                          Text(
-                                                                              "2017"),
-                                                                          Text(
-                                                                              "2018"),
-                                                                          Text(
-                                                                              "2019"),
-                                                                          Text(
-                                                                              "2020"),
-                                                                          Text(
-                                                                              "2021"),
-                                                                          Text(
-                                                                              "2022"),
-                                                                          Text(
-                                                                              "2023"),
-                                                                        ],
-                                                                        scrollController:
-                                                                            FixedExtentScrollController(initialItem: 5),
-                                                                      ),
-                                                                    ));
-                                                      },
-                                                      child: Text(
-                                                        tahunTerlama,
-                                                        style:
-                                                            GoogleFonts.inter(
-                                                                color: Colors
-                                                                    .black),
-                                                      )),
-                                                  SizedBox(
-                                                    width: 20,
-                                                  ),
-                                                  ElevatedButton(
-                                                      style: ButtonStyle(
-                                                        shape: MaterialStateProperty.all<
-                                                                RoundedRectangleBorder>(
-                                                            RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10.0),
-                                                                side: BorderSide(
-                                                                    color: Colors
-                                                                        .white70))),
-                                                        // side: BorderSide(),
-                                                        backgroundColor:
-                                                            MaterialStatePropertyAll(
-                                                                Colors.white10),
-                                                      ),
-                                                      onPressed: () {
-                                                        showCupertinoModalPopup(
-                                                            context: context,
-                                                            builder:
-                                                                (_) => SizedBox(
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height:
-                                                                          250,
-                                                                      child:
-                                                                          CupertinoPicker(
-                                                                        backgroundColor:
-                                                                            Colors.white,
-                                                                        itemExtent:
-                                                                            30,
-                                                                        onSelectedItemChanged:
-                                                                            (int
-                                                                                value) {
-                                                                          setState(
-                                                                              () {
-                                                                            tahunTerbaru =
-                                                                                years[value];
-                                                                          });
-                                                                        },
-                                                                        children: const [
-                                                                          Text(
-                                                                              "2017"),
-                                                                          Text(
-                                                                              "2018"),
-                                                                          Text(
-                                                                              "2019"),
-                                                                          Text(
-                                                                              "2020"),
-                                                                          Text(
-                                                                              "2021"),
-                                                                          Text(
-                                                                              "2022"),
-                                                                          Text(
-                                                                              "2023"),
-                                                                        ],
-                                                                        scrollController:
-                                                                            FixedExtentScrollController(initialItem: 6),
-                                                                      ),
-                                                                    ));
-                                                      },
-                                                      child: Text(
-                                                        tahunTerbaru,
-                                                        style:
-                                                            GoogleFonts.inter(
-                                                                color: Colors
-                                                                    .black),
-                                                      )),
+                                              // Text(
+                                              //   "Tahun",
+                                              //   style: GoogleFonts.jura(
+                                              //       fontSize: 16,
+                                              //       fontWeight:
+                                              //           FontWeight.bold),
+                                              // ),
+                                              // SizedBox(
+                                              //   height: 20,
+                                              // ),
+                                              // Row(
+                                              //   children: [
+                                              //     ElevatedButton(
+                                              //         style: ButtonStyle(
+                                              //           shape: MaterialStateProperty.all<
+                                              //                   RoundedRectangleBorder>(
+                                              //               RoundedRectangleBorder(
+                                              //                   borderRadius:
+                                              //                       BorderRadius
+                                              //                           .circular(
+                                              //                               10.0),
+                                              //                   side: BorderSide(
+                                              //                       color: Colors
+                                              //                           .white70))),
+                                              //           // side: BorderSide(),
+                                              //           backgroundColor:
+                                              //               MaterialStatePropertyAll(
+                                              //                   Colors.white10),
+                                              //         ),
+                                              //         onPressed: () {
+                                              //           showCupertinoModalPopup(
+                                              //               context: context,
+                                              //               builder:
+                                              //                   (_) => SizedBox(
+                                              //                         width: double
+                                              //                             .infinity,
+                                              //                         height:
+                                              //                             250,
+                                              //                         child:
+                                              //                             CupertinoPicker(
+                                              //                           backgroundColor:
+                                              //                               Colors.white,
+                                              //                           itemExtent:
+                                              //                               30,
+                                              //                           onSelectedItemChanged:
+                                              //                               (int
+                                              //                                   value) {
+                                              //                             setState(
+                                              //                                 () {
+                                              //                               tahunTerlama =
+                                              //                                   years[value];
+                                              //                             });
+                                              //                           },
+                                              //                           children: const [
+                                              //                             Text(
+                                              //                                 "2017"),
+                                              //                             Text(
+                                              //                                 "2018"),
+                                              //                             Text(
+                                              //                                 "2019"),
+                                              //                             Text(
+                                              //                                 "2020"),
+                                              //                             Text(
+                                              //                                 "2021"),
+                                              //                             Text(
+                                              //                                 "2022"),
+                                              //                             Text(
+                                              //                                 "2023"),
+                                              //                           ],
+                                              //                           scrollController:
+                                              //                               FixedExtentScrollController(initialItem: 5),
+                                              //                         ),
+                                              //                       ));
+                                              //         },
+                                              //         child: Text(
+                                              //           tahunTerlama,
+                                              //           style:
+                                              //               GoogleFonts.inter(
+                                              //                   color: Colors
+                                              //                       .black),
+                                              //         )),
+                                              //     SizedBox(
+                                              //       width: 20,
+                                              //     ),
+                                              //     ElevatedButton(
+                                              //         style: ButtonStyle(
+                                              //           shape: MaterialStateProperty.all<
+                                              //                   RoundedRectangleBorder>(
+                                              //               RoundedRectangleBorder(
+                                              //                   borderRadius:
+                                              //                       BorderRadius
+                                              //                           .circular(
+                                              //                               10.0),
+                                              //                   side: BorderSide(
+                                              //                       color: Colors
+                                              //                           .white70))),
+                                              //           // side: BorderSide(),
+                                              //           backgroundColor:
+                                              //               MaterialStatePropertyAll(
+                                              //                   Colors.white10),
+                                              //         ),
+                                              //         onPressed: () {
+                                              //           showCupertinoModalPopup(
+                                              //               context: context,
+                                              //               builder:
+                                              //                   (_) => SizedBox(
+                                              //                         width: double
+                                              //                             .infinity,
+                                              //                         height:
+                                              //                             250,
+                                              //                         child:
+                                              //                             CupertinoPicker(
+                                              //                           backgroundColor:
+                                              //                               Colors.white,
+                                              //                           itemExtent:
+                                              //                               30,
+                                              //                           onSelectedItemChanged:
+                                              //                               (int
+                                              //                                   value) {
+                                              //                             setState(
+                                              //                                 () {
+                                              //                               tahunTerbaru =
+                                              //                                   years[value];
+                                              //                             });
+                                              //                           },
+                                              //                           children: const [
+                                              //                             Text(
+                                              //                                 "2017"),
+                                              //                             Text(
+                                              //                                 "2018"),
+                                              //                             Text(
+                                              //                                 "2019"),
+                                              //                             Text(
+                                              //                                 "2020"),
+                                              //                             Text(
+                                              //                                 "2021"),
+                                              //                             Text(
+                                              //                                 "2022"),
+                                              //                             Text(
+                                              //                                 "2023"),
+                                              //                           ],
+                                              //                           scrollController:
+                                              //                               FixedExtentScrollController(initialItem: 6),
+                                              //                         ),
+                                              //                       ));
+                                              //         },
+                                              //         child: Text(
+                                              //           tahunTerbaru,
+                                              //           style:
+                                              //               GoogleFonts.inter(
+                                              //                   color: Colors
+                                              //                       .black),
+                                              //         )),
 
-                                                  // SizedBox(
-                                                  //   width: 130,
-                                                  //   child: TextField(
-                                                  //       decoration: InputDecoration(
-                                                  //           hintText: "Tahun Terendah")),
+                                              //     // SizedBox(
+                                              //     //   width: 130,
+                                              //     //   child: TextField(
+                                              //     //       decoration: InputDecoration(
+                                              //     //           hintText: "Tahun Terendah")),
 
-                                                  //   // controller: _hargaAkhir,
-                                                  // ),
-                                                  // SizedBox(
-                                                  //   width: 20,
-                                                  // ),
-                                                  // SizedBox(
-                                                  //   width: 130,
-                                                  //   child: TextField(
-                                                  //       decoration: InputDecoration(s
-                                                  //           hintText: "Tahun Tertinggi")),
+                                              //     //   // controller: _hargaAkhir,
+                                              //     // ),
+                                              //     // SizedBox(
+                                              //     //   width: 20,
+                                              //     // ),
+                                              //     // SizedBox(
+                                              //     //   width: 130,
+                                              //     //   child: TextField(
+                                              //     //       decoration: InputDecoration(s
+                                              //     //           hintText: "Tahun Tertinggi")),
 
-                                                  //   // controller: _hargaAkhir,
-                                                  // ),
-                                                ],
-                                                // children: [InputFilter(controller: _hargaAwal)],
-                                              ),
+                                              //     //   // controller: _hargaAkhir,
+                                              //     // ),
+                                              //   ],
+                                              //   // children: [InputFilter(controller: _hargaAwal)],
+                                              // ),
                                               SizedBox(
                                                 height: 30,
                                               ),
@@ -686,8 +695,23 @@ class _HomeState extends State<Home> {
                                                       Navigator.of(context)
                                                           .push(
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                FilterPage()),
+                                                            builder: (context) => FilterPage(
+                                                                amd: amd,
+                                                                desktopState:
+                                                                    desktopState,
+                                                                nvidia: nvidia,
+                                                                termahalState:
+                                                                    termahalState,
+                                                                termurahState:
+                                                                    termurahState,
+                                                                workstationState:
+                                                                    workstationState,
+                                                                hargaAkhir:
+                                                                    _hargaAkhir
+                                                                        .text,
+                                                                hargaAwal:
+                                                                    _hargaAwal
+                                                                        .text)),
                                                       );
                                                     },
                                                     style: ElevatedButton.styleFrom(

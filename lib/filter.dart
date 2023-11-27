@@ -9,10 +9,27 @@ import 'package:http/http.dart' as http;
 import 'model/item.dart';
 
 class FilterPage extends StatefulWidget {
-  const FilterPage({super.key});
-
+  final bool termurahState;
+  final bool termahalState;
+  final bool desktopState;
+  final bool workstationState;
+  final bool amd;
+  final bool nvidia;
+  final String hargaAwal;
+  final String hargaAkhir;
+  const FilterPage(
+      {super.key,
+      required this.termurahState,
+      required this.termahalState,
+      required this.desktopState,
+      required this.amd,
+      required this.nvidia,
+      required this.workstationState,
+      required this.hargaAwal,
+      required this.hargaAkhir});
   @override
   State<FilterPage> createState() => _FilterPageState();
+  // get _amd=>amd;
 }
 
 class _FilterPageState extends State<FilterPage> {
@@ -27,6 +44,16 @@ class _FilterPageState extends State<FilterPage> {
     Item(name: "NVIDIA GTX 1050", price: "10.000.000"),
   ];
 
+  // bool get getamd => amd;
+
+  // get desktop => null;
+
+  // get workstation => null;
+
+  // get priceMin => null;
+
+  // get priceMax => null;
+
   void setTipe(String newValue) {
     setState(() {
       dropdownTipe = newValue;
@@ -39,154 +66,187 @@ class _FilterPageState extends State<FilterPage> {
     print("this is text");
   }
 
+  // Future getGpu() async {
+  //   // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
+  //   var res = await http.get(Uri.http("192.168.136.40:8080", "gpu"));
+  //   var jsonData = jsonDecode(res.body);
+  //   if (items.isNotEmpty) {
+  //     items.clear();
+  //     print("it is empty");
+  //   }
+  //   for (var itemData in jsonData) {
+  //     final item = Item(
+  //         name: itemData["gpu_name"], price: itemData["gpu_price"].toString());
+  //     items.add(item);
+  //   }
+
+  //   print(items.length);
+  // }
+
+  // for rank gpu
   Future getGpu() async {
     // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
-    var res = await http.get(Uri.http("192.168.136.40:8080", "gpu"));
+    print(widget.hargaAkhir.substring(1).toString());
+    var res =
+        await http.post(Uri.http("127.0.0.1:8000", "api/gpu-rank"), body: {
+      "amd": widget.amd.toString(),
+      "nvidia": widget.nvidia.toString(),
+      "desktop": widget.desktopState.toString(),
+      "workstation": widget.workstationState.toString(),
+      "priceMin": widget.hargaAwal.substring(1).toString(),
+      "priceMax": widget.hargaAkhir.substring(1).toString()
+    });
     var jsonData = jsonDecode(res.body);
+    print(jsonData);
     if (items.isNotEmpty) {
       items.clear();
       print("it is empty");
     }
     for (var itemData in jsonData) {
-      final item = Item(
-          name: itemData["gpu_name"], price: itemData["gpu_price"].toString());
+      final item =
+          Item(name: itemData["gpu_name"], price: itemData["price"].toString());
       items.add(item);
     }
 
-    print(items.length);
+    // print(items.length);
   }
 
   @override
   Widget build(BuildContext context) {
     // textme();
-    // getGpu();
+    getGpu();
     // return FutureBuilder(builder: builder)
     return FutureBuilder(
-        // future: getGpu(),
+        future: getGpu(),
         builder: (ctx, snapshot) {
-      // if (snapshot.connectionState == ConnectionState.done) {
-      return Scaffold(
-        backgroundColor: backgroundColor,
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          elevation: 0,
-        ),
-        body: ListView(children: [
-          Container(
-            padding: EdgeInsets.all(30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hasil \nRekomendasi",
-                  style: GoogleFonts.jura(fontSize: 36),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Urutkan :",
-                  style: GoogleFonts.jura(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                DropDownFilter(
-                    item: dropdownTipe, itemList: tipeList, onChange: setTipe),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: itemList.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey,
-                                        spreadRadius: 2,
-                                        blurRadius: 7,
-                                        offset: Offset(0, 2),
-                                      )
-                                    ],
-                                    color: whiteColor,
-                                    border: Border.all(
-                                        color: Colors.black, width: 2),
-                                    borderRadius: BorderRadius.circular(13)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Scaffold(
+              backgroundColor: backgroundColor,
+              appBar: AppBar(
+                backgroundColor: primaryColor,
+                elevation: 0,
+              ),
+              body: ListView(children: [
+                Container(
+                  padding: EdgeInsets.all(25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hasil \nRekomendasi",
+                        style: GoogleFonts.jura(fontSize: 36),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "Urutkan :",
+                        style: GoogleFonts.jura(fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      DropDownFilter(
+                          item: dropdownTipe,
+                          itemList: tipeList,
+                          onChange: setTipe),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: items.length,
+                              itemBuilder: (context, index) {
+                                return Column(
                                   children: [
-                                    Text(
-                                      'Gambar\nTidak\nTersedia',
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.inter(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey),
+                                    Container(
+                                      padding: EdgeInsets.all(15),
+                                      decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey,
+                                              spreadRadius: 2,
+                                              blurRadius: 7,
+                                              offset: Offset(0, 2),
+                                            )
+                                          ],
+                                          color: whiteColor,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(13)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Gambar\nTidak\nTersedia',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.inter(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey),
+                                          ),
+                                          SizedBox(
+                                            width: 50,
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: 150,
+                                                child: Text(
+                                                  items[index].name,
+                                                  style: GoogleFonts.jura(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                              Text(
+                                                "Rp" + items[index].price,
+                                                style: GoogleFonts.inter(
+                                                  fontSize: 14,
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
-                                      width: 50,
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 150,
-                                          child: Text(
-                                            itemList[index].name,
-                                            style: GoogleFonts.jura(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Text(
-                                          "Rp" + itemList[index].price,
-                                          style: GoogleFonts.inter(
-                                            fontSize: 14,
-                                          ),
-                                        )
-                                      ],
+                                      height: 20,
                                     )
                                   ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              )
-                            ],
-                          );
-                        }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ]),
-      );
-      // } else {
-      //   return Center(
-      //       child: CircularProgressIndicator(
-      //     backgroundColor: backgroundColor,
-      //     color: primaryColor,
-      //   ));
-      // }
-    }, future: null,);
+                                );
+                              }),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ]),
+            );
+          } else {
+            return Center(
+                child: CircularProgressIndicator(
+              backgroundColor: backgroundColor,
+              color: primaryColor,
+            ));
+          }
+        });
   }
 }

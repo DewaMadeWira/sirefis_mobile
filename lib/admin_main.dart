@@ -31,6 +31,7 @@ class _AdminMainState extends StatefulWidget {
 
 class _AdminMainStateBody extends State<_AdminMainState> {
   int _currentIndex = 0;
+  Future<Item?>? item;
 
   List<Widget> body = const [
     Icon(Icons.sort),
@@ -41,10 +42,16 @@ class _AdminMainStateBody extends State<_AdminMainState> {
 
   List<Item> items = [];
 
+  void clickDeleteButton(){
+    setState(() {
+      item = deleteitem();
+    });
+  }
+
   // get data gpu
   Future getGpu() async {
     // var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
-    var response = await http.get(Uri.http('192.168.0.106:8000', 'api/gpu'));
+    var response = await http.get(Uri.http('10.210.218.21:8000', 'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var perData in jsonData) {
@@ -53,6 +60,18 @@ class _AdminMainStateBody extends State<_AdminMainState> {
     }
     // print(items.length);
     print('helo');
+  }
+
+  //delete api request
+  Future<Item?>? deleteitem() async{
+    final uri = Uri.parse('10.210.218.21:8000,api/gpu');
+    final response = await http.delete(uri);
+
+    if(response.statusCode ==200){
+      return null;
+    }else{
+      throw Exception('failed to load item');
+    }
   }
 
   // This widget is the root of your application.
@@ -185,6 +204,7 @@ showDialogFunc(context, title, desc) {
   return showDialog(
       context: context,
       builder: (context) {
+        var clickDeleteButton;
         return Center(
           child: Material(
             type: MaterialType.transparency,
@@ -243,8 +263,9 @@ showDialogFunc(context, title, desc) {
                       SizedBox(
                         width: 30,
                       ),
+                     
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () =>clickDeleteButton(clickDeleteButton),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red, // Background color
                           ),
