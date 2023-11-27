@@ -15,6 +15,8 @@ class FilterPage extends StatefulWidget {
   final bool workstationState;
   final bool amd;
   final bool nvidia;
+  final String hargaAwal;
+  final String hargaAkhir;
   const FilterPage(
       {super.key,
       required this.termurahState,
@@ -22,7 +24,9 @@ class FilterPage extends StatefulWidget {
       required this.desktopState,
       required this.amd,
       required this.nvidia,
-      required this.workstationState});
+      required this.workstationState,
+      required this.hargaAwal,
+      required this.hargaAkhir});
   @override
   State<FilterPage> createState() => _FilterPageState();
   // get _amd=>amd;
@@ -82,14 +86,15 @@ class _FilterPageState extends State<FilterPage> {
   // for rank gpu
   Future getGpu() async {
     // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
+    print(widget.hargaAkhir.substring(1).toString());
     var res =
         await http.post(Uri.http("127.0.0.1:8000", "api/gpu-rank"), body: {
       "amd": widget.amd.toString(),
       "nvidia": widget.nvidia.toString(),
       "desktop": widget.desktopState.toString(),
       "workstation": widget.workstationState.toString(),
-      "priceMin": "0",
-      "priceMax": "2000"
+      "priceMin": widget.hargaAwal.substring(1).toString(),
+      "priceMax": widget.hargaAkhir.substring(1).toString()
     });
     var jsonData = jsonDecode(res.body);
     print(jsonData);

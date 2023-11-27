@@ -455,15 +455,16 @@ class _HomeState extends State<Home> {
                                                   SizedBox(
                                                     width: 130,
                                                     child: TextField(
+                                                        controller: _hargaAwal,
                                                         keyboardType:
                                                             TextInputType
                                                                 .number,
-                                                        inputFormatters: [
-                                                          CurrencyTextInputFormatter(
-                                                              // locale: 'idr',
-                                                              decimalDigits: 0,
-                                                              symbol: 'Rp')
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   CurrencyTextInputFormatter(
+                                                        //       // locale: 'idr',
+                                                        //       decimalDigits: 0,
+                                                        //       symbol: '\$')
+                                                        // ],
                                                         decoration: InputDecoration(
                                                             hintText:
                                                                 "Harga Terendah")),
@@ -476,15 +477,16 @@ class _HomeState extends State<Home> {
                                                   SizedBox(
                                                     width: 130,
                                                     child: TextField(
+                                                        controller: _hargaAkhir,
                                                         keyboardType:
                                                             TextInputType
                                                                 .number,
-                                                        inputFormatters: [
-                                                          CurrencyTextInputFormatter(
-                                                              // locale: 'idr',
-                                                              decimalDigits: 0,
-                                                              symbol: 'Rp')
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   CurrencyTextInputFormatter(
+                                                        //       // locale: 'idr',
+                                                        //       decimalDigits: 0,
+                                                        //       symbol: '\$')
+                                                        // ],
                                                         decoration: InputDecoration(
                                                             hintText:
                                                                 "Harga Tertinggi")),
@@ -686,21 +688,23 @@ class _HomeState extends State<Home> {
                                                       Navigator.of(context)
                                                           .push(
                                                         MaterialPageRoute(
-                                                            builder:
-                                                                (context) =>
-                                                                    FilterPage(
-                                                                      amd: amd,
-                                                                      desktopState:
-                                                                          desktopState,
-                                                                      nvidia:
-                                                                          nvidia,
-                                                                      termahalState:
-                                                                          termahalState,
-                                                                      termurahState:
-                                                                          termurahState,
-                                                                      workstationState:
-                                                                          workstationState,
-                                                                    )),
+                                                            builder: (context) => FilterPage(
+                                                                amd: amd,
+                                                                desktopState:
+                                                                    desktopState,
+                                                                nvidia: nvidia,
+                                                                termahalState:
+                                                                    termahalState,
+                                                                termurahState:
+                                                                    termurahState,
+                                                                workstationState:
+                                                                    workstationState,
+                                                                hargaAkhir:
+                                                                    _hargaAkhir
+                                                                        .text,
+                                                                hargaAwal:
+                                                                    _hargaAwal
+                                                                        .text)),
                                                       );
                                                     },
                                                     style: ElevatedButton.styleFrom(
