@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {'/': (context) => Home(), 'filter': (context) => FilterPage()},
+      routes: {'/': (context) => Home()},
       title: 'SIREFIS',
       theme: ThemeData(),
     );
