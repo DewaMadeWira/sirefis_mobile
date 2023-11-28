@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
     });
   }
 
+// 1 input 1 ginian
   final _hargaAwal = TextEditingController();
   final _hargaAkhir = TextEditingController();
 

@@ -72,22 +72,37 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  final _gpu_name = TextEditingController();
+  final _g3dmark = TextEditingController();
+  final _g2dmark = TextEditingController();
+  final _price = TextEditingController();
+  final _gpu_value = TextEditingController();
+  final _tdp = TextEditingController();
+  final _power_performance = TextEditingController();
+  final _test_date = TextEditingController();
+  final _category = TextEditingController();
+  final _company = TextEditingController();
+
   postData() async {
+    // try {
     var response = await http
-        .post(Uri.parse("http://192.168.0.106:8000/api/create_data"), body: {
+        .post(Uri.parse("http://192.168.71.71:8000/api/create_data"), body: {
       // "gpu_id": 1.toString(), //387
-      "gpu_name": "GeForce RTX 3090 Ti",
-      "G3Dmark": "29094",
-      "G2Dmark": "1117",
-      "price": "209999",
-      "gpu_value": "1385",
-      "TDP": "4500",
-      "power_performance": "6465",
-      "test_date": "2022",
-      "category": "Unknown",
-      "company": 2.toString()
+      "gpu_name": _gpu_name.text.toString(),
+      "G3Dmark": _g3dmark.text.toString(),
+      "G2Dmark": _g2dmark.text.toString(),
+      "price": _price.toString(),
+      "gpu_value": _gpu_value.toString(),
+      "TDP": _tdp.toString(),
+      "power_performance": _power_performance.toString(),
+      "test_date": _test_date.toString(),
+      "category": _category.toString(),
+      // "company": _company.toString()
     });
     print(response.body);
+    // } catch (e) {
+    //   print(e);
+    // }
   }
 
   @override
@@ -105,13 +120,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
-          FloatingActionButton(
-            onPressed: () {
-              // print('hello');
-              postData();
-            },
-            tooltip: 'Increment',
-          ),
+          // FloatingActionButton(
+          //   onPressed: () {
+          //     // print('hello');
+          //     postData();
+          //   },
+          //   tooltip: 'Increment',
+          // ),
           Column(
             children: [
               Padding(padding: EdgeInsets.all(30)),
@@ -193,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(controller: _gpu_name),
                               ),
                             ),
                           ],
@@ -229,7 +244,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _price,
+                                ),
                               ),
                             ),
                           ],
@@ -265,7 +282,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _test_date,
+                                ),
                               ),
                             ),
                           ],
@@ -277,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text(
-                              'G3mark',
+                              'G3Dmark',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
                               ),
@@ -301,7 +320,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _g3dmark,
+                                ),
                               ),
                             ),
                           ],
@@ -313,7 +334,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: EdgeInsets.symmetric(horizontal: 18),
                             ),
                             Text(
-                              'G2mark',
+                              'G2Dmark',
                               style: GoogleFonts.inter(
                                 fontSize: 16,
                               ),
@@ -337,7 +358,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _g2dmark,
+                                ),
                               ),
                             ),
                           ],
@@ -373,7 +396,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _gpu_value,
+                                ),
                               ),
                             ),
                           ],
@@ -409,7 +434,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _tdp,
+                                ),
                               ),
                             ),
                           ],
@@ -445,7 +472,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _power_performance,
+                                ),
                               ),
                             ),
                           ],
@@ -481,7 +510,47 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _category,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 18),
+                            ),
+                            Text(
+                              'Company',
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 17),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                border: Border.all(width: 2),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              width: 160, //lebar
+                              height: 36, //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(
+                                  controller: _company,
+                                ),
                               ),
                             ),
                           ],
@@ -490,20 +559,24 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                border: Border.all(width: 2),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              width: 154, //lebar
-                              height: 36, //tinggi
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Tambah",
-                                style: GoogleFonts.inter(
-                                    fontSize: 12,
-                                    color: const Color.fromARGB(255, 0, 0, 0)),
+                            GestureDetector(
+                              onTap: () {
+                                postData();
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  border: Border.all(width: 2),
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                width: 154, //lebar
+                                height: 36, //tinggi
+                                alignment: Alignment.center,
+                                child: Text("Tambah",
+                                    style: GoogleFonts.inter(
+                                        fontSize: 12,
+                                        color: const Color.fromARGB(
+                                            255, 0, 0, 0))),
                               ),
                             )
                           ],
