@@ -16,7 +16,7 @@ void main() {
 }
 
 Future deleteItem(String id) async {
-  var res = await http.post(Uri.http("127.0.0.1:8000", "api/delete_data"),
+  var res = await http.post(Uri.http("192.168.71.74:8000", "api/delete_data"),
       body: {"gpu_id": id.toString()});
   // print(res.body);
   print(id);
@@ -26,7 +26,7 @@ Future deleteItem(String id) async {
 List<Item> items = [];
 
 Future getGpu() async {
-  var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
+  var response = await http.get(Uri.http('192.168.71.74:8000', 'api/gpu'));
   // var response = await http.get(Uri.http('192.168.78.36:8000', 'api/gpu'));
 
   var jsonData = jsonDecode(response.body);
