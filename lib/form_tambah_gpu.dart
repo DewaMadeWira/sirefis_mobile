@@ -59,19 +59,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   final _gpu_name = TextEditingController();
   final _g3dmark = TextEditingController();
   final _g2dmark = TextEditingController();
@@ -86,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   postData() async {
     // try {
     var response = await http
-        .post(Uri.parse("http://192.168.71.71:8000/api/create_data"), body: {
+        .post(Uri.parse("http://192.168.0.106:8000/api/create_data"), body: {
       // "gpu_id": 1.toString(), //387
       "gpu_name": _gpu_name.text.toString(),
       "G3Dmark": _g3dmark.text.toString(),
@@ -97,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       "power_performance": _power_performance.toString(),
       "test_date": _test_date.toString(),
       "category": _category.toString(),
-      // "company": _company.toString()
+      "company": _company.toString()
     });
     print(response.body);
     // } catch (e) {
@@ -129,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // ),
           Column(
             children: [
-              Padding(padding: EdgeInsets.all(30)),
+              // Padding(padding: EdgeInsets.all(30)),
               Container(
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
@@ -148,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontSize: 18,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(33)),
+                    // Padding(padding: EdgeInsets.all(33)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

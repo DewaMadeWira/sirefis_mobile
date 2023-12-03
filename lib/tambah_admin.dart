@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(TambahAdminApp());
@@ -39,6 +40,22 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  final _admin_name = TextEditingController();
+  final _admin_email = TextEditingController();
+  final _username = TextEditingController();
+  final _password = TextEditingController();
+
+  postData() async {
+    var response = await http
+        .post(Uri.parse("http://192.168.0.106:8000/api/create_data"), body: {
+      "admin_name": _admin_name.text.toString(),
+      "admin_email": _admin_email.text.toString(),
+      "username": _username.text.toString(),
+      "password": _password.text.toString(),
+    });
+    print(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +72,7 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
             Padding(
               padding: EdgeInsets.all(20.0),
               child: TextField(
-                controller: namaController,
+                controller: _admin_name,
                 decoration: InputDecoration(
                   labelText: 'Nama Admin',
                   border: OutlineInputBorder(),
@@ -65,7 +82,7 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
             Padding(
               padding: EdgeInsets.all(20.0),
               child: TextField(
-                controller: emailController,
+                controller: _admin_email,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -75,7 +92,7 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
             Padding(
               padding: EdgeInsets.all(20.0),
               child: TextField(
-                controller: usernameController,
+                controller: _username,
                 decoration: InputDecoration(
                   labelText: 'Username',
                   border: OutlineInputBorder(),
@@ -85,7 +102,7 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
             Padding(
               padding: EdgeInsets.all(20.0),
               child: TextField(
-                controller: passwordController,
+                controller: _password,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
@@ -101,12 +118,13 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    tambahAdmin(
-                      namaController.text,
-                      emailController.text,
-                      usernameController.text,
-                      passwordController.text,
-                    );
+                    // tambahAdmin(
+                    //   namaController.text,
+                    //   emailController.text,
+                    //   usernameController.text,
+                    //   passwordController.text,
+                    // );
+                    postData();
                   },
                   child: Text('Tambah Admin'),
                   style: ElevatedButton.styleFrom(
