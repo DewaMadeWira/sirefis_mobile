@@ -17,7 +17,7 @@ class TampilData extends StatelessWidget {
   List<Item> items = [];
 
   Future getGpu()async{
-    var response = await http.get(Uri.http('192.168.242.171:8000','api/gpu'));
+    var response = await http.get(Uri.http('192.168.1.4:8000','api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var gpu_data in jsonData){

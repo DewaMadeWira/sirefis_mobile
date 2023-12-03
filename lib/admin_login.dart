@@ -24,12 +24,12 @@ Future login() async {
   // Attach the CookieJar to Dio
   dio.interceptors.add(CookieManager(cookieJar));
   Response response = await dio.post(
-    'http://127.0.0.1:8000/api/login-admin',
+    'http://192.168.1.16:8000/api/login-admin',
     data: {"email": "dedemade2002@gmail.com", "password": "12345"},
   );
 
   Future<List<Cookie>> cookies = cookieJar
-      .loadForRequest(Uri.parse('http://127.0.0.1:8000/api/login-admin'));
+      .loadForRequest(Uri.parse('http://192.168.1.16:8000/api/login-admin'));
   print(cookies);
   // print('Cookies from response: $cookies');
   // final response = await http.post(
