@@ -17,13 +17,13 @@ class TampilData extends StatelessWidget {
   List<Item> items = [];
 
   Future getGpu()async{
-    var response = await http.get(Uri.http('192.168.1.4:8000','api/gpu'));
+    var response = await http.get(Uri.http('10.211.113.8:8000','api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var gpu_data in jsonData){
       final item = Item(
         name: gpu_data['gpu_name'], 
-        price: gpu_data['price'],
+        price: gpu_data['price'].toString(),
         id: gpu_data['gpu_id'].toString(),
       );
       items.add(item);
