@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // ),
           Column(
             children: [
-              // Padding(padding: EdgeInsets.all(30)),
+              Padding(padding: EdgeInsets.only(top: 20)),
               Container(
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
@@ -124,12 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(14.0),
                 ),
                 width: 370, //lebar
-                height: 1000, //tinggi
+                height: 970, //tinggi
                 child: Column(
                   children: [
-                    Padding(padding: EdgeInsets.all(15)),
+                    Padding(padding: EdgeInsets.only(top: 25)),
                     Text(
-                      'Form Tambah GPU',
+                      'Form Tambah GPU\n',
                       style: GoogleFonts.jura(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -161,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ],
                     ),
-                    Padding(padding: EdgeInsets.all(32)),
+                    Padding(padding: EdgeInsets.only(top: 15)),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
