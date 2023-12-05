@@ -46,9 +46,14 @@ class TampilData extends StatelessWidget {
                           return ListView.builder(
                             itemCount: items.length,
                             itemBuilder: (context, index){
-                              return ListTile(
-                                title: Text(items[index].name),
-                                subtitle: Text(items[index].price),
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                ),
+                                child: ListTile(
+                                  title: Text(items[index].name),
+                                  subtitle: Text(items[index].price),
+                                ),
                               );
                             },
                           );

@@ -56,7 +56,7 @@ class _AllGpuState extends State<AllGpu> {
   //   print(items.length);
   // }
   Future getGpu()async{
-    var response = await http.get(Uri.http('10.211.113.8:8000','api/gpu'));
+    var response = await http.get(Uri.http('192.168.71.76:8000','api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var gpu_data in jsonData){
@@ -120,9 +120,18 @@ class _AllGpuState extends State<AllGpu> {
                           return ListView.builder(
                             itemCount: items.length,
                             itemBuilder: (context, index){
-                              return ListTile(
-                                title: Text(items[index].name),
-                                subtitle: Text(items[index].price),
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[250],
+                                    borderRadius: BorderRadius.circular(10), 
+                                  ),
+                                  child: ListTile(
+                                    title: Text(items[index].name),
+                                    subtitle: Text(items[index].price),
+                                  ),
+                                ),
                               );
                             },
                           );
