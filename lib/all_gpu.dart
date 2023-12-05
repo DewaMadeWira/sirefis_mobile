@@ -56,7 +56,7 @@ class _AllGpuState extends State<AllGpu> {
   //   print(items.length);
   // }
   Future getGpu()async{
-    var response = await http.get(Uri.http('192.168.71.76:8000','api/gpu'));
+    var response = await http.get(Uri.http('192.168.18.246:8000','api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var gpu_data in jsonData){

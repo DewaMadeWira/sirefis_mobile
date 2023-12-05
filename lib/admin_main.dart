@@ -16,7 +16,7 @@ void main() {
 }
 
 Future deleteItem(String id) async {
-  var res = await http.post(Uri.http("192.168.1.4:8000", "api/delete_data"),
+  var res = await http.post(Uri.http("192.168.2.246:8000", "api/delete_data"),
       body: {"gpu_id": id.toString()});
   // print(res.body);
   print(id);
@@ -26,7 +26,7 @@ Future deleteItem(String id) async {
 List<Item> items = [];
 
 Future getGpu() async {
-  var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
+  var response = await http.get(Uri.http('192.168.2.246:8000', 'api/gpu'));
   // var response = await http.get(Uri.http('192.168.78.36:8000', 'api/gpu'));
 
   var jsonData = jsonDecode(response.body);
@@ -285,7 +285,7 @@ showDialogFunc(context, title, desc, id) {
                       ElevatedButton(
                           onPressed: () async {
                             var res = await http.post(
-                                Uri.http("192.168.1.4:8000", "api/delete_data"),
+                                Uri.http("1192.168.2.246:8000", "api/delete_data"),
                                 body: {"gpu_id": id});
                             print(jsonDecode(res.body));
                             print(id);
@@ -325,7 +325,7 @@ class _SearchPageState extends State<SearchPage> {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
       var response =
-          await http.get(Uri.http('192.168.1.4:8000', 'api/search_gpu/$params'));
+          await http.get(Uri.http('192.168.2.246:8000', 'api/search_gpu/$params'));
       // .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
