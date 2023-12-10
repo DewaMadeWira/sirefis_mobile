@@ -47,7 +47,7 @@ class _TambahAdminScreenState extends State<TambahAdminScreen> {
 
   postData() async {
     var response = await http
-        .post(Uri.parse("http://192.168.0.106:8000/api/create_data"), body: {
+        .post(Uri.parse("http://192.168.71.84:8000/api/create_admin"), body: {
       "admin_name": _admin_name.text.toString(),
       "admin_email": _admin_email.text.toString(),
       "username": _username.text.toString(),

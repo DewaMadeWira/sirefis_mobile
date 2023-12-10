@@ -288,7 +288,7 @@ showDialogFunc(context, title, desc, id) {
                       ElevatedButton(
                           onPressed: () async {
                             var res = await http.post(
-                                Uri.http("192.168.1.4:8000", "api/delete_data"),
+                                Uri.http("1192.168.2.246:8000", "api/delete_data"),
                                 body: {"gpu_id": id});
                             print(jsonDecode(res.body));
                             print(id);

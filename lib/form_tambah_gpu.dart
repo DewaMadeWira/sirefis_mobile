@@ -73,18 +73,18 @@ class _MyHomePageState extends State<MyHomePage> {
   postData() async {
     // try {
     var response = await http
-        .post(Uri.parse("http://192.168.0.106:8000/api/create_data"), body: {
+        .post(Uri.parse("http://192.168.71.84:8000/api/create_data"), body: {
       // "gpu_id": 1.toString(), //387
       "gpu_name": _gpu_name.text.toString(),
       "G3Dmark": _g3dmark.text.toString(),
       "G2Dmark": _g2dmark.text.toString(),
-      "price": _price.toString(),
-      "gpu_value": _gpu_value.toString(),
-      "TDP": _tdp.toString(),
-      "power_performance": _power_performance.toString(),
-      "test_date": _test_date.toString(),
-      "category": _category.toString(),
-      "company": _company.toString()
+      "price": _price.text,
+      "gpu_value": _gpu_value.text.toString(),
+      "TDP": _tdp.text.toString(),
+      "power_performance": _power_performance.text.toString(),
+      "test_date": _test_date.text.toString(),
+      "category": _category.text.toString(),
+      "company": _company.text
     });
     print(response.body);
     // } catch (e) {
@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // ),
           Column(
             children: [
-              // Padding(padding: EdgeInsets.all(30)),
+              Padding(padding: EdgeInsets.only(top: 20)),
               Container(
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
@@ -124,12 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(14.0),
                 ),
                 width: 370, //lebar
-                height: 1000, //tinggi
+                height: 970, //tinggi
                 child: Column(
                   children: [
-                    Padding(padding: EdgeInsets.all(15)),
+                    Padding(padding: EdgeInsets.only(top: 25)),
                     Text(
-                      'Form Tambah GPU',
+                      'Form Tambah GPU\n',
                       style: GoogleFonts.jura(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -161,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ],
                     ),
-                    Padding(padding: EdgeInsets.all(32)),
+                    Padding(padding: EdgeInsets.only(top: 15)),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -233,6 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     horizontal: 10, vertical: 0),
                                 child: TextField(
                                   controller: _price,
+                                  keyboardType: TextInputType.number,
                                 ),
                               ),
                             ),
