@@ -11,14 +11,12 @@ import 'form_update_rekomendasi.dart';
 import 'package:http/http.dart' as http;
 import 'package:sirefis_mobile/model/item.dart';
 
-import 'gpu_request.dart';
-
 void main() {
-  runApp(AdminMain());
+  runApp(GpuRequest());
 }
 
 Future deleteItem(String id) async {
-  var res = await http.post(Uri.http("127.0.0.1:8000", "api/delete_data"),
+  var res = await http.post(Uri.http("127.0.0.1:8000", "api/delete-request"),
       // var res = await http.post(Uri.http("192.168.1.4:8000", "api/delete_data"),
       body: {"gpu_id": id.toString()});
   // print(res.body);
@@ -30,7 +28,7 @@ List<Item> items = [];
 
 Future getGpu() async {
   // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
-  var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
+  var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu-request'));
 
   var jsonData = jsonDecode(response.body);
   if (items.isNotEmpty) {
@@ -49,21 +47,21 @@ Future getGpu() async {
   print('helo');
 }
 
-class AdminMain extends StatelessWidget {
+class GpuRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: _AdminMainState(),
+      home: _GpuRequestState(),
     );
   }
 }
 
-class _AdminMainState extends StatefulWidget {
+class _GpuRequestState extends StatefulWidget {
   @override
-  State<_AdminMainState> createState() => _AdminMainStateBody();
+  State<_GpuRequestState> createState() => _GpuRequestStateBody();
 }
 
-class _AdminMainStateBody extends State<_AdminMainState> {
+class _GpuRequestStateBody extends State<_GpuRequestState> {
   int _currentIndex = 0;
   Future<Item?>? item;
 
@@ -107,7 +105,7 @@ class _AdminMainStateBody extends State<_AdminMainState> {
           backgroundColor: primaryColor,
           centerTitle: false,
           title: const Text(
-            "Admin",
+            "GPU Request",
           ),
           actions: [
             // IconButton(
@@ -188,7 +186,7 @@ class _AdminMainStateBody extends State<_AdminMainState> {
                 // );
                 if (newIndex == 0) {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => GpuRequest()),
+                    MaterialPageRoute(builder: (context) => TambahAdminApp()),
                   );
                 } else if (newIndex == 1) {
                   Navigator.of(context).push(

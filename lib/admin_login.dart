@@ -19,18 +19,25 @@ void main() {
 
 Future login() async {
   // Create a CookieJar
-  final cookieJar = CookieJar();
+  // final cookieJar = CookieJar();
 
-  // Attach the CookieJar to Dio
-  dio.interceptors.add(CookieManager(cookieJar));
-  Response response = await dio.post(
-    'http://192.168.1.16:8000/api/login-admin',
-    data: {"email": "dedemade2002@gmail.com", "password": "12345"},
-  );
+  var response = await http.post(Uri.http('127.0.0.1:8000', 'api/login-admin'),
+      body: {"admin_email": "dewa@gmail.com", "password": "1234"});
 
-  Future<List<Cookie>> cookies = cookieJar
-      .loadForRequest(Uri.parse('http://192.168.1.16:8000/api/login-admin'));
-  print(cookies);
+  final token =
+      jsonDecode(response.headers['host'].toString()) as Map<String, dynamic>;
+  print(token);
+
+  // // Attach the CookieJar to Dio
+  // dio.interceptors.add(CookieManager(cookieJar));
+  // Response response = await dio.post(
+  //   'http://192.168.1.16:8000/api/login-admin',
+  //   data: {"email": "dedemade2002@gmail.com", "password": "12345"},
+  // );
+
+  // Future<List<Cookie>> cookies = cookieJar
+  //     .loadForRequest(Uri.parse('http://192.168.1.16:8000/api/login-admin'));
+  // print(cookies);
   // print('Cookies from response: $cookies');
   // final response = await http.post(
   //   Uri.parse('http://127.0.0.1:8000/api/login-admin'),

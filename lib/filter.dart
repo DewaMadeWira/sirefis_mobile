@@ -93,7 +93,8 @@ class _FilterPageState extends State<FilterPage> {
     print(widget.hargaAwal.toString());
     print(widget.hargaAkhir.toString());
     var res =
-        await http.post(Uri.http("192.168.71.71:8000", "api/gpu-rank"), body: {
+        // await http.post(Uri.http("192.168.71.71:8000", "api/gpu-rank"), body: {
+        await http.post(Uri.http("127.0.0.1:8000", "api/gpu-rank"), body: {
       "amd": widget.amd.toString(),
       "nvidia": widget.nvidia.toString(),
       "desktop": widget.desktopState.toString(),
@@ -233,7 +234,7 @@ class _FilterPageState extends State<FilterPage> {
                                                 height: 15,
                                               ),
                                               Text(
-                                                "Rp${items[index].price}",
+                                                "\$${items[index].price}",
                                                 style: GoogleFonts.inter(
                                                   fontSize: 14,
                                                 ),
