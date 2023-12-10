@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:sirefis_mobile/admin_main.dart';
 import 'package:sirefis_mobile/tambah_admin.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 
@@ -24,28 +25,31 @@ Future deleteItem(String id) async {
   // Navigator.pop(BuildContext);
 }
 
-List<Item> items = [];
+//  getGpu() async {
 
-Future getGpu() async {
-  // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
-  var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu-request'));
+// List<Item> itemsArray = [];
+//   // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
+//   var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu-request'));
 
-  var jsonData = jsonDecode(response.body);
-  if (items.isNotEmpty) {
-    items.clear();
-    print("it is empty");
-  }
+//   var jsonData = jsonDecode(response.body);
+//   if (itemsArray.isNotEmpty) {
+//     itemsArray.clear();
+//     print("it is empty");
+//   }
 
-  for (var perData in jsonData) {
-    final item = Item(
-        name: perData['gpu_name'],
-        price: perData['price'].toString(),
-        id: perData['gpu_id'].toString());
-    items.add(item);
-  }
-  // print(items.length);
-  print('helo');
-}
+//   for (var perData in jsonData) {
+//     final item = Item(
+//         name: perData['gpu_name'],
+//         price: perData['price'].toString(),
+//         id: perData['request_id'].toString());
+//     itemsArray.add(item);
+//   }
+//   // print(items.length);
+//   print('helo');
+//   return itemsArray;
+// }
+
+// Future<List<Item>> items = getGpu();
 
 class GpuRequest extends StatelessWidget {
   @override
@@ -72,6 +76,30 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
     Icon(Icons.add)
   ];
 
+  List<Item> items = [];
+  Future getGpu() async {
+    // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
+    var response =
+        await http.get(Uri.http('127.0.0.1:8000', 'api/gpu-request'));
+
+    var jsonData = jsonDecode(response.body);
+    if (items.isNotEmpty) {
+      items.clear();
+      print("it is empty");
+    }
+    for (var perData in jsonData) {
+      final item = Item(
+          name: perData['gpu_name'],
+          price: perData['price'].toString(),
+          id: perData['request_id'].toString());
+      items.add(item);
+    }
+    // setState(() {});
+
+    // print(items.length);
+    print(items.length);
+  }
+
   // void clickDeleteButton() {
   //   setState(() {
   //     // item = deleteitem();
@@ -96,7 +124,110 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    getGpu();
+    showDialogFunc(context, title, desc, id) {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            // var clickDeleteButton;
+            return Center(
+              child: Material(
+                type: MaterialType.transparency,
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white),
+                  padding: EdgeInsets.all(15),
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: 390,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: Image.network(
+                          "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
+                          width: 200,
+                          height: 200,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        desc,
+                        style: TextStyle(fontSize: 15),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                              onPressed: () {
+                                Future.delayed(Duration(seconds: 3), () {
+                                  var res = http.post(
+                                      // Uri.http("192.168.1.4:8000", "api/delete-request"),
+                                      Uri.http("127.0.0.1:8000", "api/approve-request"),
+                                      body: {"request_id": id});
+                                  // print(jsonDecode(res.body));
+                                  // print(id);
+                                  setState(() {});
+
+                                  Navigator.pop(context);
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    primaryColor, // Background color
+                              ),
+                              child: Text(
+                                "Approve \n Request",
+                                style: TextStyle(fontSize: 20),
+                              )),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          ElevatedButton(
+                              onPressed: () async {
+                                var res = await http.post(
+                                    // Uri.http("192.168.1.4:8000", "api/delete-request"),
+                                    Uri.http("127.0.0.1:8000", "api/delete-request"),
+                                    body: {"request_id": id});
+                                // print(jsonDecode(res.body));
+                                // print(id);
+                                // await getGpu();
+                                setState(() {});
+
+                                Navigator.pop(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.red, // Background color
+                              ),
+                              child: Text(
+                                "Delete \n Request",
+                                style: TextStyle(fontSize: 20),
+                              ))
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          });
+    }
+
+    // getGpu();
     // deleteItem(id)
     // double width = MediaQuery.of(context).size.width * 0.6;
     return MaterialApp(
@@ -128,6 +259,22 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
                   future: getGpu(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
+                      if (items.isEmpty) {
+                        return Center(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {});
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    primaryColor, // Background color
+                              ),
+                              child: Text(
+                                "Refresh Page",
+                                style: TextStyle(fontSize: 20),
+                              )),
+                        );
+                      }
                       return ListView.builder(
                         itemCount: items.length,
                         itemBuilder: (context, index) {
@@ -135,8 +282,13 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
                             onTap: () {
                               // showDialogFunc(context, listGambar[index],
                               //     items[index].name, items[index].price);
-                              showDialogFunc(context, items[index].name,
-                                  items[index].price, items[index].id);
+                              // setState(() {});
+                              showDialogFunc(
+                                context,
+                                items[index].name,
+                                items[index].price,
+                                items[index].id,
+                              );
                             },
                             child: Padding(
                               // padding: const EdgeInsets.all(8.0),
@@ -186,7 +338,7 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
                 // );
                 if (newIndex == 0) {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => TambahAdminApp()),
+                    MaterialPageRoute(builder: (context) => GpuRequest()),
                   );
                 } else if (newIndex == 1) {
                   Navigator.of(context).push(
@@ -220,96 +372,6 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
 }
 
 // showDialogFunc(context, img, title, desc) {
-showDialogFunc(context, title, desc, id) {
-  return showDialog(
-      context: context,
-      builder: (context) {
-        // var clickDeleteButton;
-        return Center(
-          child: Material(
-            type: MaterialType.transparency,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.white),
-              padding: EdgeInsets.all(15),
-              width: MediaQuery.of(context).size.width * 0.7,
-              height: 390,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Image.network(
-                      "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
-                      width: 200,
-                      height: 200,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    desc,
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => UpdateGpu()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: primaryColor, // Background color
-                          ),
-                          child: Text(
-                            "Update",
-                            style: TextStyle(fontSize: 20),
-                          )),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      ElevatedButton(
-                          onPressed: () async {
-                            var res = await http.post(
-                                Uri.http("192.168.1.4:8000", "api/delete_data"),
-                                body: {"gpu_id": id});
-                            print(jsonDecode(res.body));
-                            print(id);
-                            await getGpu();
-
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.red, // Background color
-                          ),
-                          child: Text(
-                            "Delete",
-                            style: TextStyle(fontSize: 20),
-                          ))
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      });
-}
 
 //search
 class SearchPage extends StatefulWidget {
