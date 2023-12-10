@@ -101,10 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.green,
+      //   title: Text(widget.title),
+      // ),
       body: ListView(
         children: [
           // FloatingActionButton(
@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Padding(padding: EdgeInsets.only(top: 25)),
                     Text(
-                      'Form Tambah GPU\n',
+                      'Tambah GPU\n',
                       style: GoogleFonts.jura(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
