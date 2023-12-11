@@ -447,8 +447,8 @@ class _SearchPageState extends State<SearchPage> {
             onTap: () {
               //   // showDialogFunc(context, listGambar[index],
               //   //     items[index].name, items[index].price);
-              showDialogFunc(context, items[index].name, items[index].price,
-                  items[index].id);
+              // showDialogFunc(context, items[index].name, items[index].price,
+              //     items[index].id);
             },
             child: Padding(
               // padding: const EdgeInsets.all(8.0),

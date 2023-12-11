@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:sirefis_mobile/home.dart';
+import 'package:sirefis_mobile/secure_storage.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'admin_main.dart';
@@ -13,61 +14,79 @@ import 'package:cookie_jar/cookie_jar.dart';
 
 final dio = Dio();
 
+final _username = TextEditingController();
+final _password = TextEditingController();
+
 void main() {
   runApp(const LoginAdmin());
 }
 
-Future login() async {
-  // Create a CookieJar
-  // final cookieJar = CookieJar();
-
-  var response = await http.post(Uri.http('127.0.0.1:8000', 'api/login-admin'),
-      body: {"admin_email": "dewa@gmail.com", "password": "1234"});
-
-  final token =
-      jsonDecode(response.headers['host'].toString()) as Map<String, dynamic>;
-  print(token);
-
-  // // Attach the CookieJar to Dio
-  // dio.interceptors.add(CookieManager(cookieJar));
-  // Response response = await dio.post(
-  //   'http://192.168.1.16:8000/api/login-admin',
-  //   data: {"email": "dedemade2002@gmail.com", "password": "12345"},
-  // );
-
-  // Future<List<Cookie>> cookies = cookieJar
-  //     .loadForRequest(Uri.parse('http://192.168.1.16:8000/api/login-admin'));
-  // print(cookies);
-  // print('Cookies from response: $cookies');
-  // final response = await http.post(
-  //   Uri.parse('http://127.0.0.1:8000/api/login-admin'),
-  //   headers: <String, String>{
-  //     'Content-Type': 'application/json; charset=UTF-8',
-  //   },
-  //   body: jsonEncode(<String, String>{
-  //     "email": "dedemade2002@gmail.com",
-  //     "password": "12345"
-  //   }),
-  // );
-
-  // print(response.data);
-
-  // final cookies = response.headers.map['set-cookie'];
-  // if (cookies.isNotEmpty && cookies.length == 2) {
-  //   final authToken =
-  //       cookies[1].split(';')[0]; //it depends on how your server sending cookie
-  //   //save this authToken in local storage, and pass in further api calls.
-
-  //   aToken =
-  //       authToken; //saving this to global variable to refresh current api calls to add cookie.
-  //   print(authToken);
-  // }
-
-  // print(cookies);
-  //print(response.headers.toString());
-}
-
 class LoginAdmin extends StatelessWidget {
+  Future<bool> login() async {
+    // Create a CookieJar
+    // final cookieJar = CookieJar();
+
+    var response = await http.post(
+        Uri.http('127.0.0.1:8000', 'api/login-admin'),
+        body: {"email": _username.text, "password": _password.text});
+
+    print(response.statusCode);
+    if (response.statusCode == 401) {
+      print("wrong credentials");
+      return false;
+    }
+    // print(response.body.toString());
+    return true;
+    // if (!context.mounted) return;
+    // // Navigator.pop(context);
+    // Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) => AdminMain()));
+    // print("logged in");
+    // final token = response.body.toString();
+    // // print(token);
+    // final storage = new SecureStorage();
+    // await storage.writeSecureData('token', token);
+    // await storage.readSecureData('token');
+
+    // // Attach the CookieJar to Dio
+    // dio.interceptors.add(CookieManager(cookieJar));
+    // Response response = await dio.post(
+    //   'http://192.168.1.16:8000/api/login-admin',
+    //   data: {"email": "dedemade2002@gmail.com", "password": "12345"},
+    // );
+
+    // Future<List<Cookie>> cookies = cookieJar
+    //     .loadForRequest(Uri.parse('http://192.168.1.16:8000/api/login-admin'));
+    // print(cookies);
+    // print('Cookies from response: $cookies');
+    // final response = await http.post(
+    //   Uri.parse('http://127.0.0.1:8000/api/login-admin'),
+    //   headers: <String, String>{
+    //     'Content-Type': 'application/json; charset=UTF-8',
+    //   },
+    //   body: jsonEncode(<String, String>{
+    //     "email": "dedemade2002@gmail.com",
+    //     "password": "12345"
+    //   }),
+    // );
+
+    // print(response.data);
+
+    // final cookies = response.headers.map['set-cookie'];
+    // if (cookies.isNotEmpty && cookies.length == 2) {
+    //   final authToken =
+    //       cookies[1].split(';')[0]; //it depends on how your server sending cookie
+    //   //save this authToken in local storage, and pass in further api calls.
+
+    //   aToken =
+    //       authToken; //saving this to global variable to refresh current api calls to add cookie.
+    //   print(authToken);
+    // }
+
+    // print(cookies);
+    //print(response.headers.toString());
+  }
+
   const LoginAdmin({super.key});
 
   // This widget is the root of your application.
@@ -113,6 +132,7 @@ class LoginAdmin extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextFormField(
+                    controller: _username,
                     cursorColor: primaryColor,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
@@ -140,6 +160,7 @@ class LoginAdmin extends StatelessWidget {
                   child: TextFormField(
                     obscureText: true,
                     style: TextStyle(fontSize: 20),
+                    controller: _password,
                     decoration: InputDecoration(
                         labelText: "Password",
                         labelStyle: TextStyle(color: primaryColor),
@@ -162,14 +183,22 @@ class LoginAdmin extends StatelessWidget {
                     height: 52,
                     width: 300,
                     child: ElevatedButton(
-                        // onPressed: login,
                         onPressed: () {
-                          // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => AdminMain()),
-                          );
+                          print(login());
+                          // if (login() == true) {
+                          //   Navigator.of(context).push(
+                          //     MaterialPageRoute(
+                          //         builder: (context) => AdminMain()),
+                          //   );
+                          // }
                         },
+                        // onPressed: () {
+                        //   // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
+                        //   Navigator.of(context).push(
+                        //     MaterialPageRoute(
+                        //         builder: (context) => AdminMain()),
+                        //   );
+                        // },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),

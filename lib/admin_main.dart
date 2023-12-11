@@ -219,99 +219,217 @@ class _AdminMainStateBody extends State<_AdminMainState> {
       ),
     );
   }
+
+  showDialogFunc(context, title, desc, id) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          // var clickDeleteButton;
+          return Center(
+            child: Material(
+              type: MaterialType.transparency,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white),
+                padding: EdgeInsets.all(15),
+                width: MediaQuery.of(context).size.width * 0.7,
+                height: 390,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image.network(
+                        "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
+                        width: 200,
+                        height: 200,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      title,
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      desc,
+                      style: TextStyle(fontSize: 15),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) => UpdateGpu()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: primaryColor, // Background color
+                            ),
+                            child: Text(
+                              "Update",
+                              style: TextStyle(fontSize: 20),
+                            )),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        ElevatedButton(
+                            onPressed: () async {
+                              var res = await http.post(
+                                  // Uri.http("1192.168.2.246:8000", "api/delete_data"),
+                                  Uri.http("127.0.0.1:8000", "api/delete_data"),
+                                  body: {"gpu_id": id});
+                              print(jsonDecode(res.body));
+                              print(id);
+                              showDialogFunc(context, title, desc, id) {
+                                return showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      // var clickDeleteButton;
+                                      return Center(
+                                        child: Material(
+                                          type: MaterialType.transparency,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.white),
+                                            padding: EdgeInsets.all(15),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.7,
+                                            height: 390,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: <Widget>[
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  child: Image.network(
+                                                    "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
+                                                    width: 200,
+                                                    height: 200,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  title,
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  desc,
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .push(
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        UpdateGpu()),
+                                                          );
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary:
+                                                              primaryColor, // Background color
+                                                        ),
+                                                        child: Text(
+                                                          "Update",
+                                                          style: TextStyle(
+                                                              fontSize: 20),
+                                                        )),
+                                                    SizedBox(
+                                                      width: 30,
+                                                    ),
+                                                    ElevatedButton(
+                                                        onPressed: () async {
+                                                          var res = await http.post(
+                                                              // Uri.http("1192.168.2.246:8000", "api/delete_data"),
+                                                              Uri.http("127.0.0.1:8000", "api/delete_data"),
+                                                              body: {"gpu_id": id});
+                                                          print(jsonDecode(
+                                                              res.body));
+                                                          print(id);
+
+                                                          setState(() {});
+
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary: Colors
+                                                              .red, // Background color
+                                                        ),
+                                                        child: Text(
+                                                          "Delete",
+                                                          style: TextStyle(
+                                                              fontSize: 20),
+                                                        ))
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              }
+
+                              Navigator.pop(context);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.red, // Background color
+                            ),
+                            child: Text(
+                              "Delete",
+                              style: TextStyle(fontSize: 20),
+                            ))
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
 }
 
 // showDialogFunc(context, img, title, desc) {
-showDialogFunc(context, title, desc, id) {
-  return showDialog(
-      context: context,
-      builder: (context) {
-        // var clickDeleteButton;
-        return Center(
-          child: Material(
-            type: MaterialType.transparency,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.white),
-              padding: EdgeInsets.all(15),
-              width: MediaQuery.of(context).size.width * 0.7,
-              height: 390,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Image.network(
-                      "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
-                      width: 200,
-                      height: 200,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    desc,
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => UpdateGpu()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: primaryColor, // Background color
-                          ),
-                          child: Text(
-                            "Update",
-                            style: TextStyle(fontSize: 20),
-                          )),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      ElevatedButton(
-                          onPressed: () async {
-                            var res = await http.post(
-                                Uri.http("1192.168.2.246:8000", "api/delete_data"),
-                                body: {"gpu_id": id});
-                            print(jsonDecode(res.body));
-                            print(id);
-                            await getGpu();
-
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.red, // Background color
-                          ),
-                          child: Text(
-                            "Delete",
-                            style: TextStyle(fontSize: 20),
-                          ))
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      });
-}
 
 //search
 class SearchPage extends StatefulWidget {
@@ -322,6 +440,9 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+
+  final _AdminMainState admin = new _AdminMainState();
+
   List<Item> items = [];
   @override
   Widget build(BuildContext context) {
@@ -387,8 +508,8 @@ class _SearchPageState extends State<SearchPage> {
             onTap: () {
               //   // showDialogFunc(context, listGambar[index],
               //   //     items[index].name, items[index].price);
-              showDialogFunc(context, items[index].name, items[index].price,
-                  items[index].id);
+              // admin.showDialogFunc(context, items[index].name, items[index].price,
+              //     items[index].id);
             },
             child: Padding(
               // padding: const EdgeInsets.all(8.0),
