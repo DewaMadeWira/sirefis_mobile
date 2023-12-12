@@ -1,14 +1,49 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/home.dart';
 import 'package:sirefis_mobile/home_perusahaan.dart';
+import 'package:sirefis_mobile/secure_storage.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 // import 'package:flutter/rendering.dart';
+import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 void main() {
   runApp(MaterialApp(
     home: LoginPerusahaan(),
   ));
+}
+
+final _username = TextEditingController();
+final _password = TextEditingController();
+
+login() async {
+  // Create a CookieJar
+  // final cookieJar = CookieJar();
+
+  var response = await http.post(
+      Uri.http('127.0.0.1:8000', 'api/login-company'),
+      body: {"email": _username.text, "password": _password.text});
+
+  print(response.statusCode);
+  if (response.statusCode == 401) {
+    print("wrong credentials");
+    return false;
+  }
+  final storage = new SecureStorage();
+  await storage.writeSecureData(
+      'company', jsonDecode(response.body).toString());
+  await storage.readSecureData('company');
+  // print(response.body.toString());
+  // print("hallo");
+  // print(jsonDecode(response.body));
+  Get.to(HomePerusahaan());
+  // return '';
+
+  return response.body.toString();
 }
 
 class LoginPerusahaan extends StatelessWidget {
@@ -17,7 +52,7 @@ class LoginPerusahaan extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: Scaffold(
         // appBar: AppBar(
         //   backgroundColor: Colors.deepPurple[300],
@@ -51,6 +86,7 @@ class LoginPerusahaan extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextFormField(
+                    controller: _username,
                     cursorColor: primaryColor,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
@@ -76,6 +112,7 @@ class LoginPerusahaan extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextFormField(
+                    controller: _password,
                     obscureText: true,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
@@ -101,9 +138,10 @@ class LoginPerusahaan extends StatelessWidget {
                     width: 300,
                     child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomePerusahaan(),
-                          ));
+                          login();
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //   builder: (context) => HomePerusahaan(),
+                          // ));
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

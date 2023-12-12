@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:sirefis_mobile/home.dart';
 import 'package:sirefis_mobile/secure_storage.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
@@ -36,6 +38,8 @@ class LoginAdmin extends StatelessWidget {
       return false;
     }
     // print(response.body.toString());
+    Get.to(AdminMain());
+    // return '';
     return true;
     // if (!context.mounted) return;
     // // Navigator.pop(context);
@@ -92,7 +96,7 @@ class LoginAdmin extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: Scaffold(
         // appBar: AppBar(
         //   backgroundColor: Colors.deepPurple[300],
@@ -222,9 +226,10 @@ class LoginAdmin extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Home()),
-                        );
+                        Get.to(Home());
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (context) => Home()),
+                        // );
                       },
                       child: Text(
                         "Kembali",
