@@ -226,7 +226,7 @@ class LoginAdmin extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(Home());
+                       
                         // Navigator.of(context).push(
                         //   MaterialPageRoute(builder: (context) => Home()),
                         // );

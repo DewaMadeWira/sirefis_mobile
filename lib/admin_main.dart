@@ -17,20 +17,13 @@ void main() {
   runApp(AdminMain());
 }
 
-Future deleteItem(String id) async {
-  var res = await http.post(Uri.http("127.0.0.1:8000", "api/delete_data"),
-      // var res = await http.post(Uri.http("192.168.1.4:8000", "api/delete_data"),
-      body: {"gpu_id": id.toString()});
-  // print(res.body);
-  print(id);
-  // Navigator.pop(BuildContext);
-}
+
 
 List<Item> items = [];
 
 Future getGpu() async {
   // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
-  var response = await http.get(Uri.http('127.0.0.1:8000', 'api/gpu'));
+  var response = await http.get(Uri.http('192.168.77.88:8000', 'api/gpu'));
 
   var jsonData = jsonDecode(response.body);
   if (items.isNotEmpty) {
@@ -64,6 +57,18 @@ class _AdminMainState extends StatefulWidget {
 }
 
 class _AdminMainStateBody extends State<_AdminMainState> {
+
+  Future deleteItem(String id) async {
+  // var res = await http.post(Uri.http("192.168.77.88:8000", "api/delete_data"),
+  //     // var res = await http.post(Uri.http("192.168.1.4:8000", "api/delete_data"),
+  //     body: {"gpu_id": id.toString()});
+  // print(res.body);
+  print("id" + id);
+  // setState(() {
+    
+  // });
+  // Navigator.pop(context);
+}
   int _currentIndex = 0;
   Future<Item?>? item;
 
@@ -83,16 +88,16 @@ class _AdminMainStateBody extends State<_AdminMainState> {
   // get data gpu
 
   //delete api request
-  // Future<Item> deleteItem(String id) async {
+  // Future deleteItem(String id) async {
   //   final uri = Uri.parse('127.0.0.1:8000/api/delete_data');
   //   // final uri = Uri.parse('192.168.78.36:8000/api/gpu');
   //   final response = await http.post(uri, body: {"gpu_id": id.toString()});
-  //   return "deleted"
-  //   // if (response.statusCode == 200) {
-  //   //   return null;
-  //   // } else {
-  //   //   throw Exception('failed to load item');
-  //   // }
+  //   // return "deleted"
+  //   if (response.statusCode == 200) {
+  //     return true;
+  //   } else {
+  //     throw Exception('failed to load item');
+  //   }
   // }
 
   // This widget is the root of your application.
@@ -289,126 +294,11 @@ class _AdminMainStateBody extends State<_AdminMainState> {
                             onPressed: () async {
                               var res = await http.post(
                                   // Uri.http("1192.168.2.246:8000", "api/delete_data"),
-                                  Uri.http("127.0.0.1:8000", "api/delete_data"),
+                                  Uri.http("192.168.77.88:8000", "api/delete_data"),
                                   body: {"gpu_id": id});
-                              print(jsonDecode(res.body));
-                              print(id);
-                              showDialogFunc(context, title, desc, id) {
-                                return showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      // var clickDeleteButton;
-                                      return Center(
-                                        child: Material(
-                                          type: MaterialType.transparency,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: Colors.white),
-                                            padding: EdgeInsets.all(15),
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.7,
-                                            height: 390,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: <Widget>[
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  child: Image.network(
-                                                    "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/6/9/ce58332a-9b75-4c5e-9776-21db1004624e.jpg",
-                                                    width: 200,
-                                                    height: 200,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  title,
-                                                  style: TextStyle(
-                                                      fontSize: 25,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  desc,
-                                                  style:
-                                                      TextStyle(fontSize: 15),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    ElevatedButton(
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .push(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        UpdateGpu()),
-                                                          );
-                                                        },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          primary:
-                                                              primaryColor, // Background color
-                                                        ),
-                                                        child: Text(
-                                                          "Update",
-                                                          style: TextStyle(
-                                                              fontSize: 20),
-                                                        )),
-                                                    SizedBox(
-                                                      width: 30,
-                                                    ),
-                                                    ElevatedButton(
-                                                        onPressed: () async {
-                                                          var res = await http.post(
-                                                              // Uri.http("1192.168.2.246:8000", "api/delete_data"),
-                                                              Uri.http("127.0.0.1:8000", "api/delete_data"),
-                                                              body: {"gpu_id": id});
-                                                          print(jsonDecode(
-                                                              res.body));
-                                                          print(id);
-
-                                                          setState(() {});
-
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          primary: Colors
-                                                              .red, // Background color
-                                                        ),
-                                                        child: Text(
-                                                          "Delete",
-                                                          style: TextStyle(
-                                                              fontSize: 20),
-                                                        ))
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    });
-                              }
-
+                                  setState(() {
+                                    
+                                  });
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
@@ -449,7 +339,7 @@ class _SearchPageState extends State<SearchPage> {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
       var response = await http
-          .get(Uri.http('192.168.1.4:8000', 'api/search_gpu/$params'));
+          .get(Uri.http('192.168.77.88:8000', 'api/search_gpu/$params'));
       // .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
