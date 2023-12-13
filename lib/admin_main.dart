@@ -17,13 +17,11 @@ void main() {
   runApp(AdminMain());
 }
 
-
-
 List<Item> items = [];
 
 Future getGpu() async {
   // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
-  var response = await http.get(Uri.http('192.168.77.88:8000', 'api/gpu'));
+  var response = await http.get(Uri.http('192.168.57.133:8000', 'api/gpu'));
 
   var jsonData = jsonDecode(response.body);
   if (items.isNotEmpty) {
@@ -57,18 +55,18 @@ class _AdminMainState extends StatefulWidget {
 }
 
 class _AdminMainStateBody extends State<_AdminMainState> {
-
   Future deleteItem(String id) async {
-  // var res = await http.post(Uri.http("192.168.77.88:8000", "api/delete_data"),
-  //     // var res = await http.post(Uri.http("192.168.1.4:8000", "api/delete_data"),
-  //     body: {"gpu_id": id.toString()});
-  // print(res.body);
-  print("id" + id);
-  // setState(() {
-    
-  // });
-  // Navigator.pop(context);
-}
+    // var res = await http.post(Uri.http("192.168.77.88:8000", "api/delete_data"),
+    //     // var res = await http.post(Uri.http("192.168.1.4:8000", "api/delete_data"),
+    //     body: {"gpu_id": id.toString()});
+    // print(res.body);
+    print("id" + id);
+    // setState(() {
+
+    // });
+    // Navigator.pop(context);
+  }
+
   int _currentIndex = 0;
   Future<Item?>? item;
 
@@ -294,11 +292,9 @@ class _AdminMainStateBody extends State<_AdminMainState> {
                             onPressed: () async {
                               var res = await http.post(
                                   // Uri.http("1192.168.2.246:8000", "api/delete_data"),
-                                  Uri.http("192.168.77.88:8000", "api/delete_data"),
+                                  Uri.http("192.168.57.133:8000", "api/delete_data"),
                                   body: {"gpu_id": id});
-                                  setState(() {
-                                    
-                                  });
+                              setState(() {});
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
@@ -330,7 +326,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-
   final _AdminMainState admin = new _AdminMainState();
 
   List<Item> items = [];
@@ -339,7 +334,7 @@ class _SearchPageState extends State<SearchPage> {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
       var response = await http
-          .get(Uri.http('192.168.77.88:8000', 'api/search_gpu/$params'));
+          .get(Uri.http('192.168.57.133:8000', 'api/search_gpu/$params'));
       // .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
