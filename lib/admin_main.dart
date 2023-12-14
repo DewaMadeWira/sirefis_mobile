@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:sirefis_mobile/model/item.dart';
 
 import 'gpu_request.dart';
+import 'model/env.dart';
 
 void main() {
   runApp(AdminMain());
@@ -21,7 +22,7 @@ List<Item> items = [];
 
 Future getGpu() async {
   // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
-  var response = await http.get(Uri.http('192.168.57.133:8000', 'api/gpu'));
+  var response = await http.get(Uri.http(link, 'api/gpu'));
 
   var jsonData = jsonDecode(response.body);
   if (items.isNotEmpty) {
@@ -291,8 +292,8 @@ class _AdminMainStateBody extends State<_AdminMainState> {
                         ElevatedButton(
                             onPressed: () async {
                               var res = await http.post(
-                                  // Uri.http("1192.168.2.246:8000", "api/delete_data"),
-                                  Uri.http("192.168.57.133:8000", "api/delete_data"),
+                                  Uri.http(link, "api/delete_data"),
+                                  // Uri.http("192.168.57.133:8000", "api/delete_data"),
                                   body: {"gpu_id": id});
                               setState(() {});
                               Navigator.pop(context);
@@ -333,9 +334,9 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
-      var response = await http
-          .get(Uri.http('192.168.57.133:8000', 'api/search_gpu/$params'));
-      // .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
+      var response =
+          await http.get(Uri.http(link, 'api/search_gpu/$params'));
+      // .get(Uri.http('192.168.57.133:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
       for (var perData in jsonData) {

@@ -6,13 +6,15 @@ import 'package:http/http.dart' as http;
 import 'package:sirefis_mobile/model/item.dart';
 import 'dart:convert';
 
+import 'model/env.dart';
+
 void main() {
   runApp(const UpdateGpu());
 }
 
 Future getGpu() async {
   // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
-  var response = await http.get(Uri.http('192.168.57.133:8000', 'api/gpu'));
+  var response = await http.get(Uri.http(link, 'api/gpu'));
 
   var jsonData = jsonDecode(response.body);
   if (items.isNotEmpty) {

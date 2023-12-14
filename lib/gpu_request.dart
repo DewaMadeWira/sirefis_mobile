@@ -12,12 +12,14 @@ import 'form_update_rekomendasi.dart';
 import 'package:http/http.dart' as http;
 import 'package:sirefis_mobile/model/item.dart';
 
+import 'model/env.dart';
+
 void main() {
   runApp(GpuRequest());
 }
 
 Future deleteItem(String id) async {
-  var res = await http.post(Uri.http("127.0.0.1:8000", "api/delete-request"),
+  var res = await http.post(Uri.http(link, "api/delete-request"),
       // var res = await http.post(Uri.http("192.168.1.4:8000", "api/delete_data"),
       body: {"gpu_id": id.toString()});
   // print(res.body);
@@ -80,7 +82,7 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
   Future getGpu() async {
     // var response = await http.get(Uri.http('192.168.1.4:8000', 'api/gpu'));
     var response =
-        await http.get(Uri.http('127.0.0.1:8000', 'api/gpu-request'));
+        await http.get(Uri.http(link, 'api/gpu-request'));
 
     var jsonData = jsonDecode(response.body);
     if (items.isNotEmpty) {
@@ -177,7 +179,7 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
                                 Future.delayed(Duration(seconds: 3), () {
                                   var res = http.post(
                                       // Uri.http("192.168.1.4:8000", "api/delete-request"),
-                                      Uri.http("127.0.0.1:8000", "api/approve-request"),
+                                      Uri.http(link, "api/approve-request"),
                                       body: {"request_id": id});
                                   // print(jsonDecode(res.body));
                                   // print(id);
@@ -201,7 +203,7 @@ class _GpuRequestStateBody extends State<_GpuRequestState> {
                               onPressed: () async {
                                 var res = await http.post(
                                     // Uri.http("192.168.1.4:8000", "api/delete-request"),
-                                    Uri.http("127.0.0.1:8000", "api/delete-request"),
+                                    Uri.http(link, "api/delete-request"),
                                     body: {"request_id": id});
                                 // print(jsonDecode(res.body));
                                 // print(id);
@@ -388,7 +390,7 @@ class _SearchPageState extends State<SearchPage> {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
       var response = await http
-          .get(Uri.http('192.168.1.4:8000', 'api/search_gpu/$params'));
+          .get(Uri.http(link, 'api/search_gpu/$params'));
       // .get(Uri.http('192.168.78.36:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 

@@ -12,6 +12,8 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:cookie_jar/cookie_jar.dart';
+
+import 'model/env.dart';
 // import 'package:flutter/rendering.dart';
 
 final dio = Dio();
@@ -29,7 +31,8 @@ class LoginAdmin extends StatelessWidget {
     // final cookieJar = CookieJar();
 
     var response = await http.post(
-        Uri.http('127.0.0.1:8000', 'api/login-admin'),
+        // Uri.http('127.0.0.1:8000', 'api/login-admin'),
+        Uri.http(link, 'api/login-admin'),
         body: {"email": _username.text, "password": _password.text});
 
     print(response.statusCode);

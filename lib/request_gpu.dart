@@ -7,6 +7,7 @@ import 'package:sirefis_mobile/request_gpubaru.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
+import 'model/env.dart';
 import 'model/item.dart';
 
 class RequestGpu extends StatefulWidget {
@@ -42,7 +43,7 @@ class _RequestGpuState extends State<RequestGpu> {
 
   Future getGpu() async {
     // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
-    var res = await http.get(Uri.http("192.168.136.40:8080", "gpu"));
+    var res = await http.get(Uri.http(link, "gpu"));
     var jsonData = jsonDecode(res.body);
     if (items.isNotEmpty) {
       items.clear();

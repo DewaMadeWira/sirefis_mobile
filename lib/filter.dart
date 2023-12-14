@@ -6,6 +6,7 @@ import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
+import 'model/env.dart';
 import 'model/item.dart';
 
 class FilterPage extends StatefulWidget {
@@ -94,7 +95,7 @@ class _FilterPageState extends State<FilterPage> {
     print(widget.hargaAkhir.toString());
     var res =
         // await http.post(Uri.http("192.168.71.71:8000", "api/gpu-rank"), body: {
-        await http.post(Uri.http("127.0.0.1:8000", "api/gpu-rank"), body: {
+        await http.post(Uri.http(link, "api/gpu-rank"), body: {
       "amd": widget.amd.toString(),
       "nvidia": widget.nvidia.toString(),
       "desktop": widget.desktopState.toString(),

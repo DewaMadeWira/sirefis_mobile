@@ -11,6 +11,8 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import 'model/env.dart';
+
 void main() {
   runApp(MaterialApp(
     home: LoginPerusahaan(),
@@ -25,7 +27,7 @@ login() async {
   // final cookieJar = CookieJar();
 
   var response = await http.post(
-      Uri.http('127.0.0.1:8000', 'api/login-company'),
+      Uri.http(link, 'api/login-company'),
       body: {"email": _username.text, "password": _password.text});
 
   print(response.statusCode);

@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
+import 'model/env.dart';
+
 void main() {
   runApp(const TambahGpu());
 }
@@ -73,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
   postData() async {
     // try {
     var response = await http
-        .post(Uri.parse("http://192.168.71.84:8000/api/create_data"), body: {
+        .post(Uri.parse("$link/api/create_data"), body: {
       // "gpu_id": 1.toString(), //387
       "gpu_name": _gpu_name.text.toString(),
       "G3Dmark": _g3dmark.text.toString(),

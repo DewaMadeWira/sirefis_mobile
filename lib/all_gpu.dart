@@ -6,6 +6,7 @@ import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
+import 'model/env.dart';
 import 'model/item.dart';
 
 class AllGpu extends StatefulWidget {
@@ -56,7 +57,7 @@ class _AllGpuState extends State<AllGpu> {
   //   print(items.length);
   // }
   Future getGpu()async{
-    var response = await http.get(Uri.http('192.168.18.246:8000','api/gpu'));
+    var response = await http.get(Uri.http(link,'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var gpu_data in jsonData){

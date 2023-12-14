@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:sirefis_mobile/admin_main.dart';
 import 'package:sirefis_mobile/model/item.dart';
 
+import 'model/env.dart';
+
 void main() {
   runApp(MaterialApp(home: TampilData()));
 }
@@ -17,7 +19,7 @@ class TampilData extends StatelessWidget {
   List<Item> items = [];
 
   Future getGpu()async{
-    var response = await http.get(Uri.http('10.211.113.8:8000','api/gpu'));
+    var response = await http.get(Uri.http(link,'api/gpu'));
     var jsonData = jsonDecode(response.body);
 
     for (var gpu_data in jsonData){
