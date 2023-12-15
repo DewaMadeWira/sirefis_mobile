@@ -74,8 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   postData() async {
     // try {
-    var response = await http
-        .post(Uri.parse("$link/api/create_data"), body: {
+    var response = await http.post(Uri.parse("$link/api/create_data"), body: {
       // "gpu_id": 1.toString(), //387
       "gpu_name": _gpu_name.text.toString(),
       "G3Dmark": _g3dmark.text.toString(),
@@ -552,6 +551,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             GestureDetector(
                               onTap: () {
                                 postData();
+                                Navigator.pop(context);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
