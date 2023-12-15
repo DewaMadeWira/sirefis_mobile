@@ -11,6 +11,11 @@ class SecureStorage {
     String value = await storage.read(key: key) ?? 'No data found!';
     print('Data read from secure storage: $value');
   }
+  returnSecureData(String key) async {
+    String value = await storage.read(key: key) ?? 'No data found!';
+    return  value;
+    // print('Data read from secure storage: $value');
+  }
 
   deleteSecureData(String key) async {
     await storage.delete(key: key);

@@ -4,11 +4,13 @@ import 'package:sirefis_mobile/admin_reccomendation.dart';
 import 'package:sirefis_mobile/all_gpu.dart';
 import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/components/inputFilter.dart';
+import 'package:sirefis_mobile/model/env.dart';
 import 'package:sirefis_mobile/request_gpu.dart';
+import 'package:sirefis_mobile/secure_storage.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:http/http.dart' as http;
 import 'components/btnFilter.dart';
 import 'edit_profil_perusahaan.dart';
 import 'filter.dart';
@@ -42,6 +44,32 @@ class _HomeStatePerusahaan extends State<HomePerusahaan> {
   String tahunTerlama = "2020";
   String tahunTerbaru = "2023";
 
+  // Future<String> jumlahGpu = "0" as Future<String>;
+  String jumlahGpu = "0" ;
+
+    void  getPerusahaan()async{
+      final storage = new SecureStorage();
+      // await storage.readSecureData('company');
+      String company_id = await storage.returnSecureData('company');
+      var response = await http.post(
+      Uri.http(link, 'api/count-company'),
+      body: {"company_id": company_id});
+      // jumlahGpu =  response.body.toString();
+      print(response.body.toString());
+      setState(() {
+        jumlahGpu =  response.body.toString();
+      });
+
+    }
+    @override
+  void initState() {
+    getPerusahaan();
+    // TODO: implement initState
+    super.initState();
+  }
+
+    
+
   void setPerusahaan(String newValue) {
     setState(() {
       dropdownPerusahaan = newValue;
@@ -62,6 +90,7 @@ class _HomeStatePerusahaan extends State<HomePerusahaan> {
 
   @override
   Widget build(BuildContext context) {
+    // getPerusahaan();
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -101,7 +130,7 @@ class _HomeStatePerusahaan extends State<HomePerusahaan> {
                       height: 20,
                     ),
                     Text(
-                      "100",
+                      jumlahGpu,
                       style: GoogleFonts.inter(
                           color: primaryColor,
                           fontSize: 32,

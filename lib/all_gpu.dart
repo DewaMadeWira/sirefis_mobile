@@ -3,11 +3,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/components/dropDownFilter.dart';
+import 'package:sirefis_mobile/secure_storage.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
 import 'model/env.dart';
 import 'model/item.dart';
+import 'package:dio/dio.dart';
+
+final dio = Dio();
 
 class AllGpu extends StatefulWidget {
   const AllGpu({super.key});
@@ -33,6 +37,11 @@ class _AllGpuState extends State<AllGpu> {
       dropdownTipe = newValue;
     });
   }
+  //   void initState() {
+  //   getPerusahaan();
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
   List<Item> items = [];
 
@@ -57,8 +66,21 @@ class _AllGpuState extends State<AllGpu> {
   //   print(items.length);
   // }
   Future getGpu()async{
-    var response = await http.get(Uri.http(link,'api/gpu'));
-    var jsonData = jsonDecode(response.body);
+    final storage = new SecureStorage();
+      // await storage.readSecureData('company');
+      String company_id = await storage.returnSecureData('company');
+    // var response = await http.get(Uri.http(link,'api/gpu'));
+    Response response = await  dio.post("http://"+link+"/api/company-gpu",data: {"company_id":company_id});
+    // var jsonData= jsonDecode(response.data.toString());
+    var jsonData= response.data;
+    // try{
+    //   print(response.data);
+    //   
+    //   }
+    //   catch(e){
+    //     print(e);
+    // }
+    
 
     for (var gpu_data in jsonData){
       final item = Item(

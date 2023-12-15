@@ -35,10 +35,11 @@ login() async {
     print("wrong credentials");
     return false;
   }
+  // print(response.body);
   final storage = new SecureStorage();
   await storage.writeSecureData(
       'company', jsonDecode(response.body).toString());
-  await storage.readSecureData('company');
+  // await storage.readSecureData('company');
   // print(response.body.toString());
   // print("hallo");
   // print(jsonDecode(response.body));
