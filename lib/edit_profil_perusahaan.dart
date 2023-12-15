@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sirefis_mobile/home.dart';
 import 'package:sirefis_mobile/home_perusahaan.dart';
+import 'package:sirefis_mobile/model/env.dart';
+import 'package:sirefis_mobile/secure_storage.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const EditProfilPerusahaan());
 }
+
+
 
 class EditProfilPerusahaan extends StatelessWidget {
   const EditProfilPerusahaan({super.key});
@@ -59,18 +65,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final storage = new SecureStorage();
+
+
+
+
+  //
+
+  final _namaperusahaan = TextEditingController();
+  final _ceo = TextEditingController();
+  final _lokasi = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +135,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 0),
-                      child: TextField(),
+                      child: TextField(
+                        controller: _namaperusahaan,
+                      ),
                     ),
                   )
                 ],
@@ -164,7 +171,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 0),
-                      child: TextField(),
+                      child: TextField(
+                        controller: _ceo,
+                      ),
                     ),
                   )
                 ],
@@ -198,7 +207,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 0),
-                      child: TextField(),
+                      child: TextField(
+                        controller: _lokasi,
+                      ),
                     ),
                   )
                 ],
@@ -209,6 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   GestureDetector(
                     onTap: () => {
+                      
                       Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (context) => HomePerusahaan()),
@@ -230,7 +242,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                  Container(
+                  GestureDetector(
+                onTap:  ()async=>{
+
+               await http.post(
+                Uri.http(link, 'api/update_data_company'),
+                body: {"company_id": await storage.returnSecureData('company') ,"company_name": _namaperusahaan.text, "ceo": _ceo.text, "location": _lokasi.text}),
+
+                  // Navigator.push(context,
+                  //   MaterialPageRoute(
+                  //     builder: (ContextAction) => HomePerusahaan()
+                  //   ),
+                  // )
+                },
+                child: Container(
+          
                     decoration: BoxDecoration(
                       color: primaryColor,
                       border: Border.all(width: 2),
@@ -245,6 +271,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           GoogleFonts.inter(fontSize: 12, color: Colors.black),
                     ),
                   ),
+                )
+                  
                 ],
               )
             ],
