@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sirefis_mobile/admin_main.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -74,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   postData() async {
     // try {
-    var response = await http.post(Uri.parse("$link/api/create_data"), body: {
+    var response = await http.post(Uri.http(link, 'api/create_data'), body: {
       // "gpu_id": 1.toString(), //387
       "gpu_name": _gpu_name.text.toString(),
       "G3Dmark": _g3dmark.text.toString(),
@@ -551,7 +552,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             GestureDetector(
                               onTap: () {
                                 postData();
-                                Navigator.pop(context);
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => AdminMain()),
+                                );
                               },
                               child: Container(
                                 decoration: BoxDecoration(

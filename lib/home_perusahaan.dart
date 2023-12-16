@@ -45,30 +45,27 @@ class _HomeStatePerusahaan extends State<HomePerusahaan> {
   String tahunTerbaru = "2023";
 
   // Future<String> jumlahGpu = "0" as Future<String>;
-  String jumlahGpu = "0" ;
+  String jumlahGpu = "0";
 
-    void  getPerusahaan()async{
-      final storage = new SecureStorage();
-      // await storage.readSecureData('company');
-      String company_id = await storage.returnSecureData('company');
-      var response = await http.post(
-      Uri.http(link, 'api/count-company'),
-      body: {"company_id": company_id});
-      // jumlahGpu =  response.body.toString();
-      print(response.body.toString());
-      setState(() {
-        jumlahGpu =  response.body.toString();
-      });
+  void getPerusahaan() async {
+    final storage = new SecureStorage();
+    // await storage.readSecureData('company');
+    String company_id = await storage.returnSecureData('company');
+    var response = await http.post(Uri.http(link, 'api/count-company'),
+        body: {"company_id": company_id});
+    // jumlahGpu =  response.body.toString();
+    print(response.body.toString());
+    setState(() {
+      jumlahGpu = response.body.toString();
+    });
+  }
 
-    }
-    @override
+  @override
   void initState() {
     getPerusahaan();
     // TODO: implement initState
     super.initState();
   }
-
-    
 
   void setPerusahaan(String newValue) {
     setState(() {

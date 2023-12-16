@@ -4,24 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sirefis_mobile/components/dropDownFilter.dart';
 import 'package:sirefis_mobile/request_gpubaru.dart';
+import 'package:sirefis_mobile/secure_storage.dart';
 import 'package:sirefis_mobile/theme/colors.dart';
 import 'package:http/http.dart' as http;
 
 import 'model/env.dart';
 import 'model/item.dart';
+import 'package:dio/dio.dart';
+
+final dio = Dio();
 
 class RequestGpu extends StatefulWidget {
   const RequestGpu({super.key});
 
   @override
-  State<RequestGpu> createState() => _RequestGpuState();
+  State<RequestGpu> createState() => _RequestGpu();
 }
 
-class _RequestGpuState extends State<RequestGpu> {
-  String dropdownTipe = "Tertinggi";
+class _RequestGpu extends State<RequestGpu> {
+  String dropdownTipe = "Terbaru";
   List<String> tipeList = [
-    "Tertinggi",
-    "Terendah",
+    "Terbaru",
+    "Terlama",
   ];
 
   List<Item> itemList = [
@@ -34,6 +38,11 @@ class _RequestGpuState extends State<RequestGpu> {
       dropdownTipe = newValue;
     });
   }
+  //   void initState() {
+  //   getPerusahaan();
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
   List<Item> items = [];
 
@@ -41,176 +50,159 @@ class _RequestGpuState extends State<RequestGpu> {
     print("this is text");
   }
 
+  // Future getGpu() async {
+  //   // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
+  //   var res = await http.get(Uri.http("10.211.113.8:8000", "api/gpu"));
+  //   var jsonData = jsonDecode(res.body);
+  //   if (items.isNotEmpty) {
+  //     items.clear();
+  //     print("it is empty");
+  //   }
+  //   for (var itemData in jsonData) {
+  //     final item = Item(
+  //         name: itemData["gpu_name"], price: itemData["price"],id:itemData["gpu_id"].toString());
+  //     items.add(item);
+  //   }
+
+  //   print(items.length);
+  // }
   Future getGpu() async {
-    // var res = await http.get(Uri.http("192.168.1.11:8080", "gpu"));
-    var res = await http.get(Uri.http(link, "gpu"));
-    var jsonData = jsonDecode(res.body);
-    if (items.isNotEmpty) {
-      items.clear();
-      print("it is empty");
-    }
-    for (var itemData in jsonData) {
+    final storage = new SecureStorage();
+    // await storage.readSecureData('company');
+    String company_id = await storage.returnSecureData('company');
+    Response response = await dio.post("http://" + link + "/api/gpu-request",
+        data: {"company_id": company_id});
+
+    var jsonData = response.data;
+    // try{
+    //   print(response.data);
+    //
+    //   }
+    //   catch(e){
+    //     print(e);
+    // }
+
+    for (var gpu_data in jsonData) {
       final item = Item(
-          name: itemData["gpu_name"],
-          price: itemData["gpu_price"].toString(),
-          id: itemData["gpu_id"]);
+        name: gpu_data['gpu_name'],
+        price: gpu_data['price'].toString(),
+        id: gpu_data['gpu_id'].toString(),
+      );
       items.add(item);
     }
-
     print(items.length);
   }
 
   @override
   Widget build(BuildContext context) {
     // textme();
-    // getGpu();
+    //getGpu();
     // return FutureBuilder(builder: builder)
-    return FutureBuilder(
-      // future: getGpu(),
-      builder: (ctx, snapshot) {
-        // if (snapshot.connectionState == ConnectionState.done) {
-        return Scaffold(
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              // Add your onPressed code here!
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => RequestGpuBaru()),
-              );
-            },
-            label: const Text('Request Barang Baru'),
-            foregroundColor: Colors.black,
-            backgroundColor: primaryColor,
-            elevation: 0,
-            icon: const Icon(Icons.add),
-          ),
-          backgroundColor: backgroundColor,
-          appBar: AppBar(
-            backgroundColor: primaryColor,
-            elevation: 0,
-          ),
-          body: ListView(children: [
-            Container(
-              padding: EdgeInsets.all(30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Request",
-                    style: GoogleFonts.jura(
-                        fontSize: 36, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Pending Request :",
-                    style: GoogleFonts.jura(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DropDownFilter(
-                      item: dropdownTipe,
-                      itemList: tipeList,
-                      onChange: setTipe),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: itemList.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(15),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // Add your onPressed code here!
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => RequestGpuBaru()),
+          );
+        },
+        label: const Text('Request Barang Baru'),
+        foregroundColor: Colors.black,
+        backgroundColor: primaryColor,
+        elevation: 0,
+        icon: const Icon(Icons.add),
+      ),
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        elevation: 0,
+      ),
+      body: ListView(children: [
+        Container(
+          padding: EdgeInsets.all(30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Semua \nGPU",
+                style:
+                    GoogleFonts.jura(fontSize: 36, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Urutkan :",
+                style: GoogleFonts.jura(fontSize: 20),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              DropDownFilter(
+                  item: dropdownTipe, itemList: tipeList, onChange: setTipe),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                  height: 600.0,
+                  child: FutureBuilder(
+                      future: getGpu(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return ListView.builder(
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
                                   decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey,
-                                          spreadRadius: 2,
-                                          blurRadius: 7,
-                                          offset: Offset(0, 2),
-                                        )
-                                      ],
-                                      color: whiteColor,
-                                      border: Border.all(
-                                          color: Colors.black, width: 2),
-                                      borderRadius: BorderRadius.circular(13)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Gambar\nTidak\nTersedia',
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.inter(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                      ),
-                                      SizedBox(
-                                        width: 50,
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            width: 150,
-                                            child: Text(
-                                              itemList[index].name,
-                                              style: GoogleFonts.jura(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                          Text(
-                                            "Rp" + itemList[index].price,
-                                            style: GoogleFonts.inter(
-                                              fontSize: 14,
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    ],
+                                    color: Colors.grey[250],
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: ListTile(
+                                    title: Text(items[index].name),
+                                    subtitle: Text(items[index].price),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                )
-                              ],
-                            );
-                          }),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ]),
-        );
-        // } else {
-        //   return Center(
-        //       child: CircularProgressIndicator(
-        //     backgroundColor: backgroundColor,
-        //     color: primaryColor,
-        //   ));
-        // }
-      },
-      future: null,
+                              );
+                            },
+                          );
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      })),
+              // Column(
+              //   children: [
+              //     Expanded(child: SizedBox(height: 200.0,
+              //               child:
+              //       FutureBuilder(
+              //     future: getGpu(),
+              //     builder: (context, snapshot){
+              //       if(snapshot.connectionState == ConnectionState.done){
+              //         return ListView.builder(
+              //           itemCount: items.length,
+              //           itemBuilder: (context, index){
+              //             return ListTile(
+              //               title: Text(items[index].name),
+              //               subtitle: Text(items[index].price),
+              //             );
+              //           },
+              //         );
+              //       }else {
+              //         return Center(
+              //           child: CircularProgressIndicator(),
+              //         );
+              //       }
+              //     })),
+              //     )
+              //   ],
+              // )
+            ],
+          ),
+        ),
+      ]),
     );
   }
 }
