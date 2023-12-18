@@ -276,7 +276,9 @@ class _AdminMainStateBody extends State<_AdminMainState> {
                             onPressed: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (context) => UpdateGpu()),
+                                    builder: (context) => UpdateGpu(
+                                          gpuId: id,
+                                        )),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -334,8 +336,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     Future<void> searchItem(params) async {
       List<Item> searchedItems = [];
-      var response =
-          await http.get(Uri.http(link, 'api/search_gpu/$params'));
+      var response = await http.get(Uri.http(link, 'api/search_gpu/$params'));
       // .get(Uri.http('192.168.57.133:8000', 'api/search_gpu/$params'));
       var jsonData = jsonDecode(response.body);
 
