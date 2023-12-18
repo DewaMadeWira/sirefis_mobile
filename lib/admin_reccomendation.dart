@@ -110,8 +110,9 @@ class AdminRec extends StatelessWidget {
                 height: 40,
               ),
               Text(
-                "Rekomendasi Serupa",
-                style: GoogleFonts.jura(fontSize: 22),
+                "Rekomendasi Serupa :",
+                style: GoogleFonts.jura(fontSize: 22,fontWeight: FontWeight.bold),
+                
               ),
             ],
             
