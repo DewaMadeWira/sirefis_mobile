@@ -48,7 +48,7 @@ final _company = TextEditingController();
 
 postData(id) async {
   // try {
-  var response = await http.post(Uri.http(link, 'api/update_data'), body: {
+  var response = await http.post(Uri.http(link, 'api/update_data_gpu'), body: {
     "gpu_id": id.toString(), //387
     "gpu_name": _gpu_name.text.toString(),
     "G3Dmark": _g3dmark.text.toString(),
@@ -59,8 +59,9 @@ postData(id) async {
     "power_performance": _power_performance.text.toString(),
     "test_date": _test_date.text.toString(),
     "category": _category.text.toString(),
-    "company": _company.text
+    "company": _company.text.toString()
   });
+  // print("updated " + id);
   print(response.body);
   // } catch (e) {
   //   print(e);
@@ -210,7 +211,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _gpu_name,
+                                ),
                               ),
                             ),
                           ],
@@ -246,7 +249,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _price,
+                                ),
                               ),
                             ),
                           ],
@@ -282,7 +287,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _test_date,
+                                ),
                               ),
                             ),
                           ],
@@ -318,7 +325,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _g3dmark,
+                                ),
                               ),
                             ),
                           ],
@@ -354,7 +363,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _g2dmark,
+                                ),
                               ),
                             ),
                           ],
@@ -390,7 +401,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _gpu_value,
+                                ),
                               ),
                             ),
                           ],
@@ -426,7 +439,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _tdp,
+                                ),
                               ),
                             ),
                           ],
@@ -462,7 +477,9 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _power_performance,
+                                ),
                               ),
                             ),
                           ],
@@ -498,7 +515,48 @@ class _MyHomePageState extends State<UpdateGpu> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
-                                child: TextField(),
+                                child: TextField(
+                                  controller: _category,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 38),
+                            ),
+                            Text(
+                              'Company',
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(padding: EdgeInsets.all(2)),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 37),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                border: Border.all(width: 2),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              width: 160, //lebar
+                              height: 36, //tinggi
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 0),
+                                child: TextField(
+                                  controller: _company,
+                                ),
                               ),
                             ),
                           ],
@@ -508,7 +566,11 @@ class _MyHomePageState extends State<UpdateGpu> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
-                              onTap: () => postData(widget.gpuId),
+                              onTap: () => {postData(widget.gpuId),
+                              Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => AdminMain()),
+                  )},
+
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.grey,
